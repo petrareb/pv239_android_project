@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">ReceptarStarejMatere</string>
+    <string name="app_name">Receptár Starej Matere</string>
+    <string name="favorites">Srdcovky</string>
+    <string name="recipes">Moje recepty</string>
+    <string name="settings">Nastavenia</string>
+    <string name="search">Vyhľadávať</string>
+    <string name="add_new_recipe">Pridať recepty</string>
 </resources>
