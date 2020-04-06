@@ -1,7 +1,8 @@
-package com.example.receptarstarejmatere
+package com.example.receptarstarejmatere.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.receptarstarejmatere.R
 
 class RecipesActivity : AppCompatActivity() {
 
