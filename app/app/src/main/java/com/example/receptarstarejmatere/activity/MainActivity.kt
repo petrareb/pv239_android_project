@@ -4,7 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.receptarstarejmatere.*
+import com.example.receptarstarejmatere.database.DataGenerator
+import com.example.receptarstarejmatere.database.MyDb
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.Collections.unmodifiableList
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,5 +35,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         }
+
     }
 }

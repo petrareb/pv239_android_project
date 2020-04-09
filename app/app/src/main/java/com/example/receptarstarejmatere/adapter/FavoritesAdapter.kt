@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
-import com.example.receptarstarejmatere.model.Recipe
+import com.example.receptarstarejmatere.database.model.Recipe
 
 class FavoritesAdapter(private val recipes: List<Recipe> = listOf()): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
 
