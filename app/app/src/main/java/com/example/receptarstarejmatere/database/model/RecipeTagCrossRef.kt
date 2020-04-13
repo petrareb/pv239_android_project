@@ -2,30 +2,41 @@ package com.example.receptarstarejmatere.database.model
 
 import androidx.room.*
 
+
 @Entity(primaryKeys = ["recipe_id", "tag_id"])
 data class RecipeTagCrossRef (
-    @ColumnInfo(name= "recipe_id") val recipeId : Int,
-    @ColumnInfo(name = "tag_id") val tagId : Int
+    @ColumnInfo(name= "recipe_id", index = true) val recipeId : Int,
+    @ColumnInfo(name = "tag_id", index = true) val tagId : Int
 )
 
-data class RecipesWithTags (
-    @Embedded val recipeId: Recipe,
+// https://medium.com/androiddevelopers/database-relations-with-room-544ab95e4542
+// https://developer.android.com/reference/android/arch/persistence/room/Relation
+
+data class RecipeWithTags (
+    @Embedded val recipe: Recipe,
     @Relation(
-        parentColumn = "recipe_id", // mozno to ma byt nieco ine ?
-        entityColumn = "tag_id",
-        associateBy = Junction(value = RecipeTagCrossRef::class)
+        parentColumn = "rowid",
+        entityColumn = "rowid",
+
+        associateBy = Junction(
+            value = RecipeTagCrossRef::class,
+            parentColumn = "recipe_id",
+            entityColumn = "tag_id"
         )
+    )
     val tags : List<Tag>
 )
 
-data class TagsWithRecipes (
+data class TagWithRecipes (
     @Embedded val tag : Tag,
     @Relation (
-        parentColumn = "tag_id",
-        entityColumn = "recipe_id", // mozno tu ma byt nieco ine??
-        associateBy = Junction(value = RecipeTagCrossRef::class)
+        parentColumn = "rowid",
+        entityColumn = "rowid",
+        associateBy = Junction(
+            value = RecipeTagCrossRef::class,
+            parentColumn = "tag_id",
+            entityColumn = "recipe_id"
+        )
     )
     val recipes : List<Recipe>
-
-
 )

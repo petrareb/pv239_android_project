@@ -1,22 +1,25 @@
 package com.example.receptarstarejmatere.database.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.receptarstarejmatere.database.model.Recipe
-import com.example.receptarstarejmatere.database.model.RecipesWithTags
 
 @Dao
 interface RecipeDao {
-    @Query("select * from Recipe")
-    fun getAll() : List<Recipe>
+    @Query("select *, `rowid` from Recipe")
+    fun getAll() : List<Recipe> // LiveData<List<Recipe>>
 
-    @Query("select * from Recipe where rowid in (:recipeIds)")
-    fun loadRecipesByIds(recipeIds : IntArray) : List<Recipe>
+    @Query("select *, `rowid` from Recipe where rowid in (:recipeIds)")
+    fun loadRecipesByIds(recipeIds : IntArray) : LiveData<List<Recipe>>
 
-    @Insert
-    fun insertAll(vararg recipes: List<Recipe>)
+    @Query("select *, `rowid` from Recipe where is_favorite = 1 order by name asc")
+    fun loadFavoriteRecipes() : LiveData<List<Recipe>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(recipes: List<Recipe>)
 
     @Update
-    fun updateRecipe(vararg recipe : Recipe)
+    fun updateRecipe(recipe : Recipe)
 
     @Delete
     fun delete(recipe : Recipe)

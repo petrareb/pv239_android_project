@@ -12,7 +12,7 @@ import com.example.receptarstarejmatere.database.model.RecipeTagCrossRef
 import com.example.receptarstarejmatere.database.model.Tag
 
 
-@Database(entities = [Recipe::class, Tag::class, RecipeTagCrossRef::class], version = 1)
+@Database(entities = [Recipe::class, Tag::class, RecipeTagCrossRef::class], version = 1, exportSchema = false)
 abstract class MyDb : RoomDatabase() {
 
     abstract fun recipeDao() : RecipeDao

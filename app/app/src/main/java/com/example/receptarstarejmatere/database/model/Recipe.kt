@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Fts4
 @Entity
 data class Recipe(
-    @PrimaryKey @ColumnInfo(name = "rowid") val id : Int,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "rowid") val id : Int,  // @PrimaryKey(autoGenerate = true)
     val name: String,
     @ColumnInfo(name = "is_favorite") val isFavorite: Boolean,
     @ColumnInfo(name = "preparation_time") val preparationTime: Int, // v minutach ?
