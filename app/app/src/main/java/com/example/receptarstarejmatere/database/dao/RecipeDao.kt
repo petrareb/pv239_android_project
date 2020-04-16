@@ -7,13 +7,13 @@ import com.example.receptarstarejmatere.database.model.Recipe
 @Dao
 interface RecipeDao {
     @Query("select *, `rowid` from Recipe")
-    fun getAll() : List<Recipe> // LiveData<List<Recipe>>
+    fun getAll() : LiveData<List<Recipe>>
 
     @Query("select *, `rowid` from Recipe where rowid in (:recipeIds)")
-    fun loadRecipesByIds(recipeIds : IntArray) : LiveData<List<Recipe>>
+    fun getRecipesByIds(recipeIds : IntArray) : LiveData<List<Recipe>>
 
     @Query("select *, `rowid` from Recipe where is_favorite = 1 order by name asc")
-    fun loadFavoriteRecipes() : LiveData<List<Recipe>>
+    fun getFavoriteRecipes() : LiveData<List<Recipe>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(recipes: List<Recipe>)
