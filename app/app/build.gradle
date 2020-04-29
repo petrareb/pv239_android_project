@@ -30,6 +30,16 @@ android {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
 
+    // because of viewModels()
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
 }
 
 //dependencies {
@@ -78,4 +88,6 @@ dependencies {
 //// Testing
 //    testImplementation 'junit:junit:4.12'
 //    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
+
+    implementation "androidx.fragment:fragment-ktx:1.2.4"
 }

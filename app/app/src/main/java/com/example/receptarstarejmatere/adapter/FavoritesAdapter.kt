@@ -5,11 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.database.model.Recipe
 
-class FavoritesAdapter(private val recipes: List<Recipe> = listOf()): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
+class FavoritesAdapter(private val recipes: LiveData<List<Recipe>>/* = listOf()*/): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
+    private var recipesList: List<Recipe> = listOf()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var name: TextView = itemView.findViewById(R.id.favorites_name)
@@ -22,14 +24,15 @@ class FavoritesAdapter(private val recipes: List<Recipe> = listOf()): RecyclerVi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        recipesList = recipes.value as ArrayList<Recipe>
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.favorites_list_item, parent, false))
     }
 
     override fun getItemCount(): Int {
-        return recipes.size
+        return recipes.value?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        return holder.bind(recipes[position])
+        return holder.bind(recipesList[position])
     }
 }
