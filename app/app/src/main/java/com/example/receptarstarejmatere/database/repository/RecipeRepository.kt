@@ -23,15 +23,8 @@ class RecipeRepository(recipeDb: MyDb) {
         return recipesData.value
     }
 
-    fun getFavoriteRecipes(owner: LifecycleOwner): LiveData<List<Recipe>> {
-        val favoriteRecipes = MutableLiveData<List<Recipe>>()
-        recipeDao.getFavoriteRecipes().observe(
-            owner,
-            Observer {
-                recipes -> favoriteRecipes.value = recipes
-            }
-        )
-        return favoriteRecipes
+    fun getFavoriteRecipes(): LiveData<List<Recipe>> {
+        return recipeDao.getFavoriteRecipes()
     }
 
     fun insertAll(recipes: List<Recipe>) {

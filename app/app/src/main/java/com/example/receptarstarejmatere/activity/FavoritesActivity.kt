@@ -2,7 +2,7 @@ package com.example.receptarstarejmatere.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.adapter.FavoritesAdapter
@@ -14,15 +14,19 @@ class FavoritesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
-
+// init adapter
         initFavoritesRecyclerView(App.recipe_repository)
     }
 
     private fun initFavoritesRecyclerView(repo: RecipeRepository) {
-        val recipesFromDb = repo.getFavoriteRecipes(this)
-        val adapter = FavoritesAdapter(recipesFromDb)
-        val recyclerView = findViewById<RecyclerView>(R.id.favorites_list)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        repo.getFavoriteRecipes().observe(this, Observer { recipes ->
+            val adapter = FavoritesAdapter(recipes)
+            val recyclerView = findViewById<RecyclerView>(R.id.favorites_list)
+            recyclerView.adapter = adapter
+        })
+            // adapter.swapData - setter + zavolat notifyDataSetChanged ...
+
     }
 }
+
+// spravit iba 1 var adapter a init z param

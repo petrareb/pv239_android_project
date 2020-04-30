@@ -5,6 +5,7 @@ import com.example.receptarstarejmatere.database.DataGenerator
 import com.example.receptarstarejmatere.database.MyDb
 import com.example.receptarstarejmatere.database.repository.RecipeRepository
 import java.util.*
+import kotlin.concurrent.thread
 
 class App: Application() {
     // init db
@@ -31,14 +32,9 @@ class App: Application() {
 
     private fun insertTestData(repo : RecipeRepository){
         val recipes = DataGenerator.generateRecipes()
-        Thread {
+        thread {
             repo.insertAll(Collections.unmodifiableList(recipes))
-        }.start()
+        }
     }
 }
 
-// TODO:
-//nechame livedata (same sa postaraju o async),
-//coroutine z repa prec (bude livedata),
-//repa spravit pre vsetkych (kvoli architekture)
-//spravit app: Application, kde sa to bude vsetko initializovat
