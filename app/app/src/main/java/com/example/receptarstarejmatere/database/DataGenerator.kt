@@ -17,7 +17,7 @@ class DataGenerator {
             for (x in 0..20){
                 var recipe = Recipe(id = x,
                     name = name[x % name.size],
-                    isFavorite = x / 2 == 0,
+                    isFavorite = x % 2 == 0,
                     preparationTime = Random.nextInt(),
                     cookingTime = Random.nextInt(),
                     instructions = instructions[0],

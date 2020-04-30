@@ -12,11 +12,14 @@ interface RecipeDao {
     @Query("select *, `rowid` from Recipe where rowid in (:recipeIds)")
     fun getRecipesByIds(recipeIds : IntArray) : LiveData<List<Recipe>>
 
-    @Query("select *, `rowid` from Recipe where is_favorite = 1 order by name asc")
+    @Query("select *, rowid from Recipe where is_favorite = 1 order by name asc")
     fun getFavoriteRecipes() : LiveData<List<Recipe>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(recipes: List<Recipe>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(recipe: Recipe)
 
     @Update
     fun updateRecipe(recipe : Recipe)

@@ -31,7 +31,9 @@ class App: Application() {
 
     private fun insertTestData(repo : RecipeRepository){
         val recipes = DataGenerator.generateRecipes()
-        repo.insertAll(Collections.unmodifiableList(recipes))
+        Thread {
+            repo.insertAll(Collections.unmodifiableList(recipes))
+        }.start()
     }
 }
 
