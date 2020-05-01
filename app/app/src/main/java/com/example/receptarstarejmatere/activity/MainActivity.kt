@@ -3,23 +3,22 @@ package com.example.receptarstarejmatere.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.example.receptarstarejmatere.*
-import com.example.receptarstarejmatere.database.DataGenerator
-import com.example.receptarstarejmatere.database.MyDb
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.Collections.unmodifiableList
 
 class MainActivity : AppCompatActivity() {
+    private var showedAddButtons: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        button_search.setOnClickListener{
+        button_search.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
-        button_favorites.setOnClickListener{
+        button_favorites.setOnClickListener {
             val intent = Intent(this, FavoritesActivity::class.java)
             startActivity(intent)
         }
@@ -27,7 +26,14 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, RecipesActivity::class.java)
             startActivity(intent)
         }
-        button_new_recipe.setOnClickListener {
+        button_add_new.setOnClickListener {
+            toggleImageViewVisibility()
+        }
+        button_add_new_recipe.setOnClickListener {
+            val intent = Intent(this, NewRecipeActivity::class.java)
+            startActivity(intent)
+        }
+        button_add_new_tag.setOnClickListener {
             val intent = Intent(this, NewRecipeActivity::class.java)
             startActivity(intent)
         }
@@ -36,5 +42,36 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        hideButtons()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        hideButtons()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        hideButtons()
+    }
+
+    private fun toggleImageViewVisibility() {
+        if (!showedAddButtons) {
+            showButtons()
+        } else {
+            hideButtons()
+        }
+    }
+
+    private fun hideButtons() {
+        showedAddButtons = false
+        button_add_new_tag.visibility = View.GONE
+        button_add_new_recipe.visibility = View.GONE
+    }
+
+    private fun showButtons() {
+        showedAddButtons = true
+        button_add_new_recipe.visibility = View.VISIBLE
+        button_add_new_tag.visibility = View.VISIBLE
     }
 }
