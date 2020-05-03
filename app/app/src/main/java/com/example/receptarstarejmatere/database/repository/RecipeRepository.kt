@@ -1,27 +1,13 @@
 package com.example.receptarstarejmatere.database.repository
 
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.example.receptarstarejmatere.database.MyDb
 import com.example.receptarstarejmatere.database.dao.RecipeDao
 import com.example.receptarstarejmatere.database.model.Recipe
 
 class RecipeRepository(recipeDb: MyDb) {
 
-    private var recipeDao: RecipeDao = recipeDb.recipeDao()
-
-    fun getRecipes(owner: LifecycleOwner): List<Recipe>? {
-        val recipesData = MutableLiveData<List<Recipe>>()
-        recipeDao.getAll().observe(
-            owner,
-            Observer {
-                recipes -> recipesData.value = recipes
-            }
-        )
-        return recipesData.value
-    }
+    private val recipeDao: RecipeDao = recipeDb.recipeDao()
 
     fun getFavoriteRecipes(): LiveData<List<Recipe>> {
         return recipeDao.getFavoriteRecipes()
@@ -29,6 +15,14 @@ class RecipeRepository(recipeDb: MyDb) {
 
     fun insertAll(recipes: List<Recipe>) {
         recipeDao.insertAll(recipes)
+    }
+
+    fun deleteRecipe(recipe: Recipe) {
+        recipeDao.delete(recipe)
+    }
+
+    fun editRecipe(recipe: Recipe) {
+        recipeDao.updateRecipe(recipe)
     }
 
     companion object {

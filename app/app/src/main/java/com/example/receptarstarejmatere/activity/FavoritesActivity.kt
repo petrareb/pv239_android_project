@@ -15,7 +15,7 @@ class FavoritesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
 // init adapter
-        initFavoritesRecyclerView(App.recipe_repository)
+        initFavoritesRecyclerView(App.recipeRepository)
     }
 
     private fun initFavoritesRecyclerView(repo: RecipeRepository) {
@@ -28,5 +28,5 @@ class FavoritesActivity : AppCompatActivity() {
 
     }
 }
-
+// TODO
 // spravit iba 1 var adapter a init z param

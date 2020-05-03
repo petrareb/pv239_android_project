@@ -7,4 +7,5 @@
     <string name="add_new">Pridať</string>
     <string name="add_new_recipe">Pridať recept</string>
     <string name="add_new_tag">Pridať kategóriu</string>
+    <string name="tags">Moje kategórie</string>
 </resources>

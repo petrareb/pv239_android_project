@@ -12,8 +12,11 @@ interface TagDao {
     @Query("select *, `rowid` from tag where rowid = :tagId")
     fun getById(tagId : Int) : LiveData<Tag>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(tags: List<Tag>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(tag: Tag)
 
     @Update
     fun updateTag(tag : Tag)

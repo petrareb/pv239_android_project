@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         button_recipes.setOnClickListener {
-            val intent = Intent(this, RecipesActivity::class.java)
+            val intent = Intent(this, TagsActivity::class.java)
             startActivity(intent)
         }
         button_add_new.setOnClickListener {
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         button_add_new_tag.setOnClickListener {
-            val intent = Intent(this, NewRecipeActivity::class.java)
+            val intent = Intent(this, NewTagActivity::class.java)
             startActivity(intent)
         }
         button_settings.setOnClickListener {
