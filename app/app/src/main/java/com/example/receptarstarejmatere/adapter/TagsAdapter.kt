@@ -8,18 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.database.model.Tag
 
-class TagsAdapter(private var tags: List<Tag> = listOf()): RecyclerView.Adapter<TagsAdapter.ViewHolder>() {
-
-    class ViewHolder(tagsView: View): RecyclerView.ViewHolder(tagsView) {
-        var tagName: TextView = tagsView.findViewById(R.id.tag_name)
-
-        fun bind(tag: Tag) {
-            tagName.text = tag.name
-        }
-    }
+class TagsAdapter(private var tags: List<Tag> = listOf(), private var onTagListener: OnTagListener) : RecyclerView.Adapter<TagsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.tags_list_item, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.tags_list_item,
+                parent,
+                false
+            ),
+            onTagListener
+        )
     }
 
     override fun getItemCount(): Int {
@@ -30,5 +29,20 @@ class TagsAdapter(private var tags: List<Tag> = listOf()): RecyclerView.Adapter<
         return holder.bind(tags[position])
     }
 
+    class ViewHolder(private var tagsView: View, private var onTagListener: OnTagListener) : RecyclerView.ViewHolder(tagsView), View.OnClickListener {
+        var tagName: TextView = tagsView.findViewById(R.id.tag_name)
 
+        fun bind(tag: Tag) {
+            tagName.text = tag.name
+            tagsView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            onTagListener.onSelectedTagClick(adapterPosition)
+        }
+    }
+
+    interface OnTagListener {
+        fun onSelectedTagClick(position: Int)
+    }
 }

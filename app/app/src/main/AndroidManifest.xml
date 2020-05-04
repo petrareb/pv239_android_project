@@ -19,11 +19,12 @@
         </activity>
         <activity android:name=".activity.FavoritesActivity" android:parentActivityName=".activity.MainActivity" />
         <activity android:name=".activity.NewRecipeActivity" />
-        <activity android:name=".activity.RecipeActivity" />
+        <activity android:name=".activity.RecipesActivity" />
         <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.NewTagActivity" />
         <activity android:name=".activity.TagsActivity"  android:parentActivityName=".activity.MainActivity"/>
+        <activity android:name=".activity.RecipeOverviewActivity" />
     </application>
 
 </manifest>

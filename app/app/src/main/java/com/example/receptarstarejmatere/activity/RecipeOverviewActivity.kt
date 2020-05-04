@@ -1,13 +1,15 @@
 package com.example.receptarstarejmatere.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.receptarstarejmatere.R
 
-class RecipeActivity : AppCompatActivity() {
+class RecipeOverviewActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recipes)
+        setContentView(R.layout.activity_recipe_overview)
+        Log.d("Recepty", "onCreate called")
     }
 }
