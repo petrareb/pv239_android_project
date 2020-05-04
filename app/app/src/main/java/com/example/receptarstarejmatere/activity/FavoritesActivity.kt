@@ -11,22 +11,23 @@ import com.example.receptarstarejmatere.database.repository.RecipeRepository
 
 class FavoritesActivity : AppCompatActivity() {
 
+    private lateinit var adapter: FavoritesAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
-// init adapter
+
+        adapter = FavoritesAdapter()
         initFavoritesRecyclerView(App.recipeRepository)
     }
 
     private fun initFavoritesRecyclerView(repo: RecipeRepository) {
         repo.getFavoriteRecipes().observe(this, Observer { recipes ->
-            val adapter = FavoritesAdapter(recipes)
+
+            adapter.swapData(recipes)
+
             val recyclerView = findViewById<RecyclerView>(R.id.favorites_list)
             recyclerView.adapter = adapter
         })
-            // adapter.swapData - setter + zavolat notifyDataSetChanged ...
-
     }
 }
-// TODO
-// spravit iba 1 var adapter a init z param

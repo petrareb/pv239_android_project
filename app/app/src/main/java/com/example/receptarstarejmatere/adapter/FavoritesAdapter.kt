@@ -32,4 +32,9 @@ class FavoritesAdapter(private var recipes: List<Recipe> = listOf()): RecyclerVi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         return holder.bind(recipes[position])
     }
+
+    fun swapData(newData: List<Recipe>) {
+        recipes = newData
+        notifyDataSetChanged()
+    }
 }

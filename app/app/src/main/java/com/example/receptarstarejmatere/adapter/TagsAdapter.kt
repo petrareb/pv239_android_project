@@ -29,6 +29,11 @@ class TagsAdapter(private var tags: List<Tag> = listOf(), private var onTagListe
         return holder.bind(tags[position])
     }
 
+    fun swapData(newData: List<Tag>) {
+        tags = newData
+        notifyDataSetChanged()
+    }
+
     class ViewHolder(private var tagsView: View, private var onTagListener: OnTagListener) : RecyclerView.ViewHolder(tagsView), View.OnClickListener {
         var tagName: TextView = tagsView.findViewById(R.id.tag_name)
 

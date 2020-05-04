@@ -14,11 +14,13 @@ import com.example.receptarstarejmatere.database.repository.TagRepository
 class TagsActivity: AppCompatActivity(), TagsAdapter.OnTagListener {
 
     private var mTags: ArrayList<Tag> = ArrayList()
+    private lateinit var adapter: TagsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tags)
 
+        adapter = TagsAdapter(onTagListener = this)
         initTagsRecyclerView(App.tagRepository)
     }
 
@@ -26,7 +28,9 @@ class TagsActivity: AppCompatActivity(), TagsAdapter.OnTagListener {
         tagRepository.getAllTags().observe(this, Observer {tags ->
             mTags.clear()
             mTags.addAll(tags)
-            val adapter = TagsAdapter(tags, this)
+
+            adapter.swapData(tags)
+
             val recyclerView = findViewById<RecyclerView>(R.id.tags_list)
             recyclerView.adapter = adapter
         })
@@ -38,5 +42,3 @@ class TagsActivity: AppCompatActivity(), TagsAdapter.OnTagListener {
         startActivity(intent)
     }
 }
-
-// TODO - iba 1 reused adapter ako vo FavoritesActivity
