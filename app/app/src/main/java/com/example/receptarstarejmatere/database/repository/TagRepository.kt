@@ -13,7 +13,7 @@ class TagRepository(recipeDb: MyDb) {
         return tagDao.getAll()
     }
 
-    fun addTag(tag: Tag) {
+    fun insert(tag: Tag) {
         tagDao.insert(tag)
     }
 

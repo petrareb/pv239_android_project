@@ -8,4 +8,6 @@
     <string name="add_new_recipe">Pridať recept</string>
     <string name="add_new_tag">Pridať kategóriu</string>
     <string name="tags">Moje kategórie</string>
+    <string name="new_tag_hint">Tuto daj novy tag</string>
+    <string name="new_tag_save_button_text">Uložiť</string>
 </resources>
