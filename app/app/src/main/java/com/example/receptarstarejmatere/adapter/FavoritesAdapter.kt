@@ -9,17 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.database.model.Recipe
 
-class FavoritesAdapter(private var recipes: List<Recipe> = listOf()): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
-
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var name: TextView = itemView.findViewById(R.id.favorites_name)
-        var star: ImageView = itemView.findViewById(R.id.favorites_star)
-
-        fun bind(recipe: Recipe) {
-            name.text = recipe.name
-            star.setImageResource(R.drawable.ic_star_yellow_24dp)
-        }
-    }
+class FavoritesAdapter(private var recipes: List<Recipe> = listOf())
+    : RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.favorites_list_item, parent, false))
@@ -36,5 +27,15 @@ class FavoritesAdapter(private var recipes: List<Recipe> = listOf()): RecyclerVi
     fun swapData(newData: List<Recipe>) {
         recipes = newData
         notifyDataSetChanged()
+    }
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var name: TextView = itemView.findViewById(R.id.favorites_name)
+        var star: ImageView = itemView.findViewById(R.id.favorites_star)
+
+        fun bind(recipe: Recipe) {
+            name.text = recipe.name
+            star.setImageResource(R.drawable.ic_star_yellow_24dp)
+        }
     }
 }

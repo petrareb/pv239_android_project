@@ -10,6 +10,7 @@ import com.example.receptarstarejmatere.adapter.TagsAdapter
 import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.Tag
 import com.example.receptarstarejmatere.database.repository.TagRepository
+import com.example.receptarstarejmatere.utils.Constants
 
 class TagsActivity: AppCompatActivity(), TagsAdapter.OnTagListener {
 
@@ -38,7 +39,7 @@ class TagsActivity: AppCompatActivity(), TagsAdapter.OnTagListener {
 
     override fun onSelectedTagClick(position: Int) {
         val intent = Intent(this, RecipesActivity::class.java)
-        intent.putExtra("selectedTagId", mTags[position].tagId)
+        intent.putExtra(Constants.SELECTED_TAG_ID, mTags[position].tagId)
         startActivity(intent)
     }
 }

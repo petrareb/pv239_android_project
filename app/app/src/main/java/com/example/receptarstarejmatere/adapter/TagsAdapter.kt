@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.database.model.Tag
 
-class TagsAdapter(private var tags: List<Tag> = listOf(), private var onTagListener: OnTagListener) : RecyclerView.Adapter<TagsAdapter.ViewHolder>() {
+class TagsAdapter(private var tags: List<Tag> = listOf(), private var onTagListener: OnTagListener)
+    : RecyclerView.Adapter<TagsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -34,7 +35,8 @@ class TagsAdapter(private var tags: List<Tag> = listOf(), private var onTagListe
         notifyDataSetChanged()
     }
 
-    class ViewHolder(private var tagsView: View, private var onTagListener: OnTagListener) : RecyclerView.ViewHolder(tagsView), View.OnClickListener {
+    class ViewHolder(private var tagsView: View, private var onTagListener: OnTagListener)
+        : RecyclerView.ViewHolder(tagsView), View.OnClickListener {
         var tagName: TextView = tagsView.findViewById(R.id.tag_name)
 
         fun bind(tag: Tag) {

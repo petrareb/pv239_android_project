@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.receptarstarejmatere.database.DataGenerator
 import com.example.receptarstarejmatere.database.MyDb
 import com.example.receptarstarejmatere.database.repository.RecipeRepository
+import com.example.receptarstarejmatere.database.repository.RecipeTagCrossRefRepository
 import com.example.receptarstarejmatere.database.repository.TagRepository
 import java.util.*
 import kotlin.concurrent.thread
@@ -18,6 +19,7 @@ class App: Application() {
             private set
         lateinit var tagRepository: TagRepository
             private set
+        lateinit var recipeTagRepository: RecipeTagCrossRefRepository
     }
 
     override fun onCreate() {
@@ -28,18 +30,23 @@ class App: Application() {
         database = db
         recipeRepository = RecipeRepository.getInstance(database)
         tagRepository = TagRepository.getInstance(database)
+        recipeTagRepository = RecipeTagCrossRefRepository.getInstance(database)
 
-        insertTestData(recipeRepository)
+        insertTestData()
     }
 
-    private fun insertTestData(repo : RecipeRepository){
+    private fun insertTestData(){
         val recipes = DataGenerator.generateRecipes()
         thread {
-            repo.insertAll(Collections.unmodifiableList(recipes))
+            recipeRepository.insertAll(Collections.unmodifiableList(recipes))
         }
         val tags = DataGenerator.generateTags()
         thread {
             tagRepository.insertAll(Collections.unmodifiableList(tags))
+        }
+        val recipesWithTags = DataGenerator.generateRecipesTagsCrossRef()
+        thread {
+            recipeTagRepository.insertAll(Collections.unmodifiableList(recipesWithTags))
         }
     }
 }
