@@ -8,7 +8,7 @@ import com.example.receptarstarejmatere.database.dao.*
 import com.example.receptarstarejmatere.database.model.*
 
 
-@Database(entities = [Recipe::class, Tag::class, RecipeTagCrossRef::class, Ingredient::class, RecipeIngredientCrossRef::class], version = 1, exportSchema = false)
+@Database(entities = [Recipe::class, Tag::class, RecipeTagCrossRef::class, Ingredient::class, RecipeIngredientCrossRef::class], version = 2, exportSchema = false)
 abstract class MyDb : RoomDatabase() {
 
     abstract fun recipeDao() : RecipeDao
@@ -27,6 +27,7 @@ abstract class MyDb : RoomDatabase() {
 
         private fun buildDatabase(context: Context) = Room.databaseBuilder(
             context, MyDb::class.java, "receptar.db")
+            .fallbackToDestructiveMigration()
             .build()
     }
 }

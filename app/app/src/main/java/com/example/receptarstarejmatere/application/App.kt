@@ -32,7 +32,8 @@ class App: Application() {
         tagRepository = TagRepository.getInstance(database)
         recipeTagRepository = RecipeTagCrossRefRepository.getInstance(database)
 
-        insertTestData()
+        // use only in case the DB is empty
+//        insertTestData()
     }
 
     private fun insertTestData(){
