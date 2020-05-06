@@ -4,9 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.receptarstarejmatere.database.dao.RecipeDao
-import com.example.receptarstarejmatere.database.dao.RecipeTagCrossRefDao
-import com.example.receptarstarejmatere.database.dao.TagDao
+import com.example.receptarstarejmatere.database.dao.*
 import com.example.receptarstarejmatere.database.model.Recipe
 import com.example.receptarstarejmatere.database.model.RecipeTagCrossRef
 import com.example.receptarstarejmatere.database.model.Tag
@@ -18,6 +16,8 @@ abstract class MyDb : RoomDatabase() {
     abstract fun recipeDao() : RecipeDao
     abstract fun tagDao() : TagDao
     abstract fun recipeTagDao() : RecipeTagCrossRefDao
+    abstract fun recipeIngredientDao() : RecipeIngredientCrossRefDao
+    abstract fun ingredientDao() : IngredientDao
 
     companion object {
         @Volatile private var instance : MyDb? = null
