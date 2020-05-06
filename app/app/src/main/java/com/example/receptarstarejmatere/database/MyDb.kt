@@ -5,12 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.receptarstarejmatere.database.dao.*
-import com.example.receptarstarejmatere.database.model.Recipe
-import com.example.receptarstarejmatere.database.model.RecipeTagCrossRef
-import com.example.receptarstarejmatere.database.model.Tag
+import com.example.receptarstarejmatere.database.model.*
 
 
-@Database(entities = [Recipe::class, Tag::class, RecipeTagCrossRef::class], version = 1, exportSchema = false)
+@Database(entities = [Recipe::class, Tag::class, RecipeTagCrossRef::class, Ingredient::class, RecipeIngredientCrossRef::class], version = 1, exportSchema = false)
 abstract class MyDb : RoomDatabase() {
 
     abstract fun recipeDao() : RecipeDao

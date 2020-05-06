@@ -22,7 +22,8 @@ class DataGenerator {
                     cookingTime = Random.nextInt(),
                     instructions = instructions[0],
                     pathToImage = path,
-                    stars = Random.nextInt(0,4)
+                    cookingTemperature = Random.nextInt(180, 220),
+                    source =  name[x % name.size]
                     )
                 recipes.add(recipe)
             }

@@ -9,12 +9,11 @@ import androidx.room.PrimaryKey
 data class Recipe(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "rowid") val id : Int,  // @PrimaryKey(autoGenerate = true)
     val name: String,
+    val source: String,
     @ColumnInfo(name = "is_favorite") val isFavorite: Boolean,
-    @ColumnInfo(name = "preparation_time") val preparationTime: Int, // v minutach ?
+    @ColumnInfo(name = "preparation_time") val preparationTime: Int, // v minutach
     @ColumnInfo(name = "cooking_time") val cookingTime: Int, // v minutach
+    @ColumnInfo(name = "cooking_temp")val cookingTemperature: Int,
     val instructions: String,
-    val pathToImage : String?, // route to an image in local storage
-    val stars : Int // * number of stars
-    // ingredients .. new table ?
-    // tags  .. new table?
+    val pathToImage : String? // route to an image in local storage
 )
