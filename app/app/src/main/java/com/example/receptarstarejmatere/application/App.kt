@@ -3,9 +3,7 @@ package com.example.receptarstarejmatere.application
 import android.app.Application
 import com.example.receptarstarejmatere.database.DataGenerator
 import com.example.receptarstarejmatere.database.MyDb
-import com.example.receptarstarejmatere.database.repository.RecipeRepository
-import com.example.receptarstarejmatere.database.repository.RecipeTagCrossRefRepository
-import com.example.receptarstarejmatere.database.repository.TagRepository
+import com.example.receptarstarejmatere.database.repository.*
 import java.util.*
 import kotlin.concurrent.thread
 
@@ -20,6 +18,11 @@ class App: Application() {
         lateinit var tagRepository: TagRepository
             private set
         lateinit var recipeTagRepository: RecipeTagCrossRefRepository
+            private set
+        lateinit var ingredientRepository: IngredientRepository
+            private set
+        lateinit var recipeIngredientRepository: RecipeIngredientCrossRefRepository
+            private set
     }
 
     override fun onCreate() {
@@ -31,9 +34,10 @@ class App: Application() {
         recipeRepository = RecipeRepository.getInstance(database)
         tagRepository = TagRepository.getInstance(database)
         recipeTagRepository = RecipeTagCrossRefRepository.getInstance(database)
-
+        recipeIngredientRepository = RecipeIngredientCrossRefRepository.getInstance(database)
+        ingredientRepository = IngredientRepository.getInstance(database)
         // use only in case the DB is empty
-//        insertTestData()
+        insertTestData()
     }
 
     private fun insertTestData(){
@@ -49,6 +53,15 @@ class App: Application() {
         thread {
             recipeTagRepository.insertAll(Collections.unmodifiableList(recipesWithTags))
         }
+        val ingred = DataGenerator.generateIngredients()
+        thread {
+            ingredientRepository.insertAll(Collections.unmodifiableList(ingred))
+        }
+        val recipeIngredCrossRef = DataGenerator.generateRecipesIngredientsCrossRef()
+        thread {
+            recipeIngredientRepository.insertAll(recipeIngredCrossRef)
+        }
+
     }
 }
 

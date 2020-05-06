@@ -4,7 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
 import com.example.receptarstarejmatere.*
+import com.example.receptarstarejmatere.application.App
+import com.example.receptarstarejmatere.database.model.Ingredient
+import com.example.receptarstarejmatere.database.model.RecipeWithIngredients
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -41,6 +45,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         }
+
+        val ingredRepo = App.recipeIngredientRepository
+        val ing = ArrayList<RecipeWithIngredients>()
+        ingredRepo.getAll().observe(this, Observer { recipes ->
+            ing.addAll(recipes)
+        })
 
         hideButtons()
     }

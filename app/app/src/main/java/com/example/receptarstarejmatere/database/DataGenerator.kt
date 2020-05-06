@@ -1,8 +1,6 @@
 package com.example.receptarstarejmatere.database
 
-import com.example.receptarstarejmatere.database.model.Recipe
-import com.example.receptarstarejmatere.database.model.RecipeTagCrossRef
-import com.example.receptarstarejmatere.database.model.Tag
+import com.example.receptarstarejmatere.database.model.*
 import java.util.*
 import kotlin.random.Random
 
@@ -51,5 +49,36 @@ class DataGenerator {
             }
             return joins
         }
+
+        fun generateIngredients() : MutableList<Ingredient> {
+            var ingredients = mutableListOf<Ingredient>()
+            val names = listOf("Ingredient1", "Ingredient2", "Ingredient3",
+                "Ingredient4", "Ingredient5", "Ingredient6", "Ingredient7", "Ingredient8", "Ingredient9")
+            for (x in 0..20) {
+                var ingredient = Ingredient( id = x,
+                    name = names[x % names.size])
+                ingredients.add(ingredient)
+            }
+            return ingredients
+        }
+
+        fun generateRecipesIngredientsCrossRef(): MutableList<RecipeIngredientCrossRef> {
+            var joins = mutableListOf<RecipeIngredientCrossRef>()
+            val names = listOf("PL", "hrncek", "CL",
+                "kg", "g", "l", "dcl", "ml", "dkg")
+            for(x in 0..20) {
+                var join = RecipeIngredientCrossRef(ingredientId = x,
+                    recipeId = x,
+                    measure = names[x % names.size],
+                    quantity = x)
+                joins.add(join)
+                join = RecipeIngredientCrossRef(ingredientId = x, recipeId = Random.nextInt(0, 20),
+                    measure = names[x % names.size],
+                    quantity = x-10)
+                joins.add(join)
+            }
+            return joins
+        }
+
     }
 }
