@@ -46,9 +46,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val ingredRepo = App.recipeIngredientRepository
         val ing = ArrayList<RecipeWithIngredients>()
-        ingredRepo.getAll().observe(this, Observer { recipes ->
+        App.recipeIngredientRepository.getAll().observe(this, Observer { recipes ->
             ing.addAll(recipes)
         })
 

@@ -22,7 +22,8 @@ data class RecipeWithIngredients (
             entityColumn = "ingredient_id"
         )
     )
-    val tags : List<Ingredient>
+    val ingredients : List<Ingredient>
+    // TODO include quantity and measure
 )
 
 data class IngredientWithRecipes (
@@ -37,4 +38,5 @@ data class IngredientWithRecipes (
         )
     )
     val recipes : List<Recipe>
+    // TODO include quantity and measure
 )

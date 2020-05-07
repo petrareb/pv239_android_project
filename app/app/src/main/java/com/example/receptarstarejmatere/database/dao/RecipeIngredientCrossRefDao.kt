@@ -5,7 +5,6 @@ import androidx.room.*
 import com.example.receptarstarejmatere.database.model.IngredientWithRecipes
 import com.example.receptarstarejmatere.database.model.RecipeIngredientCrossRef
 import com.example.receptarstarejmatere.database.model.RecipeWithIngredients
-import com.example.receptarstarejmatere.database.model.TagWithRecipes
 
 @Dao
 interface RecipeIngredientCrossRefDao {
