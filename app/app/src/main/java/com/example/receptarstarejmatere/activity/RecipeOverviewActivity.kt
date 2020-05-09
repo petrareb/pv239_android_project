@@ -14,7 +14,7 @@ import org.w3c.dom.Text
 
 class RecipeOverviewActivity: AppCompatActivity() {
 
-    private var recipeWithTags : ArrayList<RecipeWithTags> = ArrayList()
+    private lateinit var recipeWithTags : RecipeWithTags
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,13 +22,9 @@ class RecipeOverviewActivity: AppCompatActivity() {
         val selectedRecipeId = intent.getIntExtra(Constants.SELECTED_RECIPE_ID, 100)
 
         App.recipeTagRepository.getTagsForRecipe(selectedRecipeId).observe(this, Observer { recipeAndTags ->
-                recipeWithTags.addAll(recipeAndTags)
+                recipeWithTags = recipeAndTags[0]
+                printRecipe(recipeWithTags)
             })
-    }
-
-    override fun onStart() {
-        super.onStart()
-        //printRecipe(recipeWithTags)
     }
 
     private fun printRecipe(recipeWithTags : RecipeWithTags?){

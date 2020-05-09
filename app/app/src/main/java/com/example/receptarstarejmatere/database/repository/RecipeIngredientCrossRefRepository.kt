@@ -3,7 +3,7 @@ package com.example.receptarstarejmatere.database.repository
 import androidx.lifecycle.LiveData
 import com.example.receptarstarejmatere.database.MyDb
 import com.example.receptarstarejmatere.database.dao.RecipeIngredientCrossRefDao
-import com.example.receptarstarejmatere.database.model.RecipeIngredientCrossRef
+import com.example.receptarstarejmatere.database.model.RecipeIngredient
 
 class RecipeIngredientCrossRefRepository(recipeDb: MyDb) {
 
@@ -13,7 +13,7 @@ class RecipeIngredientCrossRefRepository(recipeDb: MyDb) {
 //        return recipeIngredientDao.getIngredientsForRecipe(recipeId)
 //    }
 
-    fun insertAll(joins: List<RecipeIngredientCrossRef>) {
+    fun insertAll(joins: List<RecipeIngredient>) {
         recipeIngredientDao.insertAll(joins)
     }
 

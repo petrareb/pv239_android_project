@@ -1,13 +1,9 @@
 package com.example.receptarstarejmatere.database.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Fts4
-import androidx.room.PrimaryKey
+import androidx.room.*
 
-@Fts4
-@Entity
+@Entity( indices = [Index(value = ["ingredient_id"])])
 data class Ingredient (
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "rowid") val id : Int,  // @PrimaryKey(autoGenerate = true)
+    @PrimaryKey @ColumnInfo(name = "ingredient_id") val id : Int,  // @PrimaryKey(autoGenerate = true)
     val name : String
 )
