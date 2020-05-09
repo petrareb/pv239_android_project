@@ -3,6 +3,7 @@ package com.example.receptarstarejmatere.database.repository
 import androidx.lifecycle.LiveData
 import com.example.receptarstarejmatere.database.MyDb
 import com.example.receptarstarejmatere.database.dao.RecipeIngredientCrossRefDao
+import com.example.receptarstarejmatere.database.model.IngredientWithMeasure
 import com.example.receptarstarejmatere.database.model.RecipeIngredient
 
 class RecipeIngredientCrossRefRepository(recipeDb: MyDb) {
@@ -21,9 +22,9 @@ class RecipeIngredientCrossRefRepository(recipeDb: MyDb) {
 //        return recipeIngredientDao.getRecipesWithIngredients()
 //    }
 
-//    fun getIngredientsForRecipe(recipeId : Int){
-//        val crossRefs = recipeIngredientDao.getIngredientsForRecipe(recipeId)
-//    }
+    fun getIngredientsForRecipe(recipeId : Int): LiveData<List<IngredientWithMeasure>> {
+        return recipeIngredientDao.getIngredientsForRecipe(recipeId)
+    }
 
     companion object {
         @Volatile private var instance: RecipeIngredientCrossRefRepository? = null

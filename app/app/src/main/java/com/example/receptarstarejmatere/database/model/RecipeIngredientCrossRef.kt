@@ -35,8 +35,30 @@ class RecipeIngredient {
 
     @ColumnInfo(name = "measure")
     var measure: String = "" // jednotka mnozstva, PL
-
 }
+
+class IngredientWithMeasure {
+    constructor(name: String, ingredientId: Int, quantity: Int, measure: String) {
+        this.name = name
+        this.ingredientId = ingredientId
+        this.quantity = quantity
+        this.measure = measure
+    }
+
+    @ColumnInfo(name = "quantity")
+    var quantity: Int = 0
+
+    @ColumnInfo(name = "ingredient_id")
+    var ingredientId: Int = 0
+
+    @ColumnInfo(name = "name")
+    var name: String = "" // mnozstvo, napr. 5
+
+    @ColumnInfo(name = "measure")
+    var measure: String = "" // jednotka mnozstva, PL
+}
+
+
 
 
 //@Entity(primaryKeys = ["recipe_id", "ingredient_id"])
