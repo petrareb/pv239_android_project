@@ -10,7 +10,10 @@ interface IngredientDao {
     fun getAll() : LiveData<List<Ingredient>>
 
     @Query("select *, `rowid` from Ingredient where rowid in (:ingredientsIds)")
-    fun getRecipesByIds(ingredientsIds : IntArray) : LiveData<List<Ingredient>>
+    fun getIngredientsByIds(ingredientsIds : IntArray) : LiveData<List<Ingredient>>
+
+    @Query("select *, `rowid` from Ingredient where rowid = :ingredientId")
+    fun getIngredientById(ingredientId : Int) : LiveData<Ingredient>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(ingredients : List<Ingredient>)

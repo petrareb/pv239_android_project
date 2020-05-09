@@ -10,33 +10,43 @@ data class RecipeIngredientCrossRef (
     val measure : String // jednotka mnozstva, PL
 )
 
-data class RecipeWithIngredients (
-    @Embedded val recipe: Recipe,
-    @Relation(
-        parentColumn = "rowid",
-        entityColumn = "rowid",
+//data class  RecipeIdWithIngredients(
+//    //val recipeId: Int,
+//    val ingredientsWithMeasures : List<RecipeIngredientCrossRef>
+//)
 
-        associateBy = Junction(
-            value = RecipeIngredientCrossRef::class,
-            parentColumn = "recipe_id",
-            entityColumn = "ingredient_id"
-        )
-    )
-    val ingredients : List<Ingredient>
-    // TODO include quantity and measure
+data class  IngredientsWithRecipes(
+    val ingredientId: Int,
+    val recipesWithMeasure : List<RecipeIngredientCrossRef>
 )
 
-data class IngredientWithRecipes (
-    @Embedded val ingredient : Ingredient,
-    @Relation(
-        parentColumn = "rowid",
-        entityColumn = "rowid",
-        associateBy = Junction(
-            value = RecipeIngredientCrossRef::class,
-            parentColumn = "ingredient_id",
-            entityColumn = "recipe_id"
-        )
-    )
-    val recipes : List<Recipe>
-    // TODO include quantity and measure
-)
+//data class RecipeWithIngredients (
+//    @Embedded val recipe: Recipe,
+//    @Relation(
+//        parentColumn = "rowid",
+//        entityColumn = "rowid",
+//
+//        associateBy = Junction(
+//            value = RecipeIngredientCrossRef::class,
+//            parentColumn = "recipe_id",
+//            entityColumn = "ingredient_id"
+//        )
+//    )
+//    val ingredients : List<Ingredient>
+//    // TODO include quantity and measure
+//)
+
+//data class IngredientWithRecipes (
+//    @Embedded val ingredient : Ingredient,
+//    @Relation(
+//        parentColumn = "rowid",
+//        entityColumn = "rowid",
+//        associateBy = Junction(
+//            value = RecipeIngredientCrossRef::class,
+//            parentColumn = "ingredient_id",
+//            entityColumn = "recipe_id"
+//        )
+//    )
+//    val recipes : List<Recipe>
+//    // TODO include quantity and measure
+//)

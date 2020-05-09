@@ -10,4 +10,12 @@
     <string name="tags">Moje kategórie</string>
     <string name="new_tag_hint">Tuto daj novy tag</string>
     <string name="new_tag_save_button_text">Uložiť</string>
+    <string name="instructions">Inštrukcie:</string>
+    <string name="recipe_name">Názov receptu:</string>
+    <string name="recipe_source">Zdroj:</string>
+    <string name="recipe_cooking_time">Čas varenia:</string>
+    <string name="recipe_prep_time">Čas prípravy:</string>
+    <string name="recipe_cooking_temp">Teplota:</string>
+    <string name="ingredients">Ingrediencie:</string>
+    <string name="recipe_tags">Kategórie:</string>
 </resources>

@@ -17,7 +17,6 @@ data class RecipeWithTags (
     @Relation(
         parentColumn = "rowid",
         entityColumn = "rowid",
-
         associateBy = Junction(
             value = RecipeTagCrossRef::class,
             parentColumn = "recipe_id",
