@@ -7,7 +7,20 @@
     <string name="add_new">Pridať</string>
     <string name="add_new_recipe">Pridať recept</string>
     <string name="add_new_tag">Pridať kategóriu</string>
+
     <string name="tags">Moje kategórie</string>
+
     <string name="new_tag_hint">Tuto daj novy tag</string>
-    <string name="new_tag_save_button_text">Uložiť</string>
+    <string name="new_save_button_text">Uložiť</string>
+    <string name="new_add_ingred_button_text">Uložiť</string>
+    <string name="new_recipe_name_hint">Nový spešl recept</string>
+    <string name="new_recipe_source_hint">Od babky</string>
+    <string name="new_recipe_instructions_hint">1. Všetko zmiešať a otvoriť si pivo</string>
+
+    <string name="new_recipe_error_name">Vyplňte názov receptu</string>
+    <string name="new_recipe_error_0_ing">Recept musí obsahovať aspoň 1 ingredienciu</string>
+    <string name="new_recipe_error_ing_name">Vyplňte názov</string>
+    <string name="new_recipe_error_ing_quantity">Vyplňte množstvo</string>
+    <string name="new_recipe_error_ing_measure">Vyplňte jednotku</string>
+
 </resources>

@@ -1,11 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/text_new_recipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_new_recipe"/>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <CheckBox
+            android:id="@+id/new_recipe_star"
+            style="?android:attr/starStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false" />
+<!--            android:buttonTintMode="@color/colorFavoriteStar"-->
+
+        <TextView
+            android:id="@+id/new_recipe_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Názov" />
+
+        <EditText
+            android:id="@+id/new_recipe_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/new_recipe_name_hint"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/new_recipe_source_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zdroj" />
+
+        <EditText
+            android:id="@+id/new_recipe_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/new_recipe_source_hint"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/new_recipe_tags_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kategórie"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/new_recipe_tags_list"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
+
+        <TextView
+            android:id="@+id/new_recipe_prep_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Čas prípravy" />
+
+        <EditText
+            android:id="@+id/new_recipe_prep_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:inputType="number"
+            android:digits="0123456789."
+            android:hint="60"
+            android:autofillHints="no" />
+
+        <TextView
+            android:id="@+id/new_recipe_cook_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Čas pečenia" />
+
+        <EditText
+            android:id="@+id/new_recipe_cook_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:autofillHints="no"
+            android:inputType="number"
+            android:digits="0123456789."
+            android:hint="30"
+             />
+
+        <TextView
+            android:id="@+id/new_recipe_cook_temp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Teplota pečenia" />
+
+        <EditText
+            android:id="@+id/new_recipe_cook_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:inputType="number"
+            android:digits="0123456789."
+            android:hint="180"/>
+
+<!--         TODO: tags-->
+
+        <TextView
+            android:id="@+id/new_recipe_ingredients_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingrediencie"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/new_recipe_ingred_list"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
+
+        <EditText
+            android:id="@+id/new_recipe_ingred_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:inputType="number"
+            android:digits="0123456789."
+            android:hint="42"/>
+        <EditText
+            android:id="@+id/new_recipe_ingred_measure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:inputType="text"
+            android:hint="g"/>
+        <EditText
+            android:id="@+id/new_recipe_ingred_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:inputType="text"
+            android:hint="Biely prášok"/>
+        <Button
+            android:id="@+id/new_recipe_add_ingred_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+" />
+
+        <TextView
+            android:id="@+id/new_recipe_instructions_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Postup" />
+
+        <EditText
+            android:id="@+id/new_recipe_instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/new_recipe_instructions_hint"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+        <Button
+            android:id="@+id/new_recipe_save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_save_button_text" />
+    </LinearLayout>
+</ScrollView>

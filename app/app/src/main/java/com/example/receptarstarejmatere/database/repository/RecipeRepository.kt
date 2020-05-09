@@ -19,6 +19,9 @@ class RecipeRepository(recipeDb: MyDb) {
         recipeDao.insertAll(recipes)
     }
 
+    fun insert(recipe: Recipe) {
+        recipeDao.insert(recipe)
+    }
 
     fun deleteRecipe(recipe: Recipe) {
         recipeDao.delete(recipe)

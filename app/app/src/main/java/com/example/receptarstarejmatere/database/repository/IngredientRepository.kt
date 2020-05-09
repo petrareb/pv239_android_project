@@ -16,6 +16,10 @@ class IngredientRepository(recipeDb: MyDb) {
         ingredientDao.insert(ingredient)
     }
 
+    fun getByName(ingredName: String): List<Ingredient> {
+        return ingredientDao.getByName(ingredName)
+    }
+
     companion object {
         @Volatile private var instance: IngredientRepository? = null
 

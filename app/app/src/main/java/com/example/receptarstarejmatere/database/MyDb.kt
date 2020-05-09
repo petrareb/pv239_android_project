@@ -8,7 +8,7 @@ import com.example.receptarstarejmatere.database.dao.*
 import com.example.receptarstarejmatere.database.model.*
 
 
-@Database(entities = [Recipe::class, Tag::class, RecipeTagCrossRef::class, Ingredient::class, RecipeIngredientCrossRef::class], version = 3, exportSchema = false)
+@Database(entities = [Recipe::class, Tag::class, RecipeTagCrossRef::class, Ingredient::class, RecipeIngredientCrossRef::class], version = 4, exportSchema = false)
 abstract class MyDb : RoomDatabase() {
 
     abstract fun recipeDao() : RecipeDao

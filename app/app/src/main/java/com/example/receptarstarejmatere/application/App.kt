@@ -37,7 +37,7 @@ class App: Application() {
         recipeIngredientRepository = RecipeIngredientCrossRefRepository.getInstance(database)
         ingredientRepository = IngredientRepository.getInstance(database)
         // use only in case the DB is empty
-        insertTestData()
+//        insertTestData()
     }
 
     private fun insertTestData(){

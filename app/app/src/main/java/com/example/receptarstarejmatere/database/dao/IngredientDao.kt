@@ -23,4 +23,7 @@ interface IngredientDao {
 
     @Delete
     fun delete(ingredient: Ingredient)
+
+    @Query("select *, `rowid` from Ingredient where name like :ingredName limit 1")
+    fun getByName(ingredName: String): List<Ingredient>
 }
