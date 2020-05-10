@@ -1,5 +1,6 @@
 package com.example.receptarstarejmatere.activity
 
+//import com.example.receptarstarejmatere.database.model.RecipeWithIngredients
 import android.content.Intent
 import android.os.Bundle
 import android.view.View

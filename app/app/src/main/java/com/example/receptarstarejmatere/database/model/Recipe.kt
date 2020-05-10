@@ -1,13 +1,11 @@
 package com.example.receptarstarejmatere.database.model
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Fts4
-import androidx.room.PrimaryKey
+import androidx.room.*
 
-@Fts4
-@Entity
+@Entity (indices = [
+    Index(value = ["recipe_id"])
+])
 data class Recipe(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "rowid") val id : Int?,  // @PrimaryKey(autoGenerate = true)
+    @PrimaryKey @ColumnInfo(name = "recipe_id") val id : Int,  // @PrimaryKey(autoGenerate = true)
     val name: String,
     val source: String,
     @ColumnInfo(name = "is_favorite") val isFavorite: Boolean,

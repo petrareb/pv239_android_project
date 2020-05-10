@@ -8,14 +8,15 @@ import com.example.receptarstarejmatere.database.dao.*
 import com.example.receptarstarejmatere.database.model.*
 
 
-@Database(entities = [Recipe::class, Tag::class, RecipeTagCrossRef::class, Ingredient::class, RecipeIngredientCrossRef::class], version = 4, exportSchema = false)
+@Database(entities = [Recipe::class, Tag::class, RecipeTagCrossRef::class, Ingredient::class, RecipeIngredient::class], version = 9, exportSchema = false)
 abstract class MyDb : RoomDatabase() {
 
     abstract fun recipeDao() : RecipeDao
     abstract fun tagDao() : TagDao
     abstract fun recipeTagDao() : RecipeTagCrossRefDao
-    abstract fun recipeIngredientDao() : RecipeIngredientCrossRefDao
     abstract fun ingredientDao() : IngredientDao
+    abstract fun recipeIngredientDao() : RecipeIngredientCrossRefDao
+
 
     companion object {
         @Volatile private var instance : MyDb? = null

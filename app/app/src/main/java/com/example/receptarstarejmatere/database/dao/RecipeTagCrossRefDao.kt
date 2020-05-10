@@ -13,7 +13,7 @@ interface RecipeTagCrossRefDao {
     fun insertAll(join: List<RecipeTagCrossRef>)
 
     @Transaction
-    @Query("select *, `rowid` from recipe")
+    @Query("select *, `recipe_id` from recipe")
     fun getRecipesWithTags() : LiveData<List<RecipeWithTags>>
 
     @Transaction
@@ -23,4 +23,8 @@ interface RecipeTagCrossRefDao {
     @Transaction
     @Query("select *, `rowid` from tag where rowid = :givenTagId")
     fun getTagByIdWithRecipes(givenTagId: Int) : LiveData<List<TagWithRecipes>>
+
+    @Transaction
+    @Query("select *, recipe_id from recipe where recipe_id = :givenRecipeId")
+    fun getTagsForRecipe(givenRecipeId: Int) : LiveData<List<RecipeWithTags>>
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.example.receptarstarejmatere.database.MyDb
 import com.example.receptarstarejmatere.database.dao.RecipeTagCrossRefDao
 import com.example.receptarstarejmatere.database.model.RecipeTagCrossRef
+import com.example.receptarstarejmatere.database.model.RecipeWithTags
 import com.example.receptarstarejmatere.database.model.TagWithRecipes
 
 class RecipeTagCrossRefRepository(recipeDb: MyDb) {
@@ -13,6 +14,11 @@ class RecipeTagCrossRefRepository(recipeDb: MyDb) {
     fun getTagWithRecipes(tagId: Int): LiveData<List<TagWithRecipes>> {
         return recipeTagDao.getTagByIdWithRecipes(tagId)
     }
+
+    fun getTagsForRecipe(recipeId : Int) : LiveData<List<RecipeWithTags>> {
+        return recipeTagDao.getTagsForRecipe(recipeId)
+    }
+
     fun insertAll(joins: List<RecipeTagCrossRef>) {
         recipeTagDao.insertAll(joins)
     }

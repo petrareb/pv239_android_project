@@ -62,20 +62,25 @@ class DataGenerator {
             return ingredients
         }
 
-        fun generateRecipesIngredientsCrossRef(): MutableList<RecipeIngredientCrossRef> {
-            var joins = mutableListOf<RecipeIngredientCrossRef>()
+        fun generateRecipesIngredientsCrossRef(): MutableList<RecipeIngredient> {
+            var joins = mutableListOf<RecipeIngredient>()
             val names = listOf("PL", "hrncek", "CL",
                 "kg", "g", "l", "dcl", "ml", "dkg")
+            var id : Int = 0
             for(x in 0..20) {
-                var join = RecipeIngredientCrossRef(ingredientId = x,
+                var join = RecipeIngredient(id = id,
                     recipeId = x,
+                    ingredientId = x,
                     measure = names[x % names.size],
                     quantity = x)
                 joins.add(join)
-                join = RecipeIngredientCrossRef(ingredientId = x, recipeId = Random.nextInt(0, 20),
+                id++
+                join = RecipeIngredient(id = id, recipeId = Random.nextInt(0, 20),
+                    ingredientId = x,
                     measure = names[x % names.size],
                     quantity = x-10)
                 joins.add(join)
+                id++
             }
             return joins
         }

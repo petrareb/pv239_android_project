@@ -15,9 +15,8 @@ data class RecipeTagCrossRef (
 data class RecipeWithTags (
     @Embedded val recipe: Recipe,
     @Relation(
-        parentColumn = "rowid",
+        parentColumn = "recipe_id",
         entityColumn = "rowid",
-
         associateBy = Junction(
             value = RecipeTagCrossRef::class,
             parentColumn = "recipe_id",
@@ -31,7 +30,7 @@ data class TagWithRecipes (
     @Embedded val tag : Tag,
     @Relation (
         parentColumn = "rowid",
-        entityColumn = "rowid",
+        entityColumn = "recipe_id",
         associateBy = Junction(
             value = RecipeTagCrossRef::class,
             parentColumn = "tag_id",

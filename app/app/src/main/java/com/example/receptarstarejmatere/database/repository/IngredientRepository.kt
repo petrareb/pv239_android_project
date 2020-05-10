@@ -1,5 +1,6 @@
 package com.example.receptarstarejmatere.database.repository
 
+import androidx.lifecycle.LiveData
 import com.example.receptarstarejmatere.database.MyDb
 import com.example.receptarstarejmatere.database.dao.IngredientDao
 import com.example.receptarstarejmatere.database.model.Ingredient
@@ -18,6 +19,14 @@ class IngredientRepository(recipeDb: MyDb) {
 
     fun getByName(ingredName: String): List<Ingredient> {
         return ingredientDao.getByName(ingredName)
+    }
+
+    fun getIngredientById(ingredientId : Int): LiveData<Ingredient> {
+        return ingredientDao.getIngredientById(ingredientId)
+    }
+
+    fun getIngredientsById(ingredientsIds : IntArray): LiveData<List<Ingredient>> {
+        return ingredientDao.getIngredientsByIds(ingredientsIds)
     }
 
     companion object {
