@@ -12,7 +12,7 @@ interface RecipeIngredientCrossRefDao {
     fun insertAll(join: List<RecipeIngredient>) // inserting
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(recipeWithIngredients: RecipeIngredientCrossRef)
+    fun insert(recipeWithIngredients: RecipeIngredient)
 
     @Query("select ri.ingredient_id, ri.quantity, ri.measure, i.name from recipes_ingredients as ri inner join ingredient as i on ri.ingredient_id = i.ingredient_id where ri.recipe_id = :recipeId")
     fun getIngredientsForRecipe(recipeId : Int) : LiveData<List<IngredientWithMeasure>>

@@ -3,9 +3,6 @@ package com.example.receptarstarejmatere.database.repository
 import androidx.lifecycle.LiveData
 import com.example.receptarstarejmatere.database.MyDb
 import com.example.receptarstarejmatere.database.dao.RecipeIngredientCrossRefDao
-import com.example.receptarstarejmatere.database.model.IngredientWithRecipes
-import com.example.receptarstarejmatere.database.model.RecipeIngredientCrossRef
-import com.example.receptarstarejmatere.database.model.RecipeWithIngredients
 import com.example.receptarstarejmatere.database.model.IngredientWithMeasure
 import com.example.receptarstarejmatere.database.model.RecipeIngredient
 
@@ -21,7 +18,7 @@ class RecipeIngredientCrossRefRepository(recipeDb: MyDb) {
         recipeIngredientDao.insertAll(joins)
     }
 
-    fun insert(recipeWithIngredients: RecipeIngredientCrossRef) {
+    fun insert(recipeWithIngredients: RecipeIngredient) {
         recipeIngredientDao.insert(recipeWithIngredients)
     }
 

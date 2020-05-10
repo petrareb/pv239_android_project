@@ -7,14 +7,14 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
-import com.example.receptarstarejmatere.adapter.IngredientsAdapter
+import com.example.receptarstarejmatere.adapter.NewRecipeIngredientsAdapter
 import com.example.receptarstarejmatere.adapter.NewRecipeTagsAdapter
 import com.example.receptarstarejmatere.application.App
-import com.example.receptarstarejmatere.database.viewModel.IngredientViewModel
-import androidx.lifecycle.Observer
 import com.example.receptarstarejmatere.database.model.*
+import com.example.receptarstarejmatere.database.viewModel.IngredientViewModel
 import com.example.receptarstarejmatere.database.viewModel.TagViewModel
 import java.util.*
 import kotlin.concurrent.thread
@@ -22,7 +22,7 @@ import kotlin.random.Random
 
 class NewRecipeActivity : AppCompatActivity() {
 
-    private lateinit var ingredientsAdapter: IngredientsAdapter
+    private lateinit var ingredientsAdapter: NewRecipeIngredientsAdapter
     private lateinit var tagsAdapter: NewRecipeTagsAdapter
 
     private val ingredients: MutableList<IngredientViewModel> = mutableListOf()
@@ -45,7 +45,7 @@ class NewRecipeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_recipe)
 
-        ingredientsAdapter = IngredientsAdapter()
+        ingredientsAdapter = NewRecipeIngredientsAdapter()
         initIngredientsRecyclerView()
 
         tagsAdapter = NewRecipeTagsAdapter()
@@ -180,7 +180,8 @@ class NewRecipeActivity : AppCompatActivity() {
         ingredientId: Int,
         ingred: IngredientViewModel
     ) {
-        val newRecipeWithIngredients = RecipeIngredientCrossRef(
+        val newRecipeWithIngredients = RecipeIngredient(
+            id = Random.nextInt(0, 1000000),
             ingredientId = ingredientId,
             recipeId = recipeId,
             measure = ingred.measure,
@@ -264,5 +265,4 @@ class NewRecipeActivity : AppCompatActivity() {
             recyclerView.adapter = tagsAdapter
         })
     }
-
 }
