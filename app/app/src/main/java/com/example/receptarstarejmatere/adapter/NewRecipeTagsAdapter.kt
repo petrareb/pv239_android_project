@@ -4,12 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckedTextView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
-import com.example.receptarstarejmatere.database.model.Tag
+import com.example.receptarstarejmatere.database.viewModel.TagViewModel
 
-class NewRecipeTagsAdapter(private var tags: List<Tag> = listOf())
+class NewRecipeTagsAdapter(private var tags: List<TagViewModel> = listOf())
     : RecyclerView.Adapter<NewRecipeTagsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,7 +29,7 @@ class NewRecipeTagsAdapter(private var tags: List<Tag> = listOf())
         return holder.bind(tags[position])
     }
 
-    fun swapData(newData: List<Tag>) {
+    fun swapData(newData: List<TagViewModel>) {
         tags = newData
         notifyDataSetChanged()
     }
@@ -38,10 +37,15 @@ class NewRecipeTagsAdapter(private var tags: List<Tag> = listOf())
     class ViewHolder(tagsView: View)
         : RecyclerView.ViewHolder(tagsView) {
 
-        var tagName: CheckedTextView = tagsView.findViewById(R.id.new_recipe_tags_item)
+        var tagWithCheck: CheckedTextView = tagsView.findViewById(R.id.new_recipe_tags_item)
 
-        fun bind(tag: Tag) {
-            tagName.text = tag.name
+        fun bind(tagModel: TagViewModel) {
+            tagWithCheck.text = tagModel.tag.name
+            tagWithCheck.isChecked = tagModel.isSelected
+            tagWithCheck.setOnClickListener {
+                tagModel.isSelected = !tagModel.isSelected
+                tagWithCheck.isChecked= tagModel.isSelected
+            }
         }
     }
 }

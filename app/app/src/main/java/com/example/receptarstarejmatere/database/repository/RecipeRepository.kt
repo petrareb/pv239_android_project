@@ -3,9 +3,7 @@ package com.example.receptarstarejmatere.database.repository
 import androidx.lifecycle.LiveData
 import com.example.receptarstarejmatere.database.MyDb
 import com.example.receptarstarejmatere.database.dao.RecipeDao
-import com.example.receptarstarejmatere.database.dao.RecipeTagCrossRefDao
 import com.example.receptarstarejmatere.database.model.Recipe
-import com.example.receptarstarejmatere.database.model.TagWithRecipes
 
 class RecipeRepository(recipeDb: MyDb) {
 

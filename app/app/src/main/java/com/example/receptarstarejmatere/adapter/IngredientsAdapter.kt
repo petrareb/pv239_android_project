@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
-import com.example.receptarstarejmatere.database.model.IngredientBase
+import com.example.receptarstarejmatere.database.viewModel.IngredientViewModel
 
-class IngredientsAdapter(private var ingredients: List<IngredientBase> = listOf())
+class IngredientsAdapter(private var ingredients: List<IngredientViewModel> = listOf())
     : RecyclerView.Adapter<IngredientsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,7 +29,7 @@ class IngredientsAdapter(private var ingredients: List<IngredientBase> = listOf(
         return holder.bind(ingredients[position])
     }
 
-    fun swapData(newData: List<IngredientBase>) {
+    fun swapData(newData: List<IngredientViewModel>) {
         ingredients = newData
         notifyDataSetChanged()
     }
@@ -37,7 +37,7 @@ class IngredientsAdapter(private var ingredients: List<IngredientBase> = listOf(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var ingred: TextView = itemView.findViewById(R.id.ingredient)
 
-        fun bind(ingredient: IngredientBase) {
+        fun bind(ingredient: IngredientViewModel) {
             val text = ingredient.quantity + " " + ingredient.measure + " " + ingredient.name
             ingred.text = text
         }

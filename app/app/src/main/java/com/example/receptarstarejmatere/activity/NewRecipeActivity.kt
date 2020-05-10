@@ -7,17 +7,15 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.adapter.IngredientsAdapter
 import com.example.receptarstarejmatere.adapter.NewRecipeTagsAdapter
 import com.example.receptarstarejmatere.application.App
-import com.example.receptarstarejmatere.database.model.Ingredient
-import com.example.receptarstarejmatere.database.model.IngredientBase
-import com.example.receptarstarejmatere.database.model.Recipe
-import com.example.receptarstarejmatere.database.model.RecipeIngredientCrossRef
+import com.example.receptarstarejmatere.database.viewModel.IngredientViewModel
 import androidx.lifecycle.Observer
+import com.example.receptarstarejmatere.database.model.*
+import com.example.receptarstarejmatere.database.viewModel.TagViewModel
 import java.util.*
 import kotlin.concurrent.thread
 import kotlin.random.Random
@@ -27,7 +25,8 @@ class NewRecipeActivity : AppCompatActivity() {
     private lateinit var ingredientsAdapter: IngredientsAdapter
     private lateinit var tagsAdapter: NewRecipeTagsAdapter
 
-    private val ingredients: MutableList<IngredientBase> = mutableListOf()
+    private val ingredients: MutableList<IngredientViewModel> = mutableListOf()
+    private var tags: MutableList<TagViewModel> = mutableListOf()
 
     private lateinit var isFavoriteStar: CheckBox
     private lateinit var nameEditText: EditText
@@ -80,7 +79,7 @@ class NewRecipeActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s?.length == 0 || s!! == "0") {
+                if (s?.length == 0 || s == "0") {
                     cookTempEditText.visibility = View.GONE
                     cookTempLabel.visibility = View.GONE
                 } else {
@@ -94,7 +93,7 @@ class NewRecipeActivity : AppCompatActivity() {
             val isValid = checkRequiredFields()
             if (isValid) {
                 saveNewRecipe()
-                Toast.makeText(this, "Nový recept bol pridaný", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Nový recept pridaný", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
@@ -104,11 +103,12 @@ class NewRecipeActivity : AppCompatActivity() {
         addIngredButton.setOnClickListener {
             val isValid = checkNewIngredientValues()
             if (isValid) {
-                val newIngred = IngredientBase(
-                    name = ingredNameEditText.text.toString(),
-                    measure = ingredMeasureEditText.text.toString(),
-                    quantity = ingredQuantityEditText.text.toString()
-                )
+                val newIngred =
+                    IngredientViewModel(
+                        name = ingredNameEditText.text.toString(),
+                        measure = ingredMeasureEditText.text.toString(),
+                        quantity = ingredQuantityEditText.text.toString()
+                    )
                 ingredients.add(newIngred)
                 ingredientsAdapter.swapData(ingredients)
 
@@ -122,14 +122,11 @@ class NewRecipeActivity : AppCompatActivity() {
     private fun saveNewRecipe() {
         val isFavorite = isFavoriteStar.isChecked
         val name = nameEditText.text.toString()
-//        val prepTime = if (prepTimeEditText.text.isEmpty()) "0" else prepTimeEditText.text
         val prepTime = prepTimeEditText.text.toString()
         val source = sourceEditText.text.toString()
-//        val cookTime = if (cookTimeEditText.text.isEmpty()) "0" else cookTimeEditText.text
         val cookTime = cookTimeEditText.text.toString()
         val cookTemp = cookTempEditText.text.toString()
-        val instructions =
-            if (instructionsEditText.text.isEmpty()) "" else instructionsEditText.text.toString()
+        val instructions = if (instructionsEditText.text.isEmpty()) "" else instructionsEditText.text.toString()
 
         val newRecipeId = Random.nextInt(0, 1000000)
         val newRecipe = Recipe(
@@ -145,11 +142,30 @@ class NewRecipeActivity : AppCompatActivity() {
         )
 
         saveIngredients(newRecipeId)
+        saveTags(newRecipeId)
 
         thread {
             App.recipeRepository.insert(newRecipe)
         }
     }
+
+    private fun saveTags(recipeId: Int) {
+        val tagsToSave = tags
+            .filter { tagModel ->
+                tagModel.isSelected
+            }
+            .map { tagModel ->
+                RecipeTagCrossRef(
+                    recipeId = recipeId,
+                    tagId = tagModel.tag.tagId
+                )
+            }
+
+        thread {
+            App.recipeTagRepository.insertAll(tagsToSave)
+        }
+    }
+
 
     private fun saveIngredients(recipeId: Int) {
         ingredients.forEach { ingred ->
@@ -159,7 +175,11 @@ class NewRecipeActivity : AppCompatActivity() {
         }
     }
 
-    private fun joinIngredientsToRecipe(recipeId: Int, ingredientId: Int, ingred: IngredientBase) {
+    private fun joinIngredientsToRecipe(
+        recipeId: Int,
+        ingredientId: Int,
+        ingred: IngredientViewModel
+    ) {
         val newRecipeWithIngredients = RecipeIngredientCrossRef(
             ingredientId = ingredientId,
             recipeId = recipeId,
@@ -171,7 +191,7 @@ class NewRecipeActivity : AppCompatActivity() {
         }
     }
 
-    private fun getOrCreateIngredientId(ingred: IngredientBase): Int {
+    private fun getOrCreateIngredientId(ingred: IngredientViewModel): Int {
         val ingredName = ingred.name.toLowerCase(Locale.ROOT).trim()
         var existingIngredients = listOf<Ingredient>()
         thread {
@@ -232,7 +252,12 @@ class NewRecipeActivity : AppCompatActivity() {
     }
 
     private fun initTagsRecyclerView() {
-        App.tagRepository.getAllTags().observe(this, Observer { tags ->
+        App.tagRepository.getAllTags().observe(this, Observer { tagsFromDb: List<Tag> ->
+
+            tagsFromDb.forEach { tag ->
+                tags.add(TagViewModel(tag))
+            }
+
             tagsAdapter.swapData(tags)
 
             val recyclerView = findViewById<RecyclerView>(R.id.new_recipe_tags_list)
