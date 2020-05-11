@@ -13,10 +13,10 @@ interface TagDao {
     fun getById(tagId : Int) : LiveData<Tag>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(tags: List<Tag>)
+    fun insertAll(tags: List<Tag>) : List<Long>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(tag: Tag)
+    fun insert(tag: Tag) : Long
 
     @Update
     fun updateTag(tag : Tag)

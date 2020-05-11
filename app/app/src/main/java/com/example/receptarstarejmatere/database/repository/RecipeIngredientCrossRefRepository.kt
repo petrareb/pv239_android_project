@@ -14,12 +14,12 @@ class RecipeIngredientCrossRefRepository(recipeDb: MyDb) {
 //        return recipeIngredientDao.getIngredientsForRecipe(recipeId)
 //    }
 
-    fun insertAll(joins: List<RecipeIngredient>) {
-        recipeIngredientDao.insertAll(joins)
+    fun insertAll(joins: List<RecipeIngredient>) : List<Long> {
+        return recipeIngredientDao.insertAll(joins)
     }
 
-    fun insert(recipeWithIngredients: RecipeIngredient) {
-        recipeIngredientDao.insert(recipeWithIngredients)
+    fun insert(recipeWithIngredients: RecipeIngredient) : Long {
+        return recipeIngredientDao.insert(recipeWithIngredients)
     }
 
 //    fun getAll(): LiveData<List<RecipeWithIngredients>> {

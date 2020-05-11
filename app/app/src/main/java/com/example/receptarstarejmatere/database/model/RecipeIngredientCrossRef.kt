@@ -12,15 +12,21 @@ import androidx.room.*
     ForeignKey(entity = Ingredient::class, parentColumns = ["ingredient_id"], childColumns = ["ingredient_id"])]
 )
 class RecipeIngredient {
-    constructor(id: Int, recipeId: Int, ingredientId: Int, quantity: Int, measure: String) {
-        this.id = id
+    constructor(recipeId: Int, ingredientId: Int, quantity: Int, measure: String) {
         this.recipeId = recipeId
         this.ingredientId = ingredientId
         this.quantity = quantity
         this.measure = measure
     }
+//    constructor(id : Int, ingredientId: Int, quantity: Int, measure: String, recipeId: Int) {
+//        this.id = id
+//        this.quantity = quantity
+//        this.ingredientId = ingredientId
+//        this.measure = measure
+//        this.recipeId = recipeId
+//    }
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id: Int = 0
 

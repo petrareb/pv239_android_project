@@ -60,6 +60,7 @@
             android:id="@+id/new_recipe_tags_list"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             />
 
@@ -124,28 +125,33 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             />
 
-        <EditText
-            android:id="@+id/new_recipe_ingred_quantity"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:inputType="number"
-            android:digits="0123456789."
-            android:hint="42"/>
-        <EditText
-            android:id="@+id/new_recipe_ingred_measure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:inputType="text"
-            android:hint="g"/>
-        <EditText
-            android:id="@+id/new_recipe_ingred_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:inputType="text"
-            android:hint="Biely prášok"/>
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/new_recipe_ingred_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:inputType="number"
+                android:digits="0123456789."
+                android:hint="42"/>
+            <EditText
+                android:id="@+id/new_recipe_ingred_measure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:inputType="text"
+                android:hint="g"/>
+            <EditText
+                android:id="@+id/new_recipe_ingred_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:inputType="text"
+                android:hint="Biely prášok"/>
+        </LinearLayout>
         <Button
             android:id="@+id/new_recipe_add_ingred_button"
             android:layout_width="wrap_content"
@@ -164,7 +170,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/new_recipe_instructions_hint"
             android:importantForAutofill="no"
-            android:inputType="text" />
+            android:text="text" />
         <Button
             android:id="@+id/new_recipe_save_button"
             android:layout_width="wrap_content"

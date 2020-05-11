@@ -33,8 +33,7 @@ class NewTagActivity : AppCompatActivity() {
     }
 
     private fun saveNewTag(name: String) {
-        val tagId = Random.nextInt(100, 200)
-        val newTag = Tag(tagId, name)
+        val newTag = Tag(name)
 
         thread {
             App.tagRepository.insert(newTag)

@@ -3,7 +3,19 @@ package com.example.receptarstarejmatere.database.model
 import androidx.room.*
 
 @Entity( indices = [Index(value = ["ingredient_id"])])
-data class Ingredient (
-    @PrimaryKey @ColumnInfo(name = "ingredient_id") val id : Int,  // @PrimaryKey(autoGenerate = true)
-    val name : String
-)
+class Ingredient
+{
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "ingredient_id")
+    var id : Int = 0
+    var name : String = ""
+
+    constructor(name : String){
+        this.name  = name
+    }
+
+//    constructor(name: String, id : Int) {
+//        this.id = id
+//        this.name = name
+//    }
+
+}

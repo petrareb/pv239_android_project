@@ -16,10 +16,10 @@ interface IngredientDao {
     fun getIngredientById(ingredientId : Int) : LiveData<Ingredient>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(ingredients : List<Ingredient>)
+    fun insertAll(ingredients : List<Ingredient>) : List<Long>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(ingredient: Ingredient)
+    fun insert(ingredient: Ingredient) : Long
 
     @Update
     fun update(ingredient: Ingredient)

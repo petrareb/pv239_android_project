@@ -9,12 +9,12 @@ class IngredientRepository(recipeDb: MyDb) {
 
     private val ingredientDao: IngredientDao = recipeDb.ingredientDao()
 
-    fun insertAll(ingredients: List<Ingredient>) {
-        ingredientDao.insertAll(ingredients)
+    fun insertAll(ingredients: List<Ingredient>) : List<Long> {
+        return ingredientDao.insertAll(ingredients)
     }
 
-    fun insert(ingredient: Ingredient) {
-        ingredientDao.insert(ingredient)
+    fun insert(ingredient: Ingredient) : Long {
+        return ingredientDao.insert(ingredient)
     }
 
     fun getByName(ingredName: String): List<Ingredient> {

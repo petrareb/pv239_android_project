@@ -19,8 +19,8 @@ class RecipeTagCrossRefRepository(recipeDb: MyDb) {
         return recipeTagDao.getTagsForRecipe(recipeId)
     }
 
-    fun insertAll(joins: List<RecipeTagCrossRef>) {
-        recipeTagDao.insertAll(joins)
+    fun insertAll(joins: List<RecipeTagCrossRef>) : List<Long> {
+        return recipeTagDao.insertAll(joins)
     }
 
     companion object {

@@ -13,12 +13,12 @@ class TagRepository(recipeDb: MyDb) {
         return tagDao.getAll()
     }
 
-    fun insert(tag: Tag) {
-        tagDao.insert(tag)
+    fun insert(tag: Tag) : Long {
+        return tagDao.insert(tag)
     }
 
-    fun insertAll(tags: List<Tag>) {
-        tagDao.insertAll(tags)
+    fun insertAll(tags: List<Tag>) : List<Long> {
+        return tagDao.insertAll(tags)
     }
 
     fun deleteTag(tag: Tag) {

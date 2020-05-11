@@ -37,31 +37,33 @@ class App: Application() {
         recipeIngredientRepository = RecipeIngredientCrossRefRepository.getInstance(database)
         ingredientRepository = IngredientRepository.getInstance(database)
         // use only in case the DB is empty
-//        insertTestData()
+        //insertTestData()
     }
 
-    private fun insertTestData(){
-        val recipes = DataGenerator.generateRecipes()
-        thread {
-            recipeRepository.insertAll(Collections.unmodifiableList(recipes))
-        }
-        val tags = DataGenerator.generateTags()
-        thread {
-            tagRepository.insertAll(Collections.unmodifiableList(tags))
-        }
-        val recipesWithTags = DataGenerator.generateRecipesTagsCrossRef()
-        thread {
-            recipeTagRepository.insertAll(Collections.unmodifiableList(recipesWithTags))
-        }
-        val ingred = DataGenerator.generateIngredients()
-        thread {
-            ingredientRepository.insertAll(Collections.unmodifiableList(ingred))
-        }
-        val recipeIngredCrossRef = DataGenerator.generateRecipesIngredientsCrossRef()
-        thread {
-            recipeIngredientRepository.insertAll(recipeIngredCrossRef)
-        }
-
-    }
+//    private fun insertTestData(){
+//        val recipes = DataGenerator.generateRecipes()
+//        val tags = DataGenerator.generateTags()
+//        val recipesWithTags = DataGenerator.generateRecipesTagsCrossRef()
+//        val ingred = DataGenerator.generateIngredients()
+//        val recipeIngredCrossRef = DataGenerator.generateRecipesIngredientsCrossRef()
+//
+//        thread {
+//            recipeRepository.insertAll(Collections.unmodifiableList(recipes))
+//        }
+//        thread {
+//            tagRepository.insertAll(Collections.unmodifiableList(tags))
+//        }
+//        Thread {
+//            Thread.sleep(10000) //sleep 10s
+//            recipeTagRepository.insertAll(Collections.unmodifiableList(recipesWithTags))
+//        }.start()
+//        thread {
+//            ingredientRepository.insertAll(Collections.unmodifiableList(ingred))
+//        }
+//        Thread {
+//            Thread.sleep(10000) //sleep 10s
+//            recipeIngredientRepository.insertAll(recipeIngredCrossRef)
+//        }.start()
+//    }
 }
 

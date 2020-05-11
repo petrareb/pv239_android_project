@@ -65,21 +65,21 @@ class RecipeOverviewActivity: AppCompatActivity() {
         else {
             recipe_source.text = recipeWithTags.recipe.source
         }
-        if (recipeWithTags.recipe.cookingTemperature == 0) {
+        if (recipeWithTags.recipe.cookingTemperature.isEmpty()) {
             recipe_cooking_temp.visibility = TextView.INVISIBLE
             recipe_cooking_temp_label.visibility = TextView.INVISIBLE
         }
         else {
             recipe_cooking_temp.text = recipeWithTags.recipe.cookingTemperature.toString()
         }
-        if (recipeWithTags.recipe.cookingTime == 0) {
+        if (recipeWithTags.recipe.cookingTime.isEmpty()) {
             recipe_cooking_time.visibility = TextView.INVISIBLE
             recipe_cooking_time_label.visibility = TextView.INVISIBLE
         }
         else {
             recipe_cooking_time.text = recipeWithTags.recipe.cookingTime.toString()
         }
-        if (recipeWithTags.recipe.preparationTime == 0) {
+        if (recipeWithTags.recipe.preparationTime.isEmpty()) {
             recipe_prep_time.visibility = TextView.INVISIBLE
             recipe_prep_time_label.visibility = TextView.INVISIBLE
         }

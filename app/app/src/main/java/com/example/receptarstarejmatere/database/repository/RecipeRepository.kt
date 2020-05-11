@@ -13,12 +13,12 @@ class RecipeRepository(recipeDb: MyDb) {
         return recipeDao.getFavoriteRecipes()
     }
 
-    fun insertAll(recipes: List<Recipe>) {
-        recipeDao.insertAll(recipes)
+    fun insertAll(recipes: List<Recipe>) : List<Long> {
+        return recipeDao.insertAll(recipes)
     }
 
-    fun insert(recipe: Recipe) {
-        recipeDao.insert(recipe)
+    fun insert(recipe: Recipe) : Long {
+        return recipeDao.insert(recipe)
     }
 
     fun deleteRecipe(recipe: Recipe) {

@@ -16,10 +16,10 @@ interface RecipeDao {
     fun getFavoriteRecipes() : LiveData<List<Recipe>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(recipes: List<Recipe>)
+    fun insertAll(recipes: List<Recipe>) : List<Long>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(recipe: Recipe)
+    fun insert(recipe: Recipe) : Long
 
     @Update
     fun updateRecipe(recipe : Recipe)
