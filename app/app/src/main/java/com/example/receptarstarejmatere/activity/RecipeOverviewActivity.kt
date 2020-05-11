@@ -59,36 +59,36 @@ class RecipeOverviewActivity: AppCompatActivity() {
             it.name }
 
         if (recipeWithTags.recipe.source == ""){
-            recipe_source.visibility = TextView.INVISIBLE
-            recipe_source_label.visibility = TextView.INVISIBLE
+            recipe_source.visibility = TextView.GONE
+            recipe_source_label.visibility = TextView.GONE
         }
         else {
             recipe_source.text = recipeWithTags.recipe.source
         }
         if (recipeWithTags.recipe.cookingTemperature.isEmpty()) {
-            recipe_cooking_temp.visibility = TextView.INVISIBLE
-            recipe_cooking_temp_label.visibility = TextView.INVISIBLE
+            recipe_cooking_temp.visibility = TextView.GONE
+            recipe_cooking_temp_label.visibility = TextView.GONE
         }
         else {
-            recipe_cooking_temp.text = recipeWithTags.recipe.cookingTemperature.toString()
+            recipe_cooking_temp.text = recipeWithTags.recipe.cookingTemperature
         }
         if (recipeWithTags.recipe.cookingTime.isEmpty()) {
-            recipe_cooking_time.visibility = TextView.INVISIBLE
-            recipe_cooking_time_label.visibility = TextView.INVISIBLE
+            recipe_cooking_time.visibility = TextView.GONE
+            recipe_cooking_time_label.visibility = TextView.GONE
         }
         else {
-            recipe_cooking_time.text = recipeWithTags.recipe.cookingTime.toString()
+            recipe_cooking_time.text = recipeWithTags.recipe.cookingTime
         }
         if (recipeWithTags.recipe.preparationTime.isEmpty()) {
-            recipe_prep_time.visibility = TextView.INVISIBLE
-            recipe_prep_time_label.visibility = TextView.INVISIBLE
+            recipe_prep_time.visibility = TextView.GONE
+            recipe_prep_time_label.visibility = TextView.GONE
         }
         else {
-            recipe_prep_time.text = recipeWithTags.recipe.preparationTime.toString()
+            recipe_prep_time.text = recipeWithTags.recipe.preparationTime
         }
         if (recipeWithTags.recipe.instructions == "") {
-            recipe_instructions.visibility = TextView.INVISIBLE
-            recipe_ingredients_label.visibility = TextView.INVISIBLE
+            recipe_instructions.visibility = TextView.GONE
+            recipe_ingredients_label.visibility = TextView.GONE
         }
         else {
             recipe_instructions.text = recipeWithTags.recipe.instructions
