@@ -21,6 +21,10 @@ class RecipeRepository(recipeDb: MyDb) {
         return recipeDao.insert(recipe)
     }
 
+    suspend fun updateIsFavorite(id: Int, isFavorite: Boolean) {
+        recipeDao.updateIsFavorite(id, isFavorite)
+    }
+
     suspend fun deleteRecipe(recipe: Recipe) {
         recipeDao.delete(recipe)
     }

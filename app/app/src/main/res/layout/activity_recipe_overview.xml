@@ -15,6 +15,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="100dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        <CheckBox
+            android:id="@+id/recipe_overview_star"
+            style="?android:attr/starStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="wrap_content"

@@ -1,6 +1,7 @@
 package com.example.receptarstarejmatere.activity
 
 import android.os.Bundle
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -12,12 +13,15 @@ import com.example.receptarstarejmatere.database.model.IngredientWithMeasure
 import com.example.receptarstarejmatere.database.model.RecipeWithTags
 import com.example.receptarstarejmatere.utils.Constants
 import kotlinx.android.synthetic.main.activity_recipe_overview.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class RecipeOverviewActivity: AppCompatActivity() {
 
     private lateinit var recipeWithTags : RecipeWithTags
     private var ingredientWithMeasure : ArrayList<IngredientWithMeasure> = ArrayList()
     private lateinit var adapter: IngredientsAdapter
+    private lateinit var favoritesStar: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,14 +32,27 @@ class RecipeOverviewActivity: AppCompatActivity() {
         val headerText = intent?.getStringExtra(Constants.SELECTED_RECIPE_NAME)
         findViewById<TextView>(R.id.recipe_overview_header).text = headerText
 
+        favoritesStar = findViewById(R.id.recipe_overview_star)
+
         initRecipe(selectedRecipeId)
         initIngredientsAdapter(selectedRecipeId)
+
+        favoritesStar.setOnClickListener{
+            setFavoriteRecipe(favoritesStar.isChecked)
+        }
+    }
+
+    private fun setFavoriteRecipe(isFavorite: Boolean) {
+        GlobalScope.launch {
+            App.recipeRepository.updateIsFavorite(recipeWithTags.recipe.id, isFavorite)
+        }
     }
 
     private fun initRecipe(selectedRecipeId : Int) {
         App.recipeTagRepository.getTagsForRecipe(selectedRecipeId).observe(this, Observer { recipeAndTags ->
             recipeWithTags = recipeAndTags[0]
             printRecipeBasic(recipeWithTags)
+            favoritesStar.isChecked = recipeWithTags.recipe.isFavorite
         })
     }
 
