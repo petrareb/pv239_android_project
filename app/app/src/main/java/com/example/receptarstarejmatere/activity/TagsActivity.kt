@@ -40,6 +40,7 @@ class TagsActivity: AppCompatActivity(), TagsAdapter.OnTagListener {
     override fun onSelectedTagClick(position: Int) {
         val intent = Intent(this, RecipesActivity::class.java)
         intent.putExtra(Constants.SELECTED_TAG_ID, mTags[position].tagId)
+        intent.putExtra(Constants.SELECTED_TAG_NAME, mTags[position].name)
         startActivity(intent)
     }
 }

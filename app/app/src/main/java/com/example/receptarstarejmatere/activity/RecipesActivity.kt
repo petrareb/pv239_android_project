@@ -2,6 +2,7 @@ package com.example.receptarstarejmatere.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,9 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
         setContentView(R.layout.activity_recipes)
 
         adapter = RecipesAdapter(onRecipeListener = this)
+
+        val header = intent?.getStringExtra(Constants.SELECTED_TAG_NAME) + " recepty"
+        findViewById<TextView>(R.id.recipes_header).text = header
         initRecipesRecyclerView()
     }
 
