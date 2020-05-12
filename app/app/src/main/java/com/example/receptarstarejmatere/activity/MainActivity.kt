@@ -1,6 +1,5 @@
 package com.example.receptarstarejmatere.activity
 
-//import com.example.receptarstarejmatere.database.model.RecipeWithIngredients
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -42,11 +41,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         }
-
-//        val ing = ArrayList<RecipeWithIngredients>()
-//        App.recipeIngredientRepository.getAll().observe(this, Observer { recipes ->
-//            ing.addAll(recipes)
-//        })
 
         hideButtons()
     }

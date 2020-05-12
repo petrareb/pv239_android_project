@@ -9,10 +9,10 @@ import com.example.receptarstarejmatere.database.model.RecipeIngredient
 interface RecipeIngredientCrossRefDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertAll(join: List<RecipeIngredient>) : List<Long>
+    suspend fun insertAll(join: List<RecipeIngredient>) : List<Long>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(recipeWithIngredients: RecipeIngredient) : Long
+    suspend fun insert(recipeWithIngredients: RecipeIngredient) : Long
 
     @Query("select ri.ingredient_id, ri.quantity, ri.measure, i.name from recipes_ingredients as ri inner join ingredient as i on ri.ingredient_id = i.ingredient_id where ri.recipe_id = :recipeId")
     fun getIngredientsForRecipe(recipeId : Int) : LiveData<List<IngredientWithMeasure>>

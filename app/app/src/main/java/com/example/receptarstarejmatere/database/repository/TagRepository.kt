@@ -13,15 +13,15 @@ class TagRepository(recipeDb: MyDb) {
         return tagDao.getAll()
     }
 
-    fun insert(tag: Tag) : Long {
+    suspend fun insert(tag: Tag) : Long {
         return tagDao.insert(tag)
     }
 
-    fun insertAll(tags: List<Tag>) : List<Long> {
+    suspend fun insertAll(tags: List<Tag>) : List<Long> {
         return tagDao.insertAll(tags)
     }
 
-    fun deleteTag(tag: Tag) {
+    suspend fun deleteTag(tag: Tag) {
         tagDao.delete(tag)
     }
 

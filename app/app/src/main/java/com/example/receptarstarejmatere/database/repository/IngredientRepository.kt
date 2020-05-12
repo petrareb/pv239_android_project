@@ -4,20 +4,22 @@ import androidx.lifecycle.LiveData
 import com.example.receptarstarejmatere.database.MyDb
 import com.example.receptarstarejmatere.database.dao.IngredientDao
 import com.example.receptarstarejmatere.database.model.Ingredient
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class IngredientRepository(recipeDb: MyDb) {
 
     private val ingredientDao: IngredientDao = recipeDb.ingredientDao()
 
-    fun insertAll(ingredients: List<Ingredient>) : List<Long> {
+    suspend fun insertAll(ingredients: List<Ingredient>) : List<Long> {
         return ingredientDao.insertAll(ingredients)
     }
 
-    fun insert(ingredient: Ingredient) : Long {
+    suspend fun insert(ingredient: Ingredient) : Long {
         return ingredientDao.insert(ingredient)
     }
 
-    fun getByName(ingredName: String): List<Ingredient> {
+    suspend fun getByName(ingredName: String): List<Ingredient> {
         return ingredientDao.getByName(ingredName)
     }
 

@@ -9,9 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.Tag
-import kotlinx.coroutines.Dispatchers
-import kotlin.concurrent.thread
-import kotlin.random.Random
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class NewTagActivity : AppCompatActivity() {
 
@@ -35,7 +34,7 @@ class NewTagActivity : AppCompatActivity() {
     private fun saveNewTag(name: String) {
         val newTag = Tag(name)
 
-        thread {
+        GlobalScope.launch {
             App.tagRepository.insert(newTag)
         }
     }

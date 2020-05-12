@@ -10,7 +10,7 @@ import com.example.receptarstarejmatere.database.model.TagWithRecipes
 interface RecipeTagCrossRefDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertAll(join: List<RecipeTagCrossRef>) : List<Long>
+    suspend fun insertAll(join: List<RecipeTagCrossRef>) : List<Long>
 
     @Transaction
     @Query("select *, `recipe_id` from recipe")

@@ -16,10 +16,10 @@ interface IngredientDao {
     fun getIngredientById(ingredientId : Int) : LiveData<Ingredient>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(ingredients : List<Ingredient>) : List<Long>
+    suspend fun insertAll(ingredients : List<Ingredient>) : List<Long>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(ingredient: Ingredient) : Long
+    suspend fun insert(ingredient: Ingredient) : Long
 
     @Update
     fun update(ingredient: Ingredient)
@@ -28,5 +28,5 @@ interface IngredientDao {
     fun delete(ingredient: Ingredient)
 
     @Query("select *, `rowid` from Ingredient where name like :ingredName limit 1")
-    fun getByName(ingredName: String): List<Ingredient>
+    suspend fun getByName(ingredName: String): List<Ingredient>
 }

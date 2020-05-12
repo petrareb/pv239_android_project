@@ -1,7 +1,6 @@
 package com.example.receptarstarejmatere.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -20,13 +19,14 @@ class RecipeOverviewActivity: AppCompatActivity() {
     private var ingredientWithMeasure : ArrayList<IngredientWithMeasure> = ArrayList()
     private lateinit var adapter: IngredientsAdapter
 
-//    private val header = findViewById<TextView>(R.id.recipe_overview_header)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_overview)
         val selectedRecipeId = intent.getIntExtra(Constants.SELECTED_RECIPE_ID, 100)
         adapter = IngredientsAdapter()
+
+        val headerText = intent?.getStringExtra(Constants.SELECTED_RECIPE_NAME)
+        findViewById<TextView>(R.id.recipe_overview_header).text = headerText
 
         initRecipe(selectedRecipeId)
         initIngredientsAdapter(selectedRecipeId)
@@ -55,8 +55,6 @@ class RecipeOverviewActivity: AppCompatActivity() {
         if (recipeWithTags == null) {
             return
         }
-
-//        header.text = recipeWithTags.recipe.name
 
         recipe_name.text = recipeWithTags.recipe.name
         recipe_tags.text = recipeWithTags.tags.joinToString(separator = ", ") {

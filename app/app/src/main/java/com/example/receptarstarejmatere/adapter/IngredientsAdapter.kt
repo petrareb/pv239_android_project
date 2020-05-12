@@ -3,7 +3,6 @@ package com.example.receptarstarejmatere.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
@@ -12,8 +11,8 @@ import com.example.receptarstarejmatere.database.model.IngredientWithMeasure
 class IngredientsAdapter(private var ingredientsWithMeasures: List<IngredientWithMeasure> = listOf())
     : RecyclerView.Adapter<IngredientsAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientsAdapter.ViewHolder {
-        return IngredientsAdapter.ViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.ingr_measure_list_item,
                 parent,
@@ -26,7 +25,7 @@ class IngredientsAdapter(private var ingredientsWithMeasures: List<IngredientWit
         return ingredientsWithMeasures.size
     }
 
-    override fun onBindViewHolder(holder: IngredientsAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         return holder.bind(ingredientsWithMeasures[position])
     }
 

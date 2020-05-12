@@ -46,6 +46,7 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
     override fun onSelectedRecipeClick(position: Int) {
         val intent = Intent(this, RecipeOverviewActivity::class.java)
         intent.putExtra(Constants.SELECTED_RECIPE_ID, mRecipes[position].id)
+        intent.putExtra(Constants.SELECTED_RECIPE_NAME, mRecipes[position].name)
         startActivity(intent)
     }
 }

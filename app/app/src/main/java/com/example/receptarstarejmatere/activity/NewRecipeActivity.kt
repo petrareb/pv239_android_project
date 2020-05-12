@@ -16,9 +16,9 @@ import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.*
 import com.example.receptarstarejmatere.database.viewModel.IngredientViewModel
 import com.example.receptarstarejmatere.database.viewModel.TagViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
-import kotlin.concurrent.thread
-import kotlin.random.Random
 
 class NewRecipeActivity : AppCompatActivity() {
 
@@ -126,7 +126,8 @@ class NewRecipeActivity : AppCompatActivity() {
         val source = sourceEditText.text.toString()
         val cookTime = cookTimeEditText.text.toString()
         val cookTemp = cookTempEditText.text.toString()
-        val instructions = if (instructionsEditText.text.isEmpty()) "" else instructionsEditText.text.toString()
+        val instructions =
+            if (instructionsEditText.text.isEmpty()) "" else instructionsEditText.text.toString()
 
         val newRecipe = Recipe(
             name = name,
@@ -139,17 +140,14 @@ class NewRecipeActivity : AppCompatActivity() {
             //pathToImage = "", TODO TBA
         )
 
-        // TODO prerobit id na Long?
-        var id = 0 // to store the returned id after Insert // TODO check what value is returned if insert is unsuccessful
-        thread {
-            id = App.recipeRepository.insert(newRecipe).toInt()
+        GlobalScope.launch {
+            val id = App.recipeRepository.insert(newRecipe).toInt()
+            saveIngredients(id)
+            saveTags(id)
         }
-        // todo neverim, ze sa vrati id skor nez sa prepnes dalej.. znova nejako vyriesit
-        saveIngredients(id)
-        saveTags(id)
     }
 
-    private fun saveTags(recipeId: Int) {
+    private suspend fun saveTags(recipeId: Int) {
         val tagsToSave = tags
             .filter { tagModel ->
                 tagModel.isSelected
@@ -160,23 +158,18 @@ class NewRecipeActivity : AppCompatActivity() {
                     tagId = tagModel.tag.tagId
                 )
             }
-
-        Thread {
-            Thread.sleep(10000)
-            App.recipeTagRepository.insertAll(tagsToSave)
-        }.start()
+        App.recipeTagRepository.insertAll(tagsToSave)
     }
 
 
-    private fun saveIngredients(recipeId: Int) {
+    private suspend fun saveIngredients(recipeId: Int) {
         ingredients.forEach { ingred ->
-            val ingredientId = getOrCreateIngredientId(ingred) // todo nutne zarucit ze to id sa ti fakt vrati
-
+            val ingredientId = getOrCreateIngredientId(ingred)
             joinIngredientsToRecipe(recipeId, ingredientId, ingred)
         }
     }
 
-    private fun joinIngredientsToRecipe(
+    private suspend fun joinIngredientsToRecipe(
         recipeId: Int,
         ingredientId: Int,
         ingred: IngredientViewModel
@@ -185,34 +178,27 @@ class NewRecipeActivity : AppCompatActivity() {
             ingredientId = ingredientId,
             recipeId = recipeId,
             measure = ingred.measure,
-            quantity = 42 //ingred.quantity TODO Int => String
+            quantity = 42
         )
-        Thread {
-            Thread.sleep(10000)
-            App.recipeIngredientRepository.insert(newRecipeWithIngredients)
-        }.start() // todo id netreba ukladat, cajk mozes insertovat ako chces
+
+        App.recipeIngredientRepository.insert(newRecipeWithIngredients)
     }
 
-    private fun getOrCreateIngredientId(ingred: IngredientViewModel): Int {
+    private suspend fun getOrCreateIngredientId(ingred: IngredientViewModel): Int {
         val ingredName = ingred.name.toLowerCase(Locale.ROOT).trim()
-        var existingIngredients = listOf<Ingredient>()
-        thread {
-            existingIngredients = App.ingredientRepository.getByName(ingredName)
-        }
-        // todo observer ?
-        if (existingIngredients.isNotEmpty()) {
-            return existingIngredients.first().id
-        }
-
-        val newIngredient = Ingredient(
-            name = ingredName
-        )
-
+        var existingIngredients: List<Ingredient>
         var id = 0
-        thread {
-            id = App.ingredientRepository.insert(newIngredient).toInt()
+
+        existingIngredients = App.ingredientRepository.getByName(ingredName)
+
+        id = if (existingIngredients.isNotEmpty()) {
+            existingIngredients.first().id
+        } else {
+            val newIngredient = Ingredient(
+                name = ingredName
+            )
+            App.ingredientRepository.insert(newIngredient).toInt()
         }
-        // todo urcite to nestihne vratit hodnotu pred tym nez sa skonci fce, toto musi fungovat nejako inak to insertovanie
         return id
     }
 
