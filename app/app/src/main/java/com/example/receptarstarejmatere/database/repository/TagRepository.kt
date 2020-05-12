@@ -25,6 +25,10 @@ class TagRepository(recipeDb: MyDb) {
         tagDao.delete(tag)
     }
 
+    suspend fun getTagsCount(): Int {
+        return tagDao.getTagsCount()
+    }
+
     companion object {
         @Volatile private var instance: TagRepository? = null
 

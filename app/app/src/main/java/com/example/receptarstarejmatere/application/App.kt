@@ -4,10 +4,10 @@ import android.app.Application
 import com.example.receptarstarejmatere.database.DataGenerator
 import com.example.receptarstarejmatere.database.MyDb
 import com.example.receptarstarejmatere.database.repository.*
-import java.util.*
-import kotlin.concurrent.thread
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-class App: Application() {
+class App : Application() {
     companion object {
         lateinit var instance: App
             private set
@@ -36,34 +36,21 @@ class App: Application() {
         recipeTagRepository = RecipeTagCrossRefRepository.getInstance(database)
         recipeIngredientRepository = RecipeIngredientCrossRefRepository.getInstance(database)
         ingredientRepository = IngredientRepository.getInstance(database)
+
         // use only in case the DB is empty
-        //insertTestData()
+        GlobalScope.launch {
+            if (isDbEmpty()) {
+                insertTestData()
+            }
+        }
     }
 
-//    private fun insertTestData(){
-//        val recipes = DataGenerator.generateRecipes()
-//        val tags = DataGenerator.generateTags()
-//        val recipesWithTags = DataGenerator.generateRecipesTagsCrossRef()
-//        val ingred = DataGenerator.generateIngredients()
-//        val recipeIngredCrossRef = DataGenerator.generateRecipesIngredientsCrossRef()
-//
-//        thread {
-//            recipeRepository.insertAll(Collections.unmodifiableList(recipes))
-//        }
-//        thread {
-//            tagRepository.insertAll(Collections.unmodifiableList(tags))
-//        }
-//        Thread {
-//            Thread.sleep(10000) //sleep 10s
-//            recipeTagRepository.insertAll(Collections.unmodifiableList(recipesWithTags))
-//        }.start()
-//        thread {
-//            ingredientRepository.insertAll(Collections.unmodifiableList(ingred))
-//        }
-//        Thread {
-//            Thread.sleep(10000) //sleep 10s
-//            recipeIngredientRepository.insertAll(recipeIngredCrossRef)
-//        }.start()
-//    }
-}
+    private suspend fun isDbEmpty(): Boolean {
+        var tagCount = tagRepository.getTagsCount()
+        return tagCount == 0
+    }
 
+    private suspend fun insertTestData() {
+        DataGenerator.generateTags()
+    }
+}

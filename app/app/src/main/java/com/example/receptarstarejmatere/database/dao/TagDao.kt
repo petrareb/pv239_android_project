@@ -12,6 +12,9 @@ interface TagDao {
     @Query("select *, `rowid` from tag where rowid = :tagId")
     fun getById(tagId : Int) : LiveData<Tag>
 
+    @Query("select count(rowid) from tag")
+    suspend fun getTagsCount(): Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(tags: List<Tag>) : List<Long>
 

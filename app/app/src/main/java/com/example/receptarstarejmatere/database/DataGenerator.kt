@@ -1,13 +1,17 @@
 package com.example.receptarstarejmatere.database
 
+import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.*
+import com.example.receptarstarejmatere.database.repository.TagRepository
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.random.Random
 
 class DataGenerator {
 
-    companion object{
-//        fun generateRecipes(): MutableList<Recipe> {
+    companion object {
+        //        fun generateRecipes(): MutableList<Recipe> {
 //            val name = listOf("Halusky", "Palacinky", "Lokse", "Nic spesl", "Antena", "Recept", "Recept2")
 //            val instructions = listOf("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
 //            val time = listOf("10", "15", "20", "30","60","90")
@@ -28,17 +32,25 @@ class DataGenerator {
 //            return recipes
 //        }
 //
-//        fun generateTags() : MutableList<Tag> {
-//            var tags = mutableListOf<Tag>()
-//            val names = listOf("Lorem", "Ipsum", "is", "simply", "dummy", "text", "of", "the", "printing")
-//            for (x in 0..10) {
-//              var tag = Tag(
-//                  id = x,
-//                  name = names[x % names.size])
-//                tags.add(tag)
-//            }
-//            return tags
-//        }
+        suspend fun generateTags() {
+            val tagNames = listOf(
+                "Sladké",
+                "Slané",
+                "Bez mäsa",
+                "Raňajky",
+                "Koláče",
+                "Vegan",
+                "Drinky",
+                "Šaláty",
+                "Večera",
+                "Raw"
+            )
+            tagNames.forEach { tagName ->
+                val tag = Tag(tagName)
+                App.tagRepository.insert(tag)
+            }
+        }
+
 //
 //        fun generateRecipesTagsCrossRef(): MutableList<RecipeTagCrossRef> {
 //            var joins = mutableListOf<RecipeTagCrossRef>()
