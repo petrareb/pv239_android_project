@@ -25,6 +25,7 @@
         <activity android:name=".activity.NewTagActivity" />
         <activity android:name=".activity.TagsActivity"  android:parentActivityName=".activity.MainActivity"/>
         <activity android:name=".activity.RecipeOverviewActivity" />
+        <activity android:name=".activity.EditRecipeActivity" />
     </application>
 
 </manifest>

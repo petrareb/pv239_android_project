@@ -7,9 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
+import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.Recipe
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-class FavoritesAdapter(private var recipes: List<Recipe> = listOf(), private var onFavoriteListener: OnFavoriteRecipeListener)
+class FavoritesAdapter(private var recipes: MutableList<Recipe> = mutableListOf(), private var onFavoriteListener: OnFavoriteRecipeListener)
     : RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,15 +34,30 @@ class FavoritesAdapter(private var recipes: List<Recipe> = listOf(), private var
         return holder.bind(recipes[position])
     }
 
-    fun swapData(newData: List<Recipe>) {
+    fun swapData(newData: MutableList<Recipe>) {
         recipes = newData
         notifyDataSetChanged()
     }
 
+    fun deleteItem(position: Int) {
+        GlobalScope.launch {
+            val recipeToDelete = recipes[position]
+            App.recipeRepository.deleteRecipe(recipeToDelete)
+        }
+
+        notifyItemRemoved(position)
+    }
+
+    fun editItem(position: Int) {
+        notifyItemChanged(position)
+        onFavoriteListener.onSelectedRecipeEditSwipe(position)
+    }
+
+
     class ViewHolder(
         private var favoriteView: View,
         private var onFavoriteListener: OnFavoriteRecipeListener
-    ) : RecyclerView.ViewHolder(favoriteView), View.OnClickListener {
+    ) : RecyclerView.ViewHolder(favoriteView), View.OnClickListener{
 
         var name: TextView = favoriteView.findViewById(R.id.favorites_name)
         var star: ImageView = favoriteView.findViewById(R.id.favorites_star)
@@ -58,5 +76,6 @@ class FavoritesAdapter(private var recipes: List<Recipe> = listOf(), private var
 
     interface OnFavoriteRecipeListener {
         fun onSelectedFavoriteRecipeClick(position: Int)
+        fun onSelectedRecipeEditSwipe(position: Int)
     }
 }

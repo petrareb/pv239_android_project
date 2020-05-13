@@ -7,7 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
+import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.Recipe
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class RecipesAdapter(private var recipes: List<Recipe> = listOf(), private var onRecipeListener: OnRecipeListener)
     : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
@@ -36,6 +39,20 @@ class RecipesAdapter(private var recipes: List<Recipe> = listOf(), private var o
         notifyDataSetChanged()
     }
 
+    fun deleteItem(position: Int) {
+        GlobalScope.launch {
+            val recipeToDelete = recipes[position]
+            App.recipeRepository.deleteRecipe(recipeToDelete)
+        }
+
+        notifyItemRemoved(position)
+    }
+
+    fun editItem(position: Int) {
+        notifyItemChanged(position)
+        onRecipeListener.onSelectedRecipeEditSwipe(position)
+    }
+
     class ViewHolder(private var recipesView: View, private var onRecipeListener: OnRecipeListener)
         : RecyclerView.ViewHolder(recipesView), View.OnClickListener {
 
@@ -57,5 +74,6 @@ class RecipesAdapter(private var recipes: List<Recipe> = listOf(), private var o
 
     interface OnRecipeListener {
         fun onSelectedRecipeClick(position: Int)
+        fun onSelectedRecipeEditSwipe(position: Int)
     }
 }
