@@ -92,4 +92,6 @@ dependencies {
 //    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
 
     implementation "androidx.fragment:fragment-ktx:1.2.4"
+
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta5"
 }

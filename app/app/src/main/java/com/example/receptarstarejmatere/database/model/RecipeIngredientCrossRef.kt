@@ -9,8 +9,8 @@ import androidx.room.*
         Index(value = ["id"])
     ],
     foreignKeys = [
-    ForeignKey(entity = Recipe::class, parentColumns = ["recipe_id"], childColumns = ["recipe_id"]),
-    ForeignKey(entity = Ingredient::class, parentColumns = ["ingredient_id"], childColumns = ["ingredient_id"])]
+    ForeignKey(entity = Recipe::class, parentColumns = ["recipe_id"], childColumns = ["recipe_id"], onDelete = ForeignKey.CASCADE),
+    ForeignKey(entity = Ingredient::class, parentColumns = ["ingredient_id"], childColumns = ["ingredient_id"],  onDelete = ForeignKey.CASCADE)]
 )
 class RecipeIngredient {
     constructor(recipeId: Int, ingredientId: Int, quantity: Int, measure: String) {

@@ -29,6 +29,10 @@ class RecipeRepository(recipeDb: MyDb) {
         recipeDao.delete(recipe)
     }
 
+    suspend fun deleteRecipeById(id: Int) {
+        recipeDao.deleteById(id)
+    }
+
     suspend fun editRecipe(recipe: Recipe) {
         recipeDao.updateRecipe(recipe)
     }
