@@ -14,7 +14,7 @@ import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.Recipe
 import com.example.receptarstarejmatere.database.repository.RecipeRepository
 import com.example.receptarstarejmatere.utils.Constants
-import com.example.receptarstarejmatere.utils.SwipeToDeleteRecipeFromFavoritesCallback
+import com.example.receptarstarejmatere.utils.SwipeFavoriteRecipeCallback
 
 class FavoritesActivity : AppCompatActivity(), FavoritesAdapter.OnFavoriteRecipeListener {
 
@@ -39,7 +39,7 @@ class FavoritesActivity : AppCompatActivity(), FavoritesAdapter.OnFavoriteRecipe
             val recyclerView = findViewById<RecyclerView>(R.id.favorites_list)
             recyclerView.adapter = adapter
 
-            val itemTouchHelper = ItemTouchHelper(SwipeToDeleteRecipeFromFavoritesCallback(adapter, this))
+            val itemTouchHelper = ItemTouchHelper(SwipeFavoriteRecipeCallback(adapter, this))
             itemTouchHelper.attachToRecyclerView(recyclerView)
 
             if (recipes.isEmpty()) {
@@ -54,6 +54,12 @@ class FavoritesActivity : AppCompatActivity(), FavoritesAdapter.OnFavoriteRecipe
         val intent = Intent(this, RecipeOverviewActivity::class.java)
         intent.putExtra(Constants.SELECTED_RECIPE_ID, mFavorites[position].id)
         intent.putExtra(Constants.SELECTED_RECIPE_NAME, mFavorites[position].name)
+        startActivity(intent)
+    }
+
+    override fun onSelectedRecipeEditSwipe(position: Int) {
+        val intent = Intent(this, EditRecipeActivity::class.java)
+        intent.putExtra(Constants.EDITED_RECIPE_ID, mFavorites[position].id)
         startActivity(intent)
     }
 }

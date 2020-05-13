@@ -48,6 +48,11 @@ class RecipesAdapter(private var recipes: List<Recipe> = listOf(), private var o
         notifyItemRemoved(position)
     }
 
+    fun editItem(position: Int) {
+        notifyItemChanged(position)
+        onRecipeListener.onSelectedRecipeEditSwipe(position)
+    }
+
     class ViewHolder(private var recipesView: View, private var onRecipeListener: OnRecipeListener)
         : RecyclerView.ViewHolder(recipesView), View.OnClickListener {
 
@@ -69,5 +74,6 @@ class RecipesAdapter(private var recipes: List<Recipe> = listOf(), private var o
 
     interface OnRecipeListener {
         fun onSelectedRecipeClick(position: Int)
+        fun onSelectedRecipeEditSwipe(position: Int)
     }
 }

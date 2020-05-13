@@ -48,10 +48,16 @@ class FavoritesAdapter(private var recipes: MutableList<Recipe> = mutableListOf(
         notifyItemRemoved(position)
     }
 
+    fun editItem(position: Int) {
+        notifyItemChanged(position)
+        onFavoriteListener.onSelectedRecipeEditSwipe(position)
+    }
+
+
     class ViewHolder(
         private var favoriteView: View,
         private var onFavoriteListener: OnFavoriteRecipeListener
-    ) : RecyclerView.ViewHolder(favoriteView), View.OnClickListener {
+    ) : RecyclerView.ViewHolder(favoriteView), View.OnClickListener{
 
         var name: TextView = favoriteView.findViewById(R.id.favorites_name)
         var star: ImageView = favoriteView.findViewById(R.id.favorites_star)
@@ -70,5 +76,6 @@ class FavoritesAdapter(private var recipes: MutableList<Recipe> = mutableListOf(
 
     interface OnFavoriteRecipeListener {
         fun onSelectedFavoriteRecipeClick(position: Int)
+        fun onSelectedRecipeEditSwipe(position: Int)
     }
 }
