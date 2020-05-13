@@ -180,7 +180,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/new_recipe_instructions_hint"
             android:importantForAutofill="no"
-            android:text="text" />
+            android:text="" />
         <Button
             android:id="@+id/new_recipe_save_button"
             android:layout_width="wrap_content"

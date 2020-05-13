@@ -182,7 +182,7 @@ class NewRecipeActivity : AppCompatActivity(), NewRecipeTagsAdapter.OnSelectTagL
             ingredientId = ingredientId,
             recipeId = recipeId,
             measure = ingred.measure,
-            quantity = 42
+            quantity = ingred.quantity.toInt()
         )
 
         App.recipeIngredientRepository.insert(newRecipeWithIngredients)
