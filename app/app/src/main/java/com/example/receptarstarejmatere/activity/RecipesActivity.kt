@@ -6,12 +6,15 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.adapter.RecipesAdapter
 import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.Recipe
 import com.example.receptarstarejmatere.utils.Constants
+import com.example.receptarstarejmatere.utils.SwipeToDeleteRecipeCallback
+import com.example.receptarstarejmatere.utils.SwipeToDeleteRecipeFromFavoritesCallback
 
 class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
 
@@ -40,6 +43,9 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
 
             val recyclerView = findViewById<RecyclerView>(R.id.recipes_list)
             recyclerView.adapter = adapter
+
+            val itemTouchHelper = ItemTouchHelper(SwipeToDeleteRecipeCallback(adapter, this))
+            itemTouchHelper.attachToRecyclerView(recyclerView)
 
             if (mRecipes.isEmpty()) {
                 findViewById<TextView>(R.id.no_recipes_found).visibility = View.VISIBLE
