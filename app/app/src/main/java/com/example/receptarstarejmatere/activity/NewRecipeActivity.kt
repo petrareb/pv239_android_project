@@ -20,7 +20,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
 
-class NewRecipeActivity : AppCompatActivity() {
+class NewRecipeActivity : AppCompatActivity(), NewRecipeTagsAdapter.OnSelectTagListener {
 
     private lateinit var ingredientsAdapter: NewRecipeIngredientsAdapter
     private lateinit var tagsAdapter: NewRecipeTagsAdapter
@@ -50,7 +50,7 @@ class NewRecipeActivity : AppCompatActivity() {
         ingredientsAdapter = NewRecipeIngredientsAdapter()
         initIngredientsRecyclerView()
 
-        tagsAdapter = NewRecipeTagsAdapter()
+        tagsAdapter = NewRecipeTagsAdapter(onTagListener = this)
         initTagsRecyclerView()
 
         val saveButton = findViewById<Button>(R.id.new_recipe_save_button)
@@ -214,16 +214,20 @@ class NewRecipeActivity : AppCompatActivity() {
             ingredNameEditText.error = getString(R.string.new_recipe_error_0_ing)
             isValid = false
         }
-        checkTags()
+        if (!checkTags()) {
+            isValid = false
+        }
 
         return isValid
     }
 
-    private fun checkTags() {
-        if (!tags.any { tag -> tag.isSelected }) {
+    private fun checkTags(): Boolean {
+        return if (!tags.any { tag -> tag.isSelected }) {
             tagsText.error = getString(R.string.new_recipe_error_0_tags)
+            false
         } else {
-            tagsText.error = ""
+            tagsText.error = null
+            true
         }
     }
 
@@ -262,5 +266,9 @@ class NewRecipeActivity : AppCompatActivity() {
             val recyclerView = findViewById<RecyclerView>(R.id.new_recipe_tags_list)
             recyclerView.adapter = tagsAdapter
         })
+    }
+
+    override fun onSelectTag() {
+        tagsText.error = null
     }
 }

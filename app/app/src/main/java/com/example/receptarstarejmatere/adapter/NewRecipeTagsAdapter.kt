@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.database.viewModel.TagViewModel
 
-class NewRecipeTagsAdapter(private var tags: List<TagViewModel> = listOf())
+class NewRecipeTagsAdapter(private var tags: List<TagViewModel> = listOf(), private val onTagListener: OnSelectTagListener)
     : RecyclerView.Adapter<NewRecipeTagsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -17,7 +17,8 @@ class NewRecipeTagsAdapter(private var tags: List<TagViewModel> = listOf())
                 R.layout.new_recipe_tags_list_item,
                 parent,
                 false
-            )
+            ),
+            onTagListener
         )
     }
 
@@ -34,7 +35,7 @@ class NewRecipeTagsAdapter(private var tags: List<TagViewModel> = listOf())
         notifyDataSetChanged()
     }
 
-    class ViewHolder(tagsView: View)
+    class ViewHolder(tagsView: View, private val onSelectTagListener: OnSelectTagListener)
         : RecyclerView.ViewHolder(tagsView) {
 
         var tagWithCheck: CheckedTextView = tagsView.findViewById(R.id.new_recipe_tags_item)
@@ -45,7 +46,12 @@ class NewRecipeTagsAdapter(private var tags: List<TagViewModel> = listOf())
             tagWithCheck.setOnClickListener {
                 tagModel.isSelected = !tagModel.isSelected
                 tagWithCheck.isChecked= tagModel.isSelected
+                onSelectTagListener.onSelectTag()
             }
         }
+    }
+
+    interface OnSelectTagListener {
+        fun onSelectTag()
     }
 }
