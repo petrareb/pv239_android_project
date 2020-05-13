@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/text_new_tag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_new_tag"/>
 
-    <EditText
-        android:id="@+id/new_tag_name"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/new_tag_hint"
-        android:inputType="text"
-        android:importantForAutofill="no" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/new_tag_save_button"
-        android:text="@string/new_save_button_text"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"/>
-</LinearLayout>
+        <TextView
+            android:id="@+id/new_tag_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="100dp"
+            android:text="@string/add_new_tag"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <EditText
+            android:id="@+id/new_tag_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/new_tag_hint"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/new_tag_save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_save_button_text" />
+    </LinearLayout>
+</ScrollView>

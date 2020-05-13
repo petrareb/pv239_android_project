@@ -2,6 +2,8 @@ package com.example.receptarstarejmatere.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +36,12 @@ class TagsActivity: AppCompatActivity(), TagsAdapter.OnTagListener {
 
             val recyclerView = findViewById<RecyclerView>(R.id.tags_list)
             recyclerView.adapter = adapter
+
+            if (mTags.isEmpty()) {
+                findViewById<TextView>(R.id.no_tags_found).visibility = View.VISIBLE
+            } else {
+                findViewById<TextView>(R.id.no_tags_found).visibility = View.GONE
+            }
         })
     }
 

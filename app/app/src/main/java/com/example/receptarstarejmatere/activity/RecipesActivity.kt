@@ -2,6 +2,7 @@ package com.example.receptarstarejmatere.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -31,15 +32,20 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
     private fun initRecipesRecyclerView() {
         val selectedTagId = intent.getIntExtra(Constants.SELECTED_TAG_ID, 100)
         App.recipeTagRepository.getTagWithRecipes(selectedTagId).observe(this, Observer { tagsWithRecipes ->
+            val recipes = tagsWithRecipes[0].recipes
             mRecipes.clear()
-            tagsWithRecipes.forEach { tagWithRecipes ->
-                mRecipes.addAll(tagWithRecipes.recipes)
-            }
+            mRecipes.addAll(recipes)
 
             adapter.swapData(mRecipes)
 
             val recyclerView = findViewById<RecyclerView>(R.id.recipes_list)
             recyclerView.adapter = adapter
+
+            if (mRecipes.isEmpty()) {
+                findViewById<TextView>(R.id.no_recipes_found).visibility = View.VISIBLE
+            } else {
+                findViewById<TextView>(R.id.no_recipes_found).visibility = View.GONE
+            }
         })
     }
 

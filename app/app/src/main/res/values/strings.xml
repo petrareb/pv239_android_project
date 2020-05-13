@@ -10,7 +10,7 @@
 
     <string name="tags">Moje kategórie</string>
 
-    <string name="new_tag_hint">Tuto daj novy tag</string>
+    <string name="new_tag_hint">Meno novej kategórie</string>
     <string name="new_save_button_text">Uložiť</string>
     <string name="new_add_ingred_button_text">Uložiť</string>
     <string name="new_recipe_name_hint">Nový spešl recept</string>
@@ -23,6 +23,7 @@
     <string name="new_recipe_error_ing_name">Vyplňte názov</string>
     <string name="new_recipe_error_ing_quantity">Vyplňte množstvo</string>
     <string name="new_recipe_error_ing_measure">Vyplňte jednotku</string>
+    <string name="new_recipe_error_0_tags">Recept musí byť aspoň v 1 kategórii</string>
 
     <string name="instructions">Inštrukcie:</string>
     <string name="recipe_name">Názov receptu:</string>
@@ -32,5 +33,8 @@
     <string name="recipe_cooking_temp">Teplota:</string>
     <string name="ingredients">Ingrediencie:</string>
     <string name="recipe_tags">Kategórie:</string>
+
+    <string name="no_recipes_found">Žiadne recepty neboli nájdené</string>
+    <string name="no_tags_found">Žiadne kategórie neboli nájdené</string>
 
 </resources>

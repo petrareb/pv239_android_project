@@ -41,6 +41,8 @@ class NewRecipeActivity : AppCompatActivity() {
     private lateinit var cookTempEditText: EditText
     private lateinit var cookTempLabel: TextView
 
+    private lateinit var tagsText: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_recipe)
@@ -67,6 +69,8 @@ class NewRecipeActivity : AppCompatActivity() {
         ingredNameEditText = findViewById(R.id.new_recipe_ingred_name)
         ingredMeasureEditText = findViewById(R.id.new_recipe_ingred_measure)
         ingredQuantityEditText = findViewById(R.id.new_recipe_ingred_quantity)
+
+        tagsText = findViewById(R.id.new_recipe_tags_text)
 
         cookTempEditText.visibility = View.GONE
         cookTempLabel.visibility = View.GONE
@@ -187,11 +191,10 @@ class NewRecipeActivity : AppCompatActivity() {
     private suspend fun getOrCreateIngredientId(ingred: IngredientViewModel): Int {
         val ingredName = ingred.name.toLowerCase(Locale.ROOT).trim()
         var existingIngredients: List<Ingredient>
-        var id = 0
 
         existingIngredients = App.ingredientRepository.getByName(ingredName)
 
-        id = if (existingIngredients.isNotEmpty()) {
+        return if (existingIngredients.isNotEmpty()) {
             existingIngredients.first().id
         } else {
             val newIngredient = Ingredient(
@@ -199,7 +202,6 @@ class NewRecipeActivity : AppCompatActivity() {
             )
             App.ingredientRepository.insert(newIngredient).toInt()
         }
-        return id
     }
 
     private fun checkRequiredFields(): Boolean {
@@ -212,7 +214,17 @@ class NewRecipeActivity : AppCompatActivity() {
             ingredNameEditText.error = getString(R.string.new_recipe_error_0_ing)
             isValid = false
         }
+        checkTags()
+
         return isValid
+    }
+
+    private fun checkTags() {
+        if (!tags.any { tag -> tag.isSelected }) {
+            tagsText.error = getString(R.string.new_recipe_error_0_tags)
+        } else {
+            tagsText.error = ""
+        }
     }
 
     private fun checkNewIngredientValues(): Boolean {
