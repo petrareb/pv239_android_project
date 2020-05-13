@@ -12,16 +12,15 @@
             android:id="@+id/recipes_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="100dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="20dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            style="@style/ActivityTitle"/>
 
         <TextView
             android:id="@+id/no_recipes_found"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="100dp"
             android:text="@string/no_recipes_found"
-            android:visibility="gone" />
+            style="@style/not_found" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recipes_list"

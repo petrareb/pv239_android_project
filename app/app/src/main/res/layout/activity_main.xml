@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -17,60 +14,73 @@
             android:layout_gravity="center"
             android:text="@string/app_name" />
 
-        <Button
-            android:id="@+id/button_search"
-            style="@style/ButtonActivityMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_search"
-            android:text="@string/search" />
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/button_recipes"
-            style="@style/ButtonActivityMain"
+    <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_recipes"
-            android:text="@string/recipes" />
+            android:orientation="vertical"
+            android:layout_gravity="center">
 
-        <Button
-            android:id="@+id/button_favorites"
-            style="@style/ButtonActivityMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_favorites"
-            android:text="@string/favorites" />
+            <Button
+                android:id="@+id/button_search"
+                style="@style/ButtonActivityMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_search"
+                android:text="@string/search" />
 
-        <Button
-            android:id="@+id/button_add_new"
-            style="@style/ButtonActivityMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_add_recipe"
-            android:text="@string/add_new" />
+            <Button
+                android:id="@+id/button_recipes"
+                style="@style/ButtonActivityMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_recipes"
+                android:text="@string/recipes" />
 
-        <Button
-            android:id="@+id/button_add_new_recipe"
-            style="@style/ButtonActivityMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_add_recipe"
-            android:text="@string/add_new_recipe" />
+            <Button
+                android:id="@+id/button_favorites"
+                style="@style/ButtonActivityMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_favorites"
+                android:text="@string/favorites" />
 
-        <Button
-            android:id="@+id/button_add_new_tag"
-            style="@style/ButtonActivityMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_add_recipe"
-            android:text="@string/add_new_tag" />
+            <Button
+                android:id="@+id/button_add_new"
+                style="@style/ButtonActivityMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_add_recipe"
+                android:text="@string/add_new" />
 
-        <Button
-            android:id="@+id/button_settings"
-            style="@style/ButtonActivityMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_settings"
-            android:text="@string/settings" />
+            <Button
+                android:id="@+id/button_add_new_recipe"
+                style="@style/ButtonActivityMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_add_recipe"
+                android:paddingHorizontal="25dp"
+                android:text="@string/add_new_recipe" />
+
+            <Button
+                android:id="@+id/button_add_new_tag"
+                style="@style/ButtonActivityMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_add_recipe"
+                android:paddingHorizontal="25dp"
+                android:text="@string/add_new_tag" />
+
+            <Button
+                android:id="@+id/button_settings"
+                style="@style/ButtonActivityMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_settings"
+                android:text="@string/settings" />
+        </LinearLayout>
+    </ScrollView>
     </LinearLayout>
-</ScrollView>

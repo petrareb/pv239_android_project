@@ -8,33 +8,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-        android:minHeight="?attr/listPreferredItemHeight"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/new_recipe_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="100dp"
             android:text="@string/add_new_recipe"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            style="@style/ActivityTitle"/>
 
         <CheckBox
             android:id="@+id/new_recipe_star"
             style="?android:attr/starStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginHorizontal="25dp"
             android:checked="false" />
 <!--            android:buttonTintMode="@color/colorFavoriteStar"-->
 
         <TextView
             android:id="@+id/new_recipe_name_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/RecipeLabel"
+            android:layout_marginTop="0dp"
             android:text="Názov" />
+
 
         <EditText
             android:id="@+id/new_recipe_name"
@@ -42,12 +43,14 @@
             android:layout_height="wrap_content"
             android:hint="@string/new_recipe_name_hint"
             android:importantForAutofill="no"
+            style="@style/RecipeValue"
             android:inputType="text" />
 
         <TextView
             android:id="@+id/new_recipe_source_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/RecipeLabel"
             android:text="Zdroj" />
 
         <EditText
@@ -55,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/new_recipe_source_hint"
+            style="@style/RecipeValue"
             android:importantForAutofill="no"
             android:inputType="text" />
 
@@ -62,6 +66,7 @@
             android:id="@+id/new_recipe_tags_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/RecipeLabel"
             android:text="Kategórie"
             style="@android:style/Widget.EditText"
             />
@@ -71,6 +76,9 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="20dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             />
 
@@ -78,6 +86,7 @@
             android:id="@+id/new_recipe_prep_time_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/RecipeLabel"
             android:text="Čas prípravy" />
 
         <EditText
@@ -87,6 +96,7 @@
             android:orientation="vertical"
             android:inputType="number"
             android:digits="0123456789."
+            style="@style/RecipeValue"
             android:hint="60"
             android:autofillHints="no" />
 
@@ -94,6 +104,7 @@
             android:id="@+id/new_recipe_cook_time_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/RecipeLabel"
             android:text="Čas pečenia" />
 
         <EditText
@@ -103,6 +114,7 @@
             android:orientation="vertical"
             android:autofillHints="no"
             android:inputType="number"
+            style="@style/RecipeValue"
             android:digits="0123456789."
             android:hint="30"
              />
@@ -111,6 +123,7 @@
             android:id="@+id/new_recipe_cook_temp_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/RecipeLabel"
             android:text="Teplota pečenia" />
 
         <EditText
@@ -120,18 +133,21 @@
             android:orientation="vertical"
             android:inputType="number"
             android:digits="0123456789."
+            style="@style/RecipeValue"
             android:hint="180"/>
 
         <TextView
             android:id="@+id/new_recipe_ingredients_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/RecipeLabel"
             android:text="Ingrediencie"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/new_recipe_ingred_list"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            style="@style/RecipeValue"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             />
 
@@ -145,6 +161,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:inputType="number"
+                android:layout_marginTop="8dp"
+                style="@style/RecipeValue"
                 android:digits="0123456789."
                 android:hint="42"/>
             <EditText
@@ -152,6 +170,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                style="@style/RecipeValue"
                 android:inputType="text"
                 android:hint="g"/>
             <EditText
@@ -159,6 +179,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                style="@style/RecipeValue"
                 android:inputType="text"
                 android:hint="Biely prášok"/>
         </LinearLayout>
@@ -166,18 +188,21 @@
             android:id="@+id/new_recipe_add_ingred_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="+" />
 
         <TextView
             android:id="@+id/new_recipe_instructions_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/RecipeLabel"
             android:text="Postup" />
 
         <EditText
             android:id="@+id/new_recipe_instructions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/RecipeValue"
             android:hint="@string/new_recipe_instructions_hint"
             android:importantForAutofill="no"
             android:text="" />
@@ -185,6 +210,7 @@
             android:id="@+id/new_recipe_save_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/new_save_button_text" />
     </LinearLayout>
 </ScrollView>

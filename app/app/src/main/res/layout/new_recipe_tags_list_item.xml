@@ -12,6 +12,7 @@
         android:checkMark="@null"
         android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
         android:drawableRight="@null"
-        android:maxHeight="10pt"/>
+        android:gravity="center"
+        android:maxHeight="13pt"/>
 
 </LinearLayout>

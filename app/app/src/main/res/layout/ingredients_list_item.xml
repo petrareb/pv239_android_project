@@ -8,7 +8,8 @@
         android:id="@+id/ingredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
+        android:textSize = "17sp"
         android:textAppearance="?attr/textAppearanceListItem"
         />
 </LinearLayout>
