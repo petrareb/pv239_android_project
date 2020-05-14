@@ -13,6 +13,10 @@ class RecipeRepository(recipeDb: MyDb) {
         return recipeDao.getFavoriteRecipes()
     }
 
+    fun getRecipeById(id: Int): LiveData<Recipe> {
+        return recipeDao.getRecipeById(id)
+    }
+
     suspend fun insertAll(recipes: List<Recipe>) : List<Long> {
         return recipeDao.insertAll(recipes)
     }

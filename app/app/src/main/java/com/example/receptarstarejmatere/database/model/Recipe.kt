@@ -17,6 +17,7 @@ class Recipe{
         this.instructions = instructions
     }
 
+//    // TODO mozu byt 2 constructory?
 //    constructor(id : Int, name: String, source: String, isFavorite : Boolean, preparationTime : String,
 //                cookingTime : String, cookingTemperature : String, instructions : String) {
 //        this.id = id

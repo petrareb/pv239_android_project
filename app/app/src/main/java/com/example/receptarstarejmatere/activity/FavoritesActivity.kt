@@ -60,6 +60,7 @@ class FavoritesActivity : AppCompatActivity(), FavoritesAdapter.OnFavoriteRecipe
     override fun onSelectedRecipeEditSwipe(position: Int) {
         val intent = Intent(this, EditRecipeActivity::class.java)
         intent.putExtra(Constants.EDITED_RECIPE_ID, mFavorites[position].id)
+        intent.putExtra(Constants.EDITED_RECIPE_NAME, mFavorites[position].name)
         startActivity(intent)
     }
 }

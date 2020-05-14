@@ -64,6 +64,7 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
     override fun onSelectedRecipeEditSwipe(position: Int) {
         val intent = Intent(this, EditRecipeActivity::class.java)
         intent.putExtra(Constants.EDITED_RECIPE_ID, mRecipes[position].id)
+        intent.putExtra(Constants.EDITED_RECIPE_NAME, mRecipes[position].name)
         startActivity(intent)
     }
 }

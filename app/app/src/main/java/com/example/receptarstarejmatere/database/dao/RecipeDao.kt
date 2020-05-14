@@ -9,6 +9,9 @@ interface RecipeDao {
     @Query("select *, recipe_id from Recipe")
     fun getAll() : LiveData<List<Recipe>>
 
+    @Query("select *, recipe_id from Recipe where recipe_id = :id")
+    fun getRecipeById(id: Int): LiveData<Recipe>
+
     @Query("select *, recipe_id from Recipe where recipe_id in (:recipeIds)")
     fun getRecipesByIds(recipeIds : IntArray) : LiveData<List<Recipe>>
 

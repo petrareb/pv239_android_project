@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,164 +14,205 @@
             android:id="@+id/edit_recipe_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="100dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-        <!--        <CheckBox-->
-        <!--            android:id="@+id/recipe_overview_star"-->
-        <!--            style="?android:attr/starStyle"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content" />-->
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            style="@style/ActivityTitle"/>
 
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:orientation="horizontal">-->
-        <!--            <TextView-->
-        <!--                android:id="@+id/recipe_name_label"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:padding="5dp"-->
-        <!--                android:text="@string/recipe_name" />-->
+        <CheckBox
+            android:id="@+id/edit_recipe_star"
+            style="?android:attr/starStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginHorizontal="25dp"
+            android:checked="false" />
 
-        <!--            <TextView-->
-        <!--                android:id="@+id/recipe_name"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:padding="5dp"-->
-        <!--                android:text="" />-->
-        <!--        </LinearLayout>-->
+        <TextView
+            android:id="@+id/edit_recipe_name_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/RecipeLabel"
+            android:layout_marginTop="0dp"
+            android:text="@string/recipe_name" />
 
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="fill_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:orientation="horizontal">-->
-        <!--            <TextView-->
-        <!--                android:id="@+id/recipe_source_label"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:padding="5dp"-->
-        <!--                android:text="@string/recipe_source"/>-->
+        <EditText
+            android:id="@+id/edit_recipe_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            style="@style/RecipeValue"
+            android:hint="@string/new_recipe_name_hint"
+            android:inputType="text" />
 
-        <!--            <TextView-->
-        <!--                android:id="@+id/recipe_source"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:padding="5dp"-->
-        <!--                android:text=""/>-->
-        <!--        </LinearLayout>-->
+        <TextView
+            android:id="@+id/edit_recipe_source_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RecipeLabel"
+            android:text="@string/recipe_source" />
 
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:orientation="horizontal">-->
-        <!--            <TextView-->
-        <!--                android:id="@+id/recipe_tags_label"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:padding="5dp"-->
-        <!--                android:text="@string/recipe_tags"/>-->
+        <EditText
+            android:id="@+id/edit_recipe_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/RecipeValue"
+            android:importantForAutofill="no"
+            android:hint="@string/new_recipe_source_hint"
+            android:inputType="text" />
 
-        <!--            <TextView-->
-        <!--                android:id="@+id/recipe_tags"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:padding="5dp"-->
-        <!--                android:text=""/>-->
-        <!--        </LinearLayout>-->
+        <TextView
+            android:id="@+id/edit_recipe_tags_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipe_tags"
+            style="@style/TagsLabelAddNewRecipe"
+            />
 
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:orientation="horizontal">-->
-        <!--            <TextView-->
-        <!--                android:id="@+id/recipe_prep_time_label"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:padding="5dp"-->
-        <!--                android:text="@string/recipe_prep_time"/>-->
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/new_recipe_tags_list"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginBottom="4dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--            />-->
 
-        <!--            <TextView-->
-        <!--                android:id="@+id/recipe_prep_time"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:padding="5dp"-->
-        <!--                android:text=""/>-->
-        <!--        </LinearLayout>-->
+        <TextView
+            android:id="@+id/edit_recipe_prep_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RecipeLabel"
+            android:text="@string/recipe_prep_time" />
 
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:padding="5dp"-->
-        <!--            android:orientation="horizontal">-->
-        <!--            <TextView-->
-        <!--                android:id="@+id/recipe_cooking_time_label"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:text="@string/recipe_cooking_time"/>-->
+        <EditText
+            android:id="@+id/edit_recipe_prep_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:inputType="number"
+            android:digits="0123456789."
+            style="@style/RecipeValue"
+            android:hint="60"
+            android:autofillHints="no" />
 
-        <!--            <TextView-->
-        <!--                android:id="@+id/recipe_cooking_time"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:padding="5dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:text=""/>-->
-        <!--        </LinearLayout>-->
+        <TextView
+            android:id="@+id/edit_recipe_cook_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RecipeLabel"
+            android:text="@string/recipe_cooking_time" />
 
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:orientation="horizontal">-->
-        <!--            <TextView-->
-        <!--                android:id="@+id/recipe_cooking_temp_label"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:padding="5dp"-->
-        <!--                android:text="@string/recipe_cooking_temp"/>-->
+        <EditText
+            android:id="@+id/edit_recipe_cook_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:autofillHints="no"
+            android:inputType="number"
+            style="@style/RecipeValue"
+            android:digits="0123456789."
+            android:hint="30"
+            />
 
-        <!--            <TextView-->
-        <!--                android:id="@+id/recipe_cooking_temp"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:padding="5dp"-->
-        <!--                android:text=""/>-->
-        <!--        </LinearLayout>-->
+        <TextView
+            android:id="@+id/edit_recipe_cook_temp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RecipeLabel"
+            android:text="@string/recipe_cooking_temp" />
 
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:orientation="horizontal">-->
-        <!--            <TextView-->
-        <!--                android:id="@+id/recipe_ingredients_label"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:padding="5dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:text="@string/ingredients"/>-->
+        <EditText
+            android:id="@+id/edit_recipe_cook_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:inputType="number"
+            android:digits="0123456789."
+            style="@style/RecipeValue"
+            android:hint="180"
+            android:autofillHints="no" />
 
-        <!--            <androidx.recyclerview.widget.RecyclerView-->
-        <!--                android:id="@+id/ingredients_list"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:padding="5dp"-->
-        <!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>-->
-        <!--        </LinearLayout>-->
+        <TextView
+            android:id="@+id/edit_recipe_ingredients_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RecipeLabel"
+            android:text="@string/ingredients"/>
 
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:orientation="horizontal">-->
-        <!--            <TextView-->
-        <!--                android:id="@+id/recipe_instructions_label"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:padding="5dp"-->
-        <!--                android:text="@string/instructions"/>-->
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/edit_recipe_ingred_list"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            style="@style/RecipeValue"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--            />-->
 
-        <!--            <TextView-->
-        <!--                android:id="@+id/recipe_instructions"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:padding="5dp"-->
-        <!--                android:text=""/>-->
-        <!--        </LinearLayout>-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edit_recipe_ingred_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:inputType="number"
+                android:layout_marginTop="8dp"
+                style="@style/RecipeValue"
+                android:digits="0123456789."
+                android:hint="42"/>
+
+            <EditText
+                android:id="@+id/edit_recipe_ingred_measure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                style="@style/RecipeValue"
+                android:inputType="text"
+                android:hint="g"/>
+
+            <EditText
+                android:id="@+id/edit_recipe_ingred_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                style="@style/RecipeValue"
+                android:inputType="text"
+                android:hint="Biely prášok"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/edit_recipe_add_ingred_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="+" />
+
+        <TextView
+            android:id="@+id/edit_recipe_instructions_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RecipeLabel"
+            android:text="@string/instructions" />
+
+        <EditText
+            android:id="@+id/edit_recipe_instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/RecipeValue"
+            android:hint="@string/new_recipe_instructions_hint"
+            android:importantForAutofill="no"
+            android:text=""
+            android:inputType="textMultiLine" />
+        <Button
+            android:id="@+id/edit_recipe_save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/new_save_button_text" />
     </LinearLayout>
 </ScrollView>
