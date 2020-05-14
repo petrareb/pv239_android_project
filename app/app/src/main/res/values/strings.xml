@@ -1,9 +1,47 @@
 <resources>
+<!--    <string name="app_name">Receptár Starej Matere</string>-->
+<!--    <string name="favorites">Srdcovky</string>-->
+<!--    <string name="recipes">Moje recepty</string>-->
+<!--    <string name="settings">Nastavenia</string>-->
+<!--    <string name="search">Vyhľadávať</string>-->
+<!--    <string name="add_new">Pridať</string>-->
+<!--    <string name="add_new_recipe">Pridať recept</string>-->
+<!--    <string name="add_new_tag">Pridať kategóriu</string>-->
+
+<!--    <string name="tags">Moje kategórie</string>-->
+
+<!--    <string name="new_tag_hint">Meno novej kategórie</string>-->
+<!--    <string name="new_save_button_text">Uložiť</string>-->
+<!--    <string name="new_add_ingred_button_text">Uložiť</string>-->
+<!--    <string name="new_recipe_name_hint">Nový spešl recept</string>-->
+<!--    <string name="new_recipe_source_hint">Od babky</string>-->
+<!--    <string name="new_recipe_instructions_hint">1. Všetko zmiešať a otvoriť si pivo</string>-->
+<!--    <string name="new_tag_save_button_text">Uložiť</string>-->
+
+<!--    <string name="new_recipe_error_name">Vyplňte názov receptu</string>-->
+<!--    <string name="new_recipe_error_0_ing">Recept musí obsahovať aspoň 1 ingredienciu</string>-->
+<!--    <string name="new_recipe_error_ing_name">Vyplňte názov</string>-->
+<!--    <string name="new_recipe_error_ing_quantity">Vyplňte množstvo</string>-->
+<!--    <string name="new_recipe_error_ing_measure">Vyplňte jednotku</string>-->
+<!--    <string name="new_recipe_error_0_tags">Recept musí byť aspoň v 1 kategórii</string>-->
+
+<!--    <string name="instructions">Inštrukcie:</string>-->
+<!--    <string name="recipe_name">Názov receptu:</string>-->
+<!--    <string name="recipe_source">Zdroj:</string>-->
+<!--    <string name="recipe_cooking_time">Čas varenia:</string>-->
+<!--    <string name="recipe_prep_time">Čas prípravy:</string>-->
+<!--    <string name="recipe_cooking_temp">Teplota:</string>-->
+<!--    <string name="ingredients">Ingrediencie:</string>-->
+<!--    <string name="recipe_tags">Kategórie:</string>-->
+
+<!--    <string name="no_recipes_found">Žiadne recepty neboli nájdené</string>-->
+<!--    <string name="no_tags_found">Žiadne kategórie neboli nájdené</string>-->
+
     <string name="app_name">Receptár Starej Matere</string>
     <string name="favorites">Srdcovky</string>
     <string name="recipes">Moje recepty</string>
     <string name="settings">Nastavenia</string>
-    <string name="search">Vyhľadávať</string>
+    <string name="search">Hľadať recept</string>
     <string name="add_new">Pridať</string>
     <string name="add_new_recipe">Pridať recept</string>
     <string name="add_new_tag">Pridať kategóriu</string>
@@ -13,28 +51,27 @@
     <string name="new_tag_hint">Meno novej kategórie</string>
     <string name="new_save_button_text">Uložiť</string>
     <string name="new_add_ingred_button_text">Uložiť</string>
-    <string name="new_recipe_name_hint">Nový spešl recept</string>
-    <string name="new_recipe_source_hint">Od babky</string>
-    <string name="new_recipe_instructions_hint">1. Všetko zmiešať a otvoriť si pivo</string>
+    <string name="new_recipe_name_hint">Buchty</string>
+    <string name="new_recipe_source_hint">Od susedky</string>
+    <string name="new_recipe_instructions_hint">1. Šecko zmiešať a hodiť na pekáč</string>
     <string name="new_tag_save_button_text">Uložiť</string>
 
     <string name="new_recipe_error_name">Vyplňte názov receptu</string>
-    <string name="new_recipe_error_0_ing">Recept musí obsahovať aspoň 1 ingredienciu</string>
+    <string name="new_recipe_error_0_ing">Recept musí obsahovať aspoň 1 surovinu</string>
     <string name="new_recipe_error_ing_name">Vyplňte názov</string>
     <string name="new_recipe_error_ing_quantity">Vyplňte množstvo</string>
     <string name="new_recipe_error_ing_measure">Vyplňte jednotku</string>
     <string name="new_recipe_error_0_tags">Recept musí byť aspoň v 1 kategórii</string>
 
-    <string name="instructions">Inštrukcie:</string>
-    <string name="recipe_name">Názov receptu:</string>
-    <string name="recipe_source">Zdroj:</string>
+    <string name="instructions">Takto sa to robí:</string>
+    <string name="recipe_name">Meno receptu:</string>
+    <string name="recipe_source">Odkukané od:</string>
     <string name="recipe_cooking_time">Čas varenia:</string>
     <string name="recipe_prep_time">Čas prípravy:</string>
     <string name="recipe_cooking_temp">Teplota:</string>
-    <string name="ingredients">Ingrediencie:</string>
+    <string name="ingredients">Suroviny:</string>
     <string name="recipe_tags">Kategórie:</string>
 
-    <string name="no_recipes_found">Žiadne recepty neboli nájdené</string>
-    <string name="no_tags_found">Žiadne kategórie neboli nájdené</string>
-
+    <string name="no_recipes_found">Žáden recept tu nemáme, ništ</string>
+    <string name="no_tags_found">Žádna kategória ešte neni</string>
 </resources>

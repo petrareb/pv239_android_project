@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         android:paddingStart="40dp"
         android:drawablePadding="10dp"
-        android:drawableLeft="@drawable/ic_star_yellow_24dp"
+        android:drawableLeft="@drawable/ic_star_blue"
         android:textAppearance="?attr/textAppearanceListItem"
         tools:text="Názov" />
 

@@ -13,8 +13,10 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
-class RecipesAdapter(private var recipes: List<Recipe> = listOf(), private var onRecipeListener: OnRecipeListener)
-    : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
+class RecipesAdapter(
+    private var recipes: List<Recipe> = listOf(),
+    private var onRecipeListener: OnRecipeListener
+) : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -54,18 +56,23 @@ class RecipesAdapter(private var recipes: List<Recipe> = listOf(), private var o
         onRecipeListener.onSelectedRecipeEditSwipe(position)
     }
 
-    class ViewHolder(private var recipesView: View, private var onRecipeListener: OnRecipeListener)
-        : RecyclerView.ViewHolder(recipesView), View.OnClickListener {
+    class ViewHolder(
+        private var recipesView: View,
+        private var onRecipeListener: OnRecipeListener
+    ) : RecyclerView.ViewHolder(recipesView), View.OnClickListener {
 
         var recipeName: TextView = recipesView.findViewById(R.id.recipe_name)
-        var img: Drawable = recipesView.resources.getDrawable(R.drawable.ic_star_yellow_24dp)
+
         fun bind(recipe: Recipe) {
             recipeName.text = recipe.name
-            if (recipe.isFavorite) {
-                img.setBounds( 0, 0, 60, 60 )
-                recipeName.setCompoundDrawables(img,null, null, null)
-                recipeName.compoundDrawablePadding = 18
+            val img: Drawable = if (recipe.isFavorite) {
+                recipesView.resources.getDrawable(R.drawable.ic_star_blue)
+            } else {
+                recipesView.resources.getDrawable(R.drawable.ic_text_blue)
             }
+            img.setBounds(0, 0, 60, 60)
+            recipeName.setCompoundDrawables(img, null, null, null)
+            recipeName.compoundDrawablePadding = 18
             recipesView.setOnClickListener(this)
         }
 
