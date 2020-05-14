@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:minHeight="?attr/listPreferredItemHeight"
@@ -15,8 +15,8 @@
         android:id="@+id/recipe_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textAppearance="?attr/textAppearanceListItem"
+        android:textSize="17sp"
+        android:layout_gravity="center"
+        android:paddingStart="40dp"
         tools:text="Názov" />
-
 </LinearLayout>

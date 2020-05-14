@@ -1,9 +1,9 @@
 package com.example.receptarstarejmatere.adapter
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
@@ -11,6 +11,7 @@ import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.Recipe
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+
 
 class RecipesAdapter(private var recipes: List<Recipe> = listOf(), private var onRecipeListener: OnRecipeListener)
     : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
@@ -57,12 +58,13 @@ class RecipesAdapter(private var recipes: List<Recipe> = listOf(), private var o
         : RecyclerView.ViewHolder(recipesView), View.OnClickListener {
 
         var recipeName: TextView = recipesView.findViewById(R.id.recipe_name)
-        var star: ImageView = recipesView.findViewById(R.id.recipes_star)
-
+        var img: Drawable = recipesView.resources.getDrawable(R.drawable.ic_star_yellow_24dp)
         fun bind(recipe: Recipe) {
             recipeName.text = recipe.name
             if (recipe.isFavorite) {
-                star.setImageResource(R.drawable.ic_star_yellow_24dp)
+                img.setBounds( 0, 0, 60, 60 )
+                recipeName.setCompoundDrawables(img,null, null, null)
+                recipeName.compoundDrawablePadding = 18
             }
             recipesView.setOnClickListener(this)
         }

@@ -73,7 +73,6 @@ class RecipeOverviewActivity: AppCompatActivity() {
             return
         }
 
-        recipe_name.text = recipeWithTags.recipe.name
         recipe_tags.text = recipeWithTags.tags.joinToString(separator = ", ") {
             it.name }
 

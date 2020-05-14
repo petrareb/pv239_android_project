@@ -60,11 +60,9 @@ class FavoritesAdapter(private var recipes: MutableList<Recipe> = mutableListOf(
     ) : RecyclerView.ViewHolder(favoriteView), View.OnClickListener{
 
         var name: TextView = favoriteView.findViewById(R.id.favorites_name)
-        var star: ImageView = favoriteView.findViewById(R.id.favorites_star)
 
         fun bind(recipe: Recipe) {
             name.text = recipe.name
-            star.setImageResource(R.drawable.ic_star_yellow_24dp)
 
             favoriteView.setOnClickListener(this)
         }

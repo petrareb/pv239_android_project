@@ -63,4 +63,20 @@
         <item name="android:layout_marginBottom">0dp</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
+
+    <style name="recipeOverViewGroup">
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+    </style>
+
+    <style name="recipeOverViewLabel">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="recipeOverViewValue">
+        <item name="android:textSize">17sp</item>
+    </style>
 </resources>
