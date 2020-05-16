@@ -50,7 +50,7 @@ class RecipeOverviewActivity: AppCompatActivity() {
 
     private fun initRecipe(selectedRecipeId : Int) {
         App.recipeTagRepository.getTagsForRecipe(selectedRecipeId).observe(this, Observer { recipeAndTags ->
-            recipeWithTags = recipeAndTags[0]
+            recipeWithTags = recipeAndTags
             printRecipeBasic(recipeWithTags)
             favoritesStar.isChecked = recipeWithTags.recipe.isFavorite
         })

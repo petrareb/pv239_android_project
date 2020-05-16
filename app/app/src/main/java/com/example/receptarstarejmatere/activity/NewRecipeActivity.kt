@@ -2,8 +2,6 @@ package com.example.receptarstarejmatere.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -11,19 +9,20 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.adapter.NewRecipeIngredientsAdapter
-import com.example.receptarstarejmatere.adapter.NewRecipeTagsAdapter
+import com.example.receptarstarejmatere.adapter.RecipeTagsAdapter
 import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.*
 import com.example.receptarstarejmatere.database.viewModel.IngredientViewModel
 import com.example.receptarstarejmatere.database.viewModel.TagViewModel
+import com.example.receptarstarejmatere.utils.EditTextUtils
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
 
-class NewRecipeActivity : AppCompatActivity(), NewRecipeTagsAdapter.OnSelectTagListener {
+class NewRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagListener {
 
     private lateinit var ingredientsAdapter: NewRecipeIngredientsAdapter
-    private lateinit var tagsAdapter: NewRecipeTagsAdapter
+    private lateinit var tagsAdapter: RecipeTagsAdapter
 
     private val ingredients: MutableList<IngredientViewModel> = mutableListOf()
     private var tags: MutableList<TagViewModel> = mutableListOf()
@@ -50,7 +49,7 @@ class NewRecipeActivity : AppCompatActivity(), NewRecipeTagsAdapter.OnSelectTagL
         ingredientsAdapter = NewRecipeIngredientsAdapter()
         initIngredientsRecyclerView()
 
-        tagsAdapter = NewRecipeTagsAdapter(onTagListener = this)
+        tagsAdapter = RecipeTagsAdapter(onTagListener = this)
         initTagsRecyclerView()
 
         val saveButton = findViewById<Button>(R.id.new_recipe_save_button)
@@ -75,23 +74,7 @@ class NewRecipeActivity : AppCompatActivity(), NewRecipeTagsAdapter.OnSelectTagL
         cookTempEditText.visibility = View.GONE
         cookTempLabel.visibility = View.GONE
 
-        cookTimeEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s?.length == 0 || s == "0") {
-                    cookTempEditText.visibility = View.GONE
-                    cookTempLabel.visibility = View.GONE
-                } else {
-                    cookTempEditText.visibility = View.VISIBLE
-                    cookTempLabel.visibility = View.VISIBLE
-                }
-            }
-        })
+        EditTextUtils.showAnotherEditTextIfNotEmpty(cookTimeEditText, cookTempEditText, cookTempLabel)
 
         saveButton.setOnClickListener {
             val isValid = checkRequiredFields()

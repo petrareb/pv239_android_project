@@ -15,7 +15,7 @@ class RecipeTagCrossRefRepository(recipeDb: MyDb) {
         return recipeTagDao.getTagByIdWithRecipes(tagId)
     }
 
-    fun getTagsForRecipe(recipeId : Int) : LiveData<List<RecipeWithTags>> {
+    fun getTagsForRecipe(recipeId : Int) : LiveData<RecipeWithTags> {//LiveData<List<RecipeWithTags>> {
         return recipeTagDao.getTagsForRecipe(recipeId)
     }
 

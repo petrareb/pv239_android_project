@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.database.viewModel.TagViewModel
 
-class NewRecipeTagsAdapter(private var tags: List<TagViewModel> = listOf(), private val onTagListener: OnSelectTagListener)
-    : RecyclerView.Adapter<NewRecipeTagsAdapter.ViewHolder>() {
+class RecipeTagsAdapter(private var tags: List<TagViewModel> = listOf(), private val onTagListener: OnSelectTagListener)
+    : RecyclerView.Adapter<RecipeTagsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(

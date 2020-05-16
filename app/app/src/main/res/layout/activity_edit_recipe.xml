@@ -67,16 +67,16 @@
             style="@style/TagsLabelAddNewRecipe"
             />
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/new_recipe_tags_list"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:orientation="vertical"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginBottom="4dp"-->
-<!--            android:layout_marginLeft="20dp"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--            />-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/edit_recipe_tags_list"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="20dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
 
         <TextView
             android:id="@+id/edit_recipe_prep_time_text"
