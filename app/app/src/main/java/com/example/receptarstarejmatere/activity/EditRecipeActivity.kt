@@ -74,6 +74,7 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
         cookTimeEditText = findViewById(R.id.edit_recipe_cook_time)
         cookTempEditText = findViewById(R.id.edit_recipe_cook_temp)
         val cookTempLabel = findViewById<TextView>(R.id.edit_recipe_cook_temp_text)
+        val cookTempUnits = findViewById<TextView>(R.id.edit_recipe_cook_temp_unit_text)
         instructionsEditText = findViewById(R.id.edit_recipe_instructions)
 
         newIngredMeasureEditText = findViewById(R.id.edit_recipe_ingred_measure)
@@ -81,9 +82,7 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
         newIngredQuantityEditText = findViewById(R.id.edit_recipe_ingred_quantity)
 
         EditTextUtils.showAnotherEditTextIfNotEmpty(
-            cookTimeEditText,
-            cookTempEditText,
-            cookTempLabel
+            cookTimeEditText, listOf(cookTempEditText, cookTempLabel, cookTempUnits)
         )
 
         val addIngredButton = findViewById<Button>(R.id.edit_recipe_add_ingred_button)

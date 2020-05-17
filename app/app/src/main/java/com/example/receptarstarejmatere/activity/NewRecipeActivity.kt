@@ -40,6 +40,7 @@ class NewRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagList
 
     private lateinit var cookTempEditText: EditText
     private lateinit var cookTempLabel: TextView
+    private lateinit var cookTempUnits: TextView
 
     private lateinit var tagsText: TextView
 
@@ -65,6 +66,7 @@ class NewRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagList
 
         cookTempEditText = findViewById(R.id.new_recipe_cook_temp)
         cookTempLabel = findViewById(R.id.new_recipe_cook_temp_text)
+        cookTempUnits = findViewById(R.id.new_recipe_cook_temp_unit_text)
 
         ingredNameEditText = findViewById(R.id.new_recipe_ingred_name)
         ingredMeasureEditText = findViewById(R.id.new_recipe_ingred_measure)
@@ -74,8 +76,9 @@ class NewRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagList
 
         cookTempEditText.visibility = View.GONE
         cookTempLabel.visibility = View.GONE
+        cookTempUnits.visibility = View.GONE
 
-        EditTextUtils.showAnotherEditTextIfNotEmpty(cookTimeEditText, cookTempEditText, cookTempLabel)
+        EditTextUtils.showAnotherEditTextIfNotEmpty(cookTimeEditText, listOf(cookTempEditText, cookTempLabel, cookTempUnits))
 
         saveButton.setOnClickListener {
             val isValid = checkRequiredFields()

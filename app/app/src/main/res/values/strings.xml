@@ -74,4 +74,7 @@
 
     <string name="no_recipes_found">Žáden recept tu nemáme, ništ</string>
     <string name="no_tags_found">Žádna kategória ešte neni</string>
+
+    <string name="time_unit">minút</string>
+    <string name="temp_unit">stupňov</string>
 </resources>
