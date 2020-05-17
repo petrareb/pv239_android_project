@@ -140,13 +140,13 @@
             style="@style/RecipeLabel"
             android:text="@string/ingredients"/>
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/edit_recipe_ingred_list"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            style="@style/RecipeValue"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--            />-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/edit_recipe_ingred_list"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/RecipeValue"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
 
         <LinearLayout
             android:layout_width="wrap_content"

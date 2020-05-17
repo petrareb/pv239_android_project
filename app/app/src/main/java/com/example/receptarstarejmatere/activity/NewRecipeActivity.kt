@@ -15,6 +15,7 @@ import com.example.receptarstarejmatere.database.model.*
 import com.example.receptarstarejmatere.database.viewModel.IngredientViewModel
 import com.example.receptarstarejmatere.database.viewModel.TagViewModel
 import com.example.receptarstarejmatere.utils.EditTextUtils
+import com.example.receptarstarejmatere.utils.SaveIngredientsUtils
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
@@ -151,39 +152,8 @@ class NewRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagList
 
     private suspend fun saveIngredients(recipeId: Int) {
         ingredients.forEach { ingred ->
-            val ingredientId = getOrCreateIngredientId(ingred)
-            joinIngredientsToRecipe(recipeId, ingredientId, ingred)
-        }
-    }
-
-    private suspend fun joinIngredientsToRecipe(
-        recipeId: Int,
-        ingredientId: Int,
-        ingred: IngredientViewModel
-    ) {
-        val newRecipeWithIngredients = RecipeIngredient(
-            ingredientId = ingredientId,
-            recipeId = recipeId,
-            measure = ingred.measure,
-            quantity = ingred.quantity.toInt()
-        )
-
-        App.recipeIngredientRepository.insert(newRecipeWithIngredients)
-    }
-
-    private suspend fun getOrCreateIngredientId(ingred: IngredientViewModel): Int {
-        val ingredName = ingred.name.toLowerCase(Locale.ROOT).trim()
-        var existingIngredients: List<Ingredient>
-
-        existingIngredients = App.ingredientRepository.getByName(ingredName)
-
-        return if (existingIngredients.isNotEmpty()) {
-            existingIngredients.first().id
-        } else {
-            val newIngredient = Ingredient(
-                name = ingredName
-            )
-            App.ingredientRepository.insert(newIngredient).toInt()
+            val ingredientId = SaveIngredientsUtils.getOrCreateIngredientId(ingred)
+            SaveIngredientsUtils.joinIngredientsToRecipe(recipeId, ingredientId, ingred)
         }
     }
 

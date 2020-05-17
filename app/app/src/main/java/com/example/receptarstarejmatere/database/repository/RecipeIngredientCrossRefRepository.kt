@@ -26,6 +26,10 @@ class RecipeIngredientCrossRefRepository(recipeDb: MyDb) {
 //        return recipeIngredientDao.getRecipesWithIngredients()
 //    }
 
+    suspend fun deleteIngredientsByRecipeId(recipeId: Int) {
+        recipeIngredientDao.deleteIngredientsByRecipeId(recipeId)
+    }
+
     fun getIngredientsForRecipe(recipeId : Int): LiveData<List<IngredientWithMeasure>> {
         return recipeIngredientDao.getIngredientsForRecipe(recipeId)
     }

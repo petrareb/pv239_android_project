@@ -10,13 +10,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
+import com.example.receptarstarejmatere.adapter.EditIngredientsAdapter
 import com.example.receptarstarejmatere.adapter.RecipeTagsAdapter
 import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.Recipe
 import com.example.receptarstarejmatere.database.model.Tag
+import com.example.receptarstarejmatere.database.viewModel.IngredientViewModel
 import com.example.receptarstarejmatere.database.viewModel.TagViewModel
 import com.example.receptarstarejmatere.utils.Constants
 import com.example.receptarstarejmatere.utils.EditTextUtils
+import com.example.receptarstarejmatere.utils.SaveIngredientsUtils
+import kotlinx.android.synthetic.main.ingr_measure_list_item.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -24,8 +28,10 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
 
     private lateinit var recipe: Recipe
     private var tags: MutableList<TagViewModel> = mutableListOf()
+    private var ingredients: MutableList<IngredientViewModel> = mutableListOf()
 
     private lateinit var tagsAdapter: RecipeTagsAdapter
+    private lateinit var ingredientsAdapter: EditIngredientsAdapter
 
     private lateinit var favoritesStar: CheckBox
     private lateinit var recipeName: EditText
@@ -34,9 +40,9 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
     private lateinit var cookTimeEditText: EditText
     private lateinit var cookTempEditText: EditText
     private lateinit var instructionsEditText: EditText
-    private lateinit var ingredNameEditText: EditText
-    private lateinit var ingredMeasureEditText: EditText
-    private lateinit var ingredQuantityEditText: EditText
+    private lateinit var newIngredNameEditText: EditText
+    private lateinit var newIngredMeasureEditText: EditText
+    private lateinit var newIngredQuantityEditText: EditText
 
     private lateinit var tagsLabel: TextView
 
@@ -46,8 +52,14 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
 
         tagsAdapter = RecipeTagsAdapter(onTagListener = this)
 
+
+        ingredientsAdapter = EditIngredientsAdapter()
+        val recyclerView = findViewById<RecyclerView>(R.id.edit_recipe_ingred_list)
+        recyclerView.adapter = ingredientsAdapter
+
         initRecipe()
         initTagsRecyclerView()
+        initIngredients()
 
 
         tagsLabel = findViewById(R.id.edit_recipe_tags_text)
@@ -64,11 +76,26 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
         val cookTempLabel = findViewById<TextView>(R.id.edit_recipe_cook_temp_text)
         instructionsEditText = findViewById(R.id.edit_recipe_instructions)
 
+        newIngredMeasureEditText = findViewById(R.id.edit_recipe_ingred_measure)
+        newIngredNameEditText = findViewById(R.id.edit_recipe_ingred_name)
+        newIngredQuantityEditText = findViewById(R.id.edit_recipe_ingred_quantity)
+
         EditTextUtils.showAnotherEditTextIfNotEmpty(
             cookTimeEditText,
             cookTempEditText,
             cookTempLabel
         )
+
+        val addIngredButton = findViewById<Button>(R.id.edit_recipe_add_ingred_button)
+        addIngredButton.setOnClickListener {
+            val newIngredient = createNewIngredient()
+            ingredients.add(newIngredient)
+            ingredientsAdapter.swapData(ingredients)
+
+            newIngredMeasureEditText.text.clear()
+            newIngredNameEditText.text.clear()
+            newIngredQuantityEditText.text.clear()
+        }
 
         val saveButton = findViewById<Button>(R.id.edit_recipe_save_button)
         saveButton.setOnClickListener {
@@ -76,12 +103,29 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
 
             GlobalScope.launch {
                 App.recipeRepository.updateRecipe(recipe)
+                App.recipeIngredientRepository.deleteIngredientsByRecipeId(recipe.id)
+                saveIngredients(recipe.id)
             }
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+    }
 
+    private suspend fun saveIngredients(recipeId: Int) {
+        ingredients.forEach { ingred ->
+            val ingredientId = SaveIngredientsUtils.getOrCreateIngredientId(ingred)
+            SaveIngredientsUtils.joinIngredientsToRecipe(recipeId, ingredientId, ingred)
+        }
+
+    }
+
+    private fun createNewIngredient(): IngredientViewModel {
+        return IngredientViewModel(
+            name = newIngredNameEditText.text.toString(),
+            quantity = newIngredQuantityEditText.text.toString(),
+            measure = newIngredMeasureEditText.text.toString()
+        )
     }
 
     private fun initRecipe() {
@@ -128,8 +172,29 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
         })
     }
 
+    private fun initIngredients() {
+        App.recipeIngredientRepository.getIngredientsForRecipe(
+            intent.getIntExtra(
+                Constants.EDITED_RECIPE_ID,
+                0
+            )
+        )
+            .observe(this, Observer { recipeWithIngreds ->
+                ingredients.addAll(recipeWithIngreds.map { ingred ->
+                    IngredientViewModel(
+                        name = ingred.name,
+                        measure = ingred.measure,
+                        quantity = ingred.quantity.toString()
+                    )
+                })
+                ingredientsAdapter.swapData(ingredients)
+            })
+
+//        val recyclerView = findViewById<RecyclerView>(R.id.edit_recipe_ingred_list)
+//        recyclerView.adapter = ingredientsAdapter
+    }
+
     override fun onSelectTag() {
         tagsLabel.error = null
     }
-
 }
