@@ -14,21 +14,31 @@ import kotlinx.coroutines.launch
 
 class NewTagActivity : AppCompatActivity() {
 
+    private lateinit var newTagNameEditText: EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_tag)
 
-        val editText = findViewById<EditText>(R.id.new_tag_name)
+        newTagNameEditText = findViewById(R.id.new_tag_name)
         val saveButton = findViewById<Button>(R.id.new_tag_save_button)
 
         saveButton.setOnClickListener {
-            saveNewTag(editText.text.toString())
+            if (!areValuesValid()) {
+                newTagNameEditText.error = "Meno kategórie nesmie byť prázdne"
+            } else {
+                saveNewTag(newTagNameEditText.text.toString())
 
-            Toast.makeText(this, "Nový tag bol pridaný", Toast.LENGTH_SHORT).show()
-            
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+                Toast.makeText(this, "Nový tag bol pridaný", Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
         }
+    }
+
+    private fun areValuesValid(): Boolean {
+        return newTagNameEditText.text.isNotEmpty()
     }
 
     private fun saveNewTag(name: String) {
