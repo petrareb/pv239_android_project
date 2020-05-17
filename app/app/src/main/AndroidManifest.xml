@@ -21,7 +21,6 @@
         <activity android:name=".activity.NewRecipeActivity" android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"/>
         <activity android:name=".activity.RecipesActivity" />
         <activity android:name=".activity.SearchActivity" />
-        <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.NewTagActivity" android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"/>
         <activity android:name=".activity.TagsActivity"  android:parentActivityName=".activity.MainActivity"/>
         <activity android:name=".activity.RecipeOverviewActivity" />

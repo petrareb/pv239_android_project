@@ -37,10 +37,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, NewTagActivity::class.java)
             startActivity(intent)
         }
-        button_settings.setOnClickListener {
-            val intent = Intent(this, SettingActivity::class.java)
-            startActivity(intent)
-        }
 
         hideButtons()
     }
