@@ -49,7 +49,7 @@
                 style="@style/ButtonActivityMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_favorites"
+                android:drawableLeft="@drawable/ic_heart_checked"
                 android:text="@string/favorites"
                 android:background="?android:attr/selectableItemBackground"/>
 
@@ -82,14 +82,6 @@
                 android:text="@string/add_new_tag"
                 android:background="?android:attr/selectableItemBackground"/>
 
-            <Button
-                android:id="@+id/button_settings"
-                style="@style/ButtonActivityMain"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_settings"
-                android:text="@string/settings"
-                android:background="?android:attr/selectableItemBackground"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/ic_star_blue"
+        android:drawableLeft="@drawable/ic_heart_checked"
         android:drawablePadding="10dp"
         android:paddingStart="40dp"
         android:textAppearance="?attr/textAppearanceListItem"

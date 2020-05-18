@@ -19,11 +19,11 @@
             style="@style/ActivityTitle"/>
         <CheckBox
             android:id="@+id/recipe_overview_star"
-            style="?android:attr/starStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_marginHorizontal="25dp"/>
+            android:layout_marginHorizontal="25dp"
+            android:button="@drawable/heart_checkbox"/>
 
         <LinearLayout
             android:layout_width="fill_parent"

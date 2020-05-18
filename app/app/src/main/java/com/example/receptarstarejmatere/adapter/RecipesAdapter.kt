@@ -66,7 +66,7 @@ class RecipesAdapter(
         fun bind(recipe: Recipe) {
             recipeName.text = recipe.name
             val img: Drawable = if (recipe.isFavorite) {
-                recipesView.resources.getDrawable(R.drawable.ic_star_blue)
+                recipesView.resources.getDrawable(R.drawable.ic_heart_checked)
             } else {
                 recipesView.resources.getDrawable(R.drawable.ic_text_blue)
             }

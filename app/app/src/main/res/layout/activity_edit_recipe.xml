@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginHorizontal="25dp"
-            android:checked="false" />
+            android:button="@drawable/heart_checkbox" />
 
         <TextView
             android:id="@+id/edit_recipe_name_text"
