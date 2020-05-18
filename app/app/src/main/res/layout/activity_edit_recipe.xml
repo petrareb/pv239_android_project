@@ -97,7 +97,7 @@
             android:inputType="number"
             android:digits="0123456789."
             style="@style/RecipeValue"
-            android:hint="60"
+            android:hint="@string/preparation_time_value"
             android:autofillHints="no" />
         <TextView
             android:id="@+id/edit_recipe_prep_time_unit_text"
@@ -127,7 +127,7 @@
             android:inputType="number"
             style="@style/RecipeValue"
             android:digits="0123456789."
-            android:hint="30"
+            android:hint="@string/cooking_time_value"
             />
 
         <TextView
@@ -156,7 +156,7 @@
             android:inputType="number"
             android:digits="0123456789."
             style="@style/RecipeValue"
-            android:hint="180"
+            android:hint="@string/cooking_temperature_value"
             android:autofillHints="no" />
 
         <TextView
@@ -196,7 +196,8 @@
                 android:layout_marginTop="8dp"
                 style="@style/RecipeValue"
                 android:digits="0123456789."
-                android:hint="42"/>
+                android:hint="@string/ingred_quantity_hint"
+                android:autofillHints="no" />
 
             <EditText
                 android:id="@+id/edit_recipe_ingred_measure"
@@ -206,7 +207,8 @@
                 android:layout_marginTop="8dp"
                 style="@style/RecipeValue"
                 android:inputType="text"
-                android:hint="g"/>
+                android:hint="@string/ingred_unit_hint"
+                android:autofillHints="no" />
 
             <EditText
                 android:id="@+id/edit_recipe_ingred_name"
@@ -216,7 +218,8 @@
                 android:layout_marginTop="8dp"
                 style="@style/RecipeValue"
                 android:inputType="text"
-                android:hint="Biely prášok"/>
+                android:hint="@string/ingred_name_hint"
+                android:autofillHints="no" />
         </LinearLayout>
 
         <Button
@@ -224,7 +227,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="+" />
+            android:text="@string/add_ingred_button_text" />
 
         <TextView
             android:id="@+id/edit_recipe_instructions_text"

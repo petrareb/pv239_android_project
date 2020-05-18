@@ -25,11 +25,11 @@ class NewTagActivity : AppCompatActivity() {
 
         saveButton.setOnClickListener {
             if (!areValuesValid()) {
-                newTagNameEditText.error = "Meno kategórie nesmie byť prázdne"
+                newTagNameEditText.error = resources.getString(R.string.error_new_tag_name)
             } else {
                 saveNewTag(newTagNameEditText.text.toString())
 
-                Toast.makeText(this, "Nový tag bol pridaný", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, resources.getString(R.string.success_new_tag), Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)

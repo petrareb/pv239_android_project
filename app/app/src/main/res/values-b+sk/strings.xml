@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">Receptár Starej Matere</string>
+    <string name="favorites">Srdcovky</string>
+    <string name="recipes">Moje recepty</string>
+    <string name="search">Hľadať recept</string>
+    <string name="add_new">Pridať</string>
+    <string name="add_new_recipe">Pridať recept</string>
+    <string name="add_new_tag">Pridať kategóriu</string>
+
+    <string name="tags">Moje kategórie</string>
+
+    <string name="new_tag_hint">Meno novej kategórie</string>
+    <string name="new_save_button_text">Uložiť</string>
+    <string name="new_add_ingred_button_text">Uložiť</string>
+    <string name="new_recipe_name_hint">Buchty</string>
+    <string name="new_recipe_source_hint">Od susedky</string>
+    <string name="new_recipe_instructions_hint">1. Šecko zmiešať a hodiť na pekáč</string>
+    <string name="new_tag_save_button_text">Uložiť</string>
+
+    <string name="new_recipe_error_name">Vyplňte názov receptu</string>
+    <string name="new_recipe_error_0_ing">Recept musí obsahovať aspoň 1 surovinu</string>
+    <string name="new_recipe_error_ing_name">Vyplňte názov</string>
+    <string name="new_recipe_error_ing_quantity">Vyplňte množstvo</string>
+    <string name="new_recipe_error_ing_measure">Vyplňte jednotku</string>
+    <string name="new_recipe_error_0_tags">Recept musí byť aspoň v 1 kategórii</string>
+
+    <string name="instructions">Takto sa to robí:</string>
+    <string name="recipe_name">Meno receptu:</string>
+    <string name="recipe_source">Odkukané od:</string>
+    <string name="recipe_cooking_time">Čas varenia:</string>
+    <string name="recipe_prep_time">Čas prípravy:</string>
+    <string name="recipe_cooking_temp">Teplota:</string>
+    <string name="ingredients">Suroviny:</string>
+    <string name="recipe_tags">Kategórie:</string>
+
+    <string name="no_recipes_found">Žáden recept tu nemáme, ništ</string>
+    <string name="no_tags_found">Žádna kategória ešte neni</string>
+
+    <string name="time_unit">minút</string>
+    <string name="temp_unit">stupňov</string>
+
+    <!--    initial tag values-->
+
+    <string name="tag_sweet">Sladké</string>
+    <string name="tag_salty">Slané</string>
+    <string name="tag_meatfree">Bez mäsa</string>
+    <string name="tag_breakfast">Raňajky</string>
+    <string name="tag_cakes">Koláče</string>
+    <string name="tag_vegan">Vegan</string>
+    <string name="tag_drinks">Drinky</string>
+    <string name="tag_salads">Šaláty</string>
+    <string name="tag_dinner">Večera</string>
+    <string name="tag_raw">Raw</string>
+
+    <!--    hint values-->
+
+    <string name="preparation_time_value">60</string>
+    <string name="cooking_time_value">30</string>
+    <string name="cooking_temperature_value">180</string>
+    <string name="ingred_quantity_hint">42</string>
+    <string name="ingred_unit_hint">g</string>
+    <string name="ingred_name_hint">Biely prášok</string>
+
+    <!--    toast texts-->
+
+    <string name="error_new_tag_name">Meno kategórie nesmie byť prázdne</string>
+    <string name="success_new_tag">Nový tag bol pridaný</string>
+    <string name="success_new_recipe">Nový recept bol pridaný</string>
+
+    <!--    button texts-->
+    <string name="add_ingred_button_text">+</string>
+
+</resources>

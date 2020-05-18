@@ -84,7 +84,7 @@ class NewRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagList
             val isValid = checkRequiredFields()
             if (isValid) {
                 saveNewRecipe()
-                Toast.makeText(this, "Nový recept pridaný", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, resources.getString(R.string.success_new_recipe), Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)

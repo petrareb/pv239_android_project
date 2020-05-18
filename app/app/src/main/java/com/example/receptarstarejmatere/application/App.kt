@@ -23,6 +23,7 @@ class App : Application() {
             private set
         lateinit var recipeIngredientRepository: RecipeIngredientCrossRefRepository
             private set
+        private lateinit var dataGenerator: DataGenerator
     }
 
     override fun onCreate() {
@@ -37,20 +38,22 @@ class App : Application() {
         recipeIngredientRepository = RecipeIngredientCrossRefRepository.getInstance(database)
         ingredientRepository = IngredientRepository.getInstance(database)
 
+        dataGenerator = DataGenerator(this)
+
         // use only in case the DB is empty
         GlobalScope.launch {
             if (isDbEmpty()) {
-                insertTestData()
+                insertInitialData()
             }
         }
     }
 
     private suspend fun isDbEmpty(): Boolean {
-        var tagCount = tagRepository.getTagsCount()
+        val tagCount = tagRepository.getTagsCount()
         return tagCount == 0
     }
 
-    private suspend fun insertTestData() {
-        DataGenerator.generateTags()
+    private suspend fun insertInitialData() {
+        dataGenerator.generateTags()
     }
 }

@@ -1,80 +1,73 @@
 <resources>
-<!--    <string name="app_name">Receptár Starej Matere</string>-->
-<!--    <string name="favorites">Srdcovky</string>-->
-<!--    <string name="recipes">Moje recepty</string>-->
-<!--    <string name="settings">Nastavenia</string>-->
-<!--    <string name="search">Vyhľadávať</string>-->
-<!--    <string name="add_new">Pridať</string>-->
-<!--    <string name="add_new_recipe">Pridať recept</string>-->
-<!--    <string name="add_new_tag">Pridať kategóriu</string>-->
+    <string name="app_name">Granny`s Recipes</string>
+    <string name="favorites">Beloved recipes</string>
+    <string name="recipes">My recipes</string>
+    <string name="search">Search</string>
+    <string name="add_new">Add</string>
+    <string name="add_new_recipe">Add new recipe</string>
+    <string name="add_new_tag">Add new tag</string>
 
-<!--    <string name="tags">Moje kategórie</string>-->
+    <string name="tags">My tags</string>
 
-<!--    <string name="new_tag_hint">Meno novej kategórie</string>-->
-<!--    <string name="new_save_button_text">Uložiť</string>-->
-<!--    <string name="new_add_ingred_button_text">Uložiť</string>-->
-<!--    <string name="new_recipe_name_hint">Nový spešl recept</string>-->
-<!--    <string name="new_recipe_source_hint">Od babky</string>-->
-<!--    <string name="new_recipe_instructions_hint">1. Všetko zmiešať a otvoriť si pivo</string>-->
-<!--    <string name="new_tag_save_button_text">Uložiť</string>-->
+    <string name="new_tag_hint">New tag`s name</string>
+    <string name="new_save_button_text">Save</string>
+    <string name="new_add_ingred_button_text">Save</string>
+    <string name="new_recipe_name_hint">Pancakes</string>
+    <string name="new_recipe_source_hint">From the nice neighbour</string>
+    <string name="new_recipe_instructions_hint">1. Mix it all and let it bake</string>
+    <string name="new_tag_save_button_text">Save</string>
 
-<!--    <string name="new_recipe_error_name">Vyplňte názov receptu</string>-->
-<!--    <string name="new_recipe_error_0_ing">Recept musí obsahovať aspoň 1 ingredienciu</string>-->
-<!--    <string name="new_recipe_error_ing_name">Vyplňte názov</string>-->
-<!--    <string name="new_recipe_error_ing_quantity">Vyplňte množstvo</string>-->
-<!--    <string name="new_recipe_error_ing_measure">Vyplňte jednotku</string>-->
-<!--    <string name="new_recipe_error_0_tags">Recept musí byť aspoň v 1 kategórii</string>-->
+    <string name="new_recipe_error_name">Fill out name of the new recipe</string>
+    <string name="new_recipe_error_0_ing">There must be at least 1 ingredient</string>
+    <string name="new_recipe_error_ing_name">Fill out the name</string>
+    <string name="new_recipe_error_ing_quantity">Fill out the ingredient quantity</string>
+    <string name="new_recipe_error_ing_measure">Fill out the unit of quantity</string>
+    <string name="new_recipe_error_0_tags">The recipe must be associated to at least 1 tag</string>
 
-<!--    <string name="instructions">Inštrukcie:</string>-->
-<!--    <string name="recipe_name">Názov receptu:</string>-->
-<!--    <string name="recipe_source">Zdroj:</string>-->
-<!--    <string name="recipe_cooking_time">Čas varenia:</string>-->
-<!--    <string name="recipe_prep_time">Čas prípravy:</string>-->
-<!--    <string name="recipe_cooking_temp">Teplota:</string>-->
-<!--    <string name="ingredients">Ingrediencie:</string>-->
-<!--    <string name="recipe_tags">Kategórie:</string>-->
+    <string name="instructions">How to do it:</string>
+    <string name="recipe_name">Recipe`s name:</string>
+    <string name="recipe_source">Source:</string>
+    <string name="recipe_cooking_time">Cooking time:</string>
+    <string name="recipe_prep_time">Preparation time:</string>
+    <string name="recipe_cooking_temp">Temperature:</string>
+    <string name="ingredients">Ingredients:</string>
+    <string name="recipe_tags">Tags:</string>
 
-<!--    <string name="no_recipes_found">Žiadne recepty neboli nájdené</string>-->
-<!--    <string name="no_tags_found">Žiadne kategórie neboli nájdené</string>-->
+    <string name="no_recipes_found">No recipe was found associated to this tag</string>
+    <string name="no_tags_found">No tag was found</string>
 
-    <string name="app_name">Receptár Starej Matere</string>
-    <string name="favorites">Srdcovky</string>
-    <string name="recipes">Moje recepty</string>
-    <string name="settings">Nastavenia</string>
-    <string name="search">Hľadať recept</string>
-    <string name="add_new">Pridať</string>
-    <string name="add_new_recipe">Pridať recept</string>
-    <string name="add_new_tag">Pridať kategóriu</string>
+    <string name="time_unit">minutes</string>
+    <string name="temp_unit">°C</string>
 
-    <string name="tags">Moje kategórie</string>
+    <!--    tag init values-->
 
-    <string name="new_tag_hint">Meno novej kategórie</string>
-    <string name="new_save_button_text">Uložiť</string>
-    <string name="new_add_ingred_button_text">Uložiť</string>
-    <string name="new_recipe_name_hint">Buchty</string>
-    <string name="new_recipe_source_hint">Od susedky</string>
-    <string name="new_recipe_instructions_hint">1. Šecko zmiešať a hodiť na pekáč</string>
-    <string name="new_tag_save_button_text">Uložiť</string>
+    <string name="tag_sweet">Sweet recipes</string>
+    <string name="tag_salty">Salty recipes</string>
+    <string name="tag_meatfree">Meat-free recipes</string>
+    <string name="tag_breakfast">Breakfast</string>
+    <string name="tag_cakes">Cakes</string>
+    <string name="tag_vegan">Vegan</string>
+    <string name="tag_drinks">Drinks</string>
+    <string name="tag_salads">Salads</string>
+    <string name="tag_dinner">Dinner</string>
+    <string name="tag_raw">Raw</string>
 
-    <string name="new_recipe_error_name">Vyplňte názov receptu</string>
-    <string name="new_recipe_error_0_ing">Recept musí obsahovať aspoň 1 surovinu</string>
-    <string name="new_recipe_error_ing_name">Vyplňte názov</string>
-    <string name="new_recipe_error_ing_quantity">Vyplňte množstvo</string>
-    <string name="new_recipe_error_ing_measure">Vyplňte jednotku</string>
-    <string name="new_recipe_error_0_tags">Recept musí byť aspoň v 1 kategórii</string>
+    <!--    hint values-->
+    <string name="preparation_time_value">60</string>
+    <string name="cooking_time_value">30</string>
+    <string name="cooking_temperature_value">180</string>
+    <string name="ingred_quantity_hint">42</string>
+    <string name="ingred_unit_hint">g</string>
+    <string name="ingred_name_hint">White powder</string>
 
-    <string name="instructions">Takto sa to robí:</string>
-    <string name="recipe_name">Meno receptu:</string>
-    <string name="recipe_source">Odkukané od:</string>
-    <string name="recipe_cooking_time">Čas varenia:</string>
-    <string name="recipe_prep_time">Čas prípravy:</string>
-    <string name="recipe_cooking_temp">Teplota:</string>
-    <string name="ingredients">Suroviny:</string>
-    <string name="recipe_tags">Kategórie:</string>
+    <!--    toast texts-->
 
-    <string name="no_recipes_found">Žáden recept tu nemáme, ništ</string>
-    <string name="no_tags_found">Žádna kategória ešte neni</string>
+    <string name="error_new_tag_name">Name of new tag must not be empty</string>
+    <string name="success_new_tag">The new tag was added</string>
+    <string name="success_new_recipe">The new recipe was added</string>
 
-    <string name="time_unit">minút</string>
-    <string name="temp_unit">stupňov</string>
+    <!--    button texts-->
+
+    <string name="add_ingred_button_text">+</string>
+
 </resources>

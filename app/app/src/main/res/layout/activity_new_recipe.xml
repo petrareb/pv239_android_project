@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:autofillHints="no"
             android:digits="0123456789."
-            android:hint="60"
+            android:hint="@string/preparation_time_value"
             android:inputType="number"
             android:orientation="vertical" />
 
@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:autofillHints="no"
             android:digits="0123456789."
-            android:hint="30"
+            android:hint="@string/cooking_time_value"
             android:inputType="number"
             android:orientation="vertical" />
 
@@ -159,7 +159,7 @@
             android:layout_height="wrap_content"
             android:autofillHints="no"
             android:digits="0123456789."
-            android:hint="180"
+            android:hint="@string/cooking_temperature_value"
             android:inputType="number"
             android:orientation="vertical" />
 
@@ -198,9 +198,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:digits="0123456789."
-                android:hint="42"
+                android:hint="@string/ingred_quantity_hint"
                 android:inputType="number"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                android:autofillHints="no" />
 
             <EditText
                 android:id="@+id/new_recipe_ingred_measure"
@@ -208,9 +209,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="g"
+                android:hint="@string/ingred_unit_hint"
                 android:inputType="text"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                android:autofillHints="no" />
 
             <EditText
                 android:id="@+id/new_recipe_ingred_name"
@@ -218,9 +220,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="Biely prášok"
+                android:hint="@string/ingred_name_hint"
                 android:inputType="text"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                android:autofillHints="no" />
         </LinearLayout>
 
         <Button
@@ -228,7 +231,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="+" />
+            android:text="@string/add_ingred_button_text" />
 
         <TextView
             android:id="@+id/new_recipe_instructions_text"
@@ -244,7 +247,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/new_recipe_instructions_hint"
             android:importantForAutofill="no"
-            android:text="" />
+            android:text=""
+            android:inputType="textMultiLine" />
 
         <Button
             android:id="@+id/new_recipe_save_button"

@@ -26,7 +26,7 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
 
         adapter = RecipesAdapter(onRecipeListener = this)
 
-        val header = intent?.getStringExtra(Constants.SELECTED_TAG_NAME) + " recepty"
+        val header = intent?.getStringExtra(Constants.SELECTED_TAG_NAME)
         findViewById<TextView>(R.id.recipes_header).text = header
         initRecipesRecyclerView()
     }

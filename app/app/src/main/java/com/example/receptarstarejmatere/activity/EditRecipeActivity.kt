@@ -64,7 +64,7 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
 
         tagsLabel = findViewById(R.id.edit_recipe_tags_text)
 
-        val headerText = "Recept na " + intent?.getStringExtra(Constants.EDITED_RECIPE_NAME)
+        val headerText = intent?.getStringExtra(Constants.EDITED_RECIPE_NAME)
         findViewById<TextView>(R.id.edit_recipe_header).text = headerText
 
         favoritesStar = findViewById(R.id.edit_recipe_star)
@@ -188,9 +188,6 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
                 })
                 ingredientsAdapter.swapData(ingredients)
             })
-
-//        val recyclerView = findViewById<RecyclerView>(R.id.edit_recipe_ingred_list)
-//        recyclerView.adapter = ingredientsAdapter
     }
 
     override fun onSelectTag() {

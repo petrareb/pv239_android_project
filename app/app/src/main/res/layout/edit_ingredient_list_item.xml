@@ -15,7 +15,8 @@
             android:layout_marginTop="8dp"
             style="@style/RecipeValue"
             android:digits="0123456789."
-            android:hint="42"/>
+            android:hint="@string/ingred_quantity_hint"
+            android:autofillHints="no" />
         <EditText
             android:id="@+id/edit_ingred_measure"
             android:layout_width="wrap_content"
@@ -24,7 +25,8 @@
             android:layout_marginTop="8dp"
             style="@style/RecipeValue"
             android:inputType="text"
-            android:hint="g"/>
+            android:hint="@string/ingred_unit_hint"
+            android:autofillHints="no" />
         <EditText
             android:id="@+id/edit_ingred_name"
             android:layout_width="wrap_content"
@@ -33,6 +35,7 @@
             android:layout_marginTop="8dp"
             style="@style/RecipeValue"
             android:inputType="text"
-            android:hint="Biely prášok"/>
+            android:hint="@string/ingred_name_hint"
+            android:autofillHints="no" />
     </LinearLayout>
 </LinearLayout>

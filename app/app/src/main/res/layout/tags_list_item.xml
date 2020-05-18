@@ -22,7 +22,6 @@
         android:layout_gravity="center"
         android:textSize="17sp"
         android:paddingStart="20dp"
-        tools:text="Názov"
         android:background="@android:color/transparent"/>
 
 </LinearLayout>
