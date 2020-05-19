@@ -34,6 +34,7 @@
     <string name="recipe_tags">Kategórie:</string>
 
     <string name="no_recipes_found">Žáden recept tu nemáme, ništ</string>
+    <string name="no_favorite_recipes_found">Žiadne srdcovky nie sú, smola :(</string>
     <string name="no_tags_found">Žádna kategória ešte neni</string>
 
     <string name="time_unit">minút</string>

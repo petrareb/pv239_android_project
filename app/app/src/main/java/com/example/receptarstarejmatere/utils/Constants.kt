@@ -8,5 +8,6 @@ class Constants {
         const val SELECTED_RECIPE_NAME = "selectedRecipeName"
         const val EDITED_RECIPE_ID = "editedRecipeId"
         const val EDITED_RECIPE_NAME = "editedRecipeName"
+        const val FAVORITE_RECIPES = "favoriteRecipes"
     }
 }

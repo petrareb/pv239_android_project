@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.receptarstarejmatere.R
+import com.example.receptarstarejmatere.utils.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +20,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         button_favorites.setOnClickListener {
-            val intent = Intent(this, FavoritesActivity::class.java)
+            val intent = Intent(this, RecipesActivity::class.java)
+            intent.putExtra(Constants.FAVORITE_RECIPES, true)
             startActivity(intent)
         }
         button_recipes.setOnClickListener {

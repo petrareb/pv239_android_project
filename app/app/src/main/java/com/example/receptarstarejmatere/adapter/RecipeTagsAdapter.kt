@@ -41,7 +41,7 @@ class RecipeTagsAdapter(private var tags: List<TagViewModel> = listOf(), private
         var tagWithCheck: CheckedTextView = tagsView.findViewById(R.id.new_recipe_tags_item)
 
         fun bind(tagModel: TagViewModel) {
-            tagWithCheck.text = tagModel.tag.name
+            tagWithCheck.text = tagModel.tagName
             tagWithCheck.isChecked = tagModel.isSelected
             tagWithCheck.setOnClickListener {
                 tagModel.isSelected = !tagModel.isSelected

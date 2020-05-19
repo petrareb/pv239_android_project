@@ -13,7 +13,9 @@ import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.adapter.EditIngredientsAdapter
 import com.example.receptarstarejmatere.adapter.RecipeTagsAdapter
 import com.example.receptarstarejmatere.application.App
+import com.example.receptarstarejmatere.database.model.AllTagsWithRecipes
 import com.example.receptarstarejmatere.database.model.Recipe
+import com.example.receptarstarejmatere.database.model.RecipeTagCrossRef
 import com.example.receptarstarejmatere.database.model.Tag
 import com.example.receptarstarejmatere.database.viewModel.IngredientViewModel
 import com.example.receptarstarejmatere.database.viewModel.TagViewModel
@@ -103,12 +105,29 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
             GlobalScope.launch {
                 App.recipeRepository.updateRecipe(recipe)
                 App.recipeIngredientRepository.deleteIngredientsByRecipeId(recipe.id)
+                App.recipeTagRepository.deleteCrossRefByRecipeId(recipe.id) // delete cross ref
                 saveIngredients(recipe.id)
+                saveTags(recipe.id)
             }
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+    }
+
+
+    private suspend fun saveTags(recipeId: Int) {
+        val tagsToSave = tags
+            .filter { tagModel ->
+                tagModel.isSelected
+            }
+            .map { tagModel ->
+                RecipeTagCrossRef(
+                    recipeId = recipeId,
+                    tagId = tagModel.tagId
+                )
+            }
+        App.recipeTagRepository.insertAll(tagsToSave)
     }
 
     private suspend fun saveIngredients(recipeId: Int) {
@@ -157,17 +176,24 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
     }
 
     private fun initTagsRecyclerView() {
-        App.tagRepository.getAllTags().observe(this, Observer { tagsFromDb: List<Tag> ->
+        App.tagRepository.getAllTagsWithRecipes(
+            intent.getIntExtra(
+                Constants.EDITED_RECIPE_ID,
+                0
+            )
+        ).observe(this, Observer { tagsFromDb: List<AllTagsWithRecipes> ->
 
             tagsFromDb.forEach { tag ->
-                val tagModel = TagViewModel(tag)
+                var tagModel : TagViewModel = TagViewModel(tag.tagId, tag.tagName)
+                if (tag.recipeId != 0 ) { // default value
+                    tagModel.isSelected = true
+                }
                 tags.add(tagModel)
             }
-
             tagsAdapter.swapData(tags)
-
             val recyclerView = findViewById<RecyclerView>(R.id.edit_recipe_tags_list)
             recyclerView.adapter = tagsAdapter
+
         })
     }
 

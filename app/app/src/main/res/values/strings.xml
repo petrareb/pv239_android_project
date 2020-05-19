@@ -34,6 +34,7 @@
     <string name="recipe_tags">Tags:</string>
 
     <string name="no_recipes_found">No recipe was found associated to this tag</string>
+    <string name="no_favorite_recipes_found">No favorite recipes were found</string>
     <string name="no_tags_found">No tag was found</string>
 
     <string name="time_unit">minutes</string>

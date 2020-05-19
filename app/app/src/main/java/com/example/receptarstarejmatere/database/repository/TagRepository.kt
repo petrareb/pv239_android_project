@@ -3,6 +3,7 @@ package com.example.receptarstarejmatere.database.repository
 import androidx.lifecycle.LiveData
 import com.example.receptarstarejmatere.database.MyDb
 import com.example.receptarstarejmatere.database.dao.TagDao
+import com.example.receptarstarejmatere.database.model.AllTagsWithRecipes
 import com.example.receptarstarejmatere.database.model.Tag
 
 class TagRepository(recipeDb: MyDb) {
@@ -28,6 +29,11 @@ class TagRepository(recipeDb: MyDb) {
     suspend fun getTagsCount(): Int {
         return tagDao.getTagsCount()
     }
+
+    fun getAllTagsWithRecipes(recipeId : Int) : LiveData<List<AllTagsWithRecipes>> {
+        return tagDao.getAllTagsIdsWithRecipeId(recipeId)
+    }
+
 
     companion object {
         @Volatile private var instance: TagRepository? = null

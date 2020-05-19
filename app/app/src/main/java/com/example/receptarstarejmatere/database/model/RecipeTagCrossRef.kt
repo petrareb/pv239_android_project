@@ -39,3 +39,18 @@ data class TagWithRecipes (
     )
     val recipes : List<Recipe>
 )
+
+class AllTagsWithRecipes {
+    constructor(tagId: Int, recipeId: Int, tagName : String) {
+        this.tagId = tagId
+        this.recipeId = recipeId
+        this.tagName = tagName
+    }
+
+    @ColumnInfo(name = "rowid")
+    var tagId: Int = 0
+    @ColumnInfo(name = "recipe_id")
+    var recipeId: Int = 0
+    @ColumnInfo(name="name")
+    var tagName : String = ""
+}

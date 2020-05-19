@@ -2,6 +2,7 @@ package com.example.receptarstarejmatere.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.receptarstarejmatere.database.model.AllTagsWithRecipes
 import com.example.receptarstarejmatere.database.model.Tag
 
 @Dao
@@ -26,4 +27,8 @@ interface TagDao {
 
     @Delete
     fun delete(tag : Tag)
+
+    @Transaction
+    @Query("select t.`rowid`, cr.recipe_id, t.name from tag as t left outer join RecipeTagCrossRef as cr on t.`rowid` = cr.tag_id and cr.recipe_id=:givenRecipeId")
+    fun getAllTagsIdsWithRecipeId(givenRecipeId :Int) : LiveData<List<AllTagsWithRecipes>>
 }

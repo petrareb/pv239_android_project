@@ -23,6 +23,10 @@ class RecipeTagCrossRefRepository(recipeDb: MyDb) {
         return recipeTagDao.insertAll(joins)
     }
 
+    suspend fun deleteCrossRefByRecipeId(recipeId: Int) {
+        recipeTagDao.deleteCrossRefByRecipeId(recipeId)
+    }
+
     companion object {
         @Volatile private var instance: RecipeTagCrossRefRepository? = null
 

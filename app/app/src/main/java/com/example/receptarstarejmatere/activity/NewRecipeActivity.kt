@@ -146,7 +146,7 @@ class NewRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagList
             .map { tagModel ->
                 RecipeTagCrossRef(
                     recipeId = recipeId,
-                    tagId = tagModel.tag.tagId
+                    tagId = tagModel.tagId
                 )
             }
         App.recipeTagRepository.insertAll(tagsToSave)
@@ -214,7 +214,7 @@ class NewRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagList
         App.tagRepository.getAllTags().observe(this, Observer { tagsFromDb: List<Tag> ->
 
             tagsFromDb.forEach { tag ->
-                tags.add(TagViewModel(tag))
+                tags.add(TagViewModel(tag.tagId, tag.name))
             }
 
             tagsAdapter.swapData(tags)
