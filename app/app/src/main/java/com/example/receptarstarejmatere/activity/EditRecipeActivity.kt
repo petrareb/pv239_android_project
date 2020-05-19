@@ -16,17 +16,16 @@ import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.AllTagsWithRecipes
 import com.example.receptarstarejmatere.database.model.Recipe
 import com.example.receptarstarejmatere.database.model.RecipeTagCrossRef
-import com.example.receptarstarejmatere.database.model.Tag
 import com.example.receptarstarejmatere.database.viewModel.IngredientViewModel
 import com.example.receptarstarejmatere.database.viewModel.TagViewModel
 import com.example.receptarstarejmatere.utils.Constants
 import com.example.receptarstarejmatere.utils.EditTextUtils
 import com.example.receptarstarejmatere.utils.SaveIngredientsUtils
-import kotlinx.android.synthetic.main.ingr_measure_list_item.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagListener {
+class EditRecipeActivity : AppCompatActivity(),
+    RecipeTagsAdapter.OnSelectTagListener {
 
     private lateinit var recipe: Recipe
     private var tags: MutableList<TagViewModel> = mutableListOf()
@@ -54,7 +53,6 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
 
         tagsAdapter = RecipeTagsAdapter(onTagListener = this)
 
-
         ingredientsAdapter = EditIngredientsAdapter()
         val recyclerView = findViewById<RecyclerView>(R.id.edit_recipe_ingred_list)
         recyclerView.adapter = ingredientsAdapter
@@ -62,7 +60,6 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
         initRecipe()
         initTagsRecyclerView()
         initIngredients()
-
 
         tagsLabel = findViewById(R.id.edit_recipe_tags_text)
 
@@ -89,32 +86,85 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
 
         val addIngredButton = findViewById<Button>(R.id.edit_recipe_add_ingred_button)
         addIngredButton.setOnClickListener {
-            val newIngredient = createNewIngredient()
-            ingredients.add(newIngredient)
-            ingredientsAdapter.swapData(ingredients)
+            if (checkNewIngredientValues()) {
+                val newIngredient = createNewIngredient()
+                ingredients.add(newIngredient)
+                ingredientsAdapter.swapData(ingredients)
 
-            newIngredMeasureEditText.text.clear()
-            newIngredNameEditText.text.clear()
-            newIngredQuantityEditText.text.clear()
+                newIngredMeasureEditText.text.clear()
+                newIngredNameEditText.text.clear()
+                newIngredQuantityEditText.text.clear()
+            }
         }
 
         val saveButton = findViewById<Button>(R.id.edit_recipe_save_button)
         saveButton.setOnClickListener {
-            updateRecipeValues()
-
-            GlobalScope.launch {
-                App.recipeRepository.updateRecipe(recipe)
-                App.recipeIngredientRepository.deleteIngredientsByRecipeId(recipe.id)
-                App.recipeTagRepository.deleteCrossRefByRecipeId(recipe.id) // delete cross ref
-                saveIngredients(recipe.id)
-                saveTags(recipe.id)
+            val isValid = checkRequiredFields()
+            if (isValid) {
+                saveRecipe()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }
-
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
         }
     }
 
+    private fun saveRecipe() {
+        updateRecipeValues()
+
+        GlobalScope.launch {
+            App.recipeRepository.updateRecipe(recipe)
+            App.recipeIngredientRepository.deleteIngredientsByRecipeId(recipe.id)
+            App.recipeTagRepository.deleteCrossRefByRecipeId(recipe.id) // delete cross ref
+            saveIngredients(recipe.id)
+            saveTags(recipe.id)
+        }
+    }
+
+    private fun checkRequiredFields(): Boolean {
+        var isValid = true
+        if (recipeName.text.isEmpty()) {
+            recipeName.error = getString(R.string.new_recipe_error_name)
+            isValid = false
+        }
+        if (ingredients.size == 0) {
+            val ingredLabel = findViewById<TextView>(R.id.edit_recipe_ingredients_text)
+            ingredLabel.error = getString(R.string.new_recipe_error_0_ing)
+            isValid = false
+        }
+        if (!checkTags()) {
+            isValid = false
+        }
+
+        return isValid
+    }
+
+    private fun checkTags(): Boolean {
+        val tagsLabel = findViewById<TextView>(R.id.edit_recipe_tags_text)
+        return if (!tags.any { tag -> tag.isSelected }) {
+            tagsLabel.error = getString(R.string.new_recipe_error_0_tags)
+            false
+        } else {
+            tagsLabel.error = null
+            true
+        }
+    }
+
+    private fun checkNewIngredientValues(): Boolean {
+        var isValid = true
+        if (newIngredMeasureEditText.text.isEmpty()) {
+            newIngredMeasureEditText.error = getString(R.string.new_recipe_error_ing_measure)
+            isValid = false
+        }
+        if (newIngredNameEditText.text.isEmpty()) {
+            newIngredNameEditText.error = getString(R.string.new_recipe_error_ing_name)
+            isValid = false
+        }
+        if (newIngredQuantityEditText.text.isEmpty()) {
+            newIngredQuantityEditText.error = getString(R.string.new_recipe_error_ing_quantity)
+            isValid = false
+        }
+        return isValid
+    }
 
     private suspend fun saveTags(recipeId: Int) {
         val tagsToSave = tags
@@ -131,11 +181,10 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
     }
 
     private suspend fun saveIngredients(recipeId: Int) {
-        ingredients.forEach { ingred ->
+        ingredientsAdapter.ingredients.forEach { ingred ->
             val ingredientId = SaveIngredientsUtils.getOrCreateIngredientId(ingred)
             SaveIngredientsUtils.joinIngredientsToRecipe(recipeId, ingredientId, ingred)
         }
-
     }
 
     private fun createNewIngredient(): IngredientViewModel {
@@ -184,8 +233,8 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
         ).observe(this, Observer { tagsFromDb: List<AllTagsWithRecipes> ->
 
             tagsFromDb.forEach { tag ->
-                var tagModel : TagViewModel = TagViewModel(tag.tagId, tag.tagName)
-                if (tag.recipeId != 0 ) { // default value
+                val tagModel = TagViewModel(tag.tagId, tag.tagName)
+                if (tag.recipeId != 0) { // default value
                     tagModel.isSelected = true
                 }
                 tags.add(tagModel)
@@ -212,7 +261,7 @@ class EditRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagLis
                         quantity = ingred.quantity.toString()
                     )
                 })
-                ingredientsAdapter.swapData(ingredients)
+                ingredientsAdapter.swapData(ingredients.toMutableList())
             })
     }
 

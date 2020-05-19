@@ -37,5 +37,12 @@
             android:inputType="text"
             android:hint="@string/ingred_name_hint"
             android:autofillHints="no" />
+        <ImageButton
+            android:id="@+id/edit_save_ingredient_button"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_save_check"
+            android:background="?android:attr/selectableItemBackground" />
+
     </LinearLayout>
 </LinearLayout>
