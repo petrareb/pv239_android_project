@@ -29,4 +29,7 @@ interface IngredientDao {
 
     @Query("select *, `rowid` from Ingredient where name like :ingredName limit 1")
     suspend fun getByName(ingredName: String): List<Ingredient>
+
+    @Query("select `rowid` from Ingredient where name like '%' || :nameSubstring || '%'")
+    suspend fun getIngredientIdsByNameSubstring(nameSubstring: String): List<Int>
 }

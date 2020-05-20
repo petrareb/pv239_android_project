@@ -17,12 +17,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.FavoritesActivity" android:parentActivityName=".activity.MainActivity" />
-        <activity android:name=".activity.NewRecipeActivity" android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"/>
+        <activity
+            android:name=".activity.NewRecipeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
         <activity android:name=".activity.RecipesActivity" />
-        <activity android:name=".activity.SearchActivity" />
-        <activity android:name=".activity.NewTagActivity" android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"/>
-        <activity android:name=".activity.TagsActivity"  android:parentActivityName=".activity.MainActivity"/>
+        <activity android:name=".activity.SearchActivity"
+            android:parentActivityName=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".activity.NewTagActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
+        <activity
+            android:name=".activity.TagsActivity"
+            android:parentActivityName=".activity.MainActivity" />
         <activity android:name=".activity.RecipeOverviewActivity" />
         <activity android:name=".activity.EditRecipeActivity" />
     </application>

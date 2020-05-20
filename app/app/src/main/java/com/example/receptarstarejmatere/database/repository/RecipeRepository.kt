@@ -13,8 +13,24 @@ class RecipeRepository(recipeDb: MyDb) {
         return recipeDao.getFavoriteRecipes()
     }
 
+    suspend fun getRecipesByIds(recipeIds: List<Int>): List<Recipe> {
+        return recipeDao.getRecipesByIds(recipeIds)
+    }
+
     fun getRecipeById(id: Int): LiveData<Recipe> {
         return recipeDao.getRecipeById(id)
+    }
+
+    fun getRecipesWithNameSubstring(substring: String): LiveData<List<Recipe>> {
+        return recipeDao.getRecipesWithNameSubstring(substring)
+    }
+
+    suspend fun getRecipesWithNameSubstring2(substring: String): List<Recipe> {
+        return recipeDao.getRecipesWithNameSubstring2(substring)
+    }
+
+    suspend fun getRecipesWithInstructionSubstring2(substring: String): List<Recipe> {
+        return recipeDao.getRecipesWithInstructionSubstring2(substring)
     }
 
     suspend fun insertAll(recipes: List<Recipe>) : List<Long> {

@@ -34,6 +34,10 @@ class RecipeIngredientCrossRefRepository(recipeDb: MyDb) {
         return recipeIngredientDao.getIngredientsForRecipe(recipeId)
     }
 
+    suspend fun getRecipesWithIngredientIds(ingredientIds: List<Int>): List<Int> {
+        return recipeIngredientDao.getRecipesWithIngredientIds(ingredientIds)
+    }
+
     companion object {
         @Volatile private var instance: RecipeIngredientCrossRefRepository? = null
 

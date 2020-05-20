@@ -13,7 +13,7 @@ interface RecipeDao {
     fun getRecipeById(id: Int): LiveData<Recipe>
 
     @Query("select *, recipe_id from Recipe where recipe_id in (:recipeIds)")
-    fun getRecipesByIds(recipeIds : IntArray) : LiveData<List<Recipe>>
+    suspend fun getRecipesByIds(recipeIds : List<Int>): List<Recipe>
 
     @Query("select *, recipe_id from Recipe where is_favorite = 1 order by name asc")
     fun getFavoriteRecipes() : LiveData<List<Recipe>>
@@ -35,4 +35,13 @@ interface RecipeDao {
 
     @Query("update Recipe set is_favorite = :isFavorite where recipe_id = :id")
     suspend fun updateIsFavorite(id: Int, isFavorite: Boolean)
+
+    @Query("select *, recipe_id from Recipe where name like '%' || :substring || '%'")
+    fun getRecipesWithNameSubstring(substring: String) : LiveData<List<Recipe>>
+
+    @Query("select *, recipe_id from Recipe where name like '%' || :substring || '%'")
+    suspend fun getRecipesWithNameSubstring2(substring: String) : List<Recipe>
+
+    @Query("select *, recipe_id from Recipe where instructions like '%' || :substring || '%'")
+    suspend fun getRecipesWithInstructionSubstring2(substring: String): List<Recipe>
 }

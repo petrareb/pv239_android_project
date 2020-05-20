@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.receptarstarejmatere.database.DataGenerator
 import com.example.receptarstarejmatere.database.MyDb
 import com.example.receptarstarejmatere.database.repository.*
+import com.example.receptarstarejmatere.database.service.SearchService
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -23,6 +24,8 @@ class App : Application() {
             private set
         lateinit var recipeIngredientRepository: RecipeIngredientCrossRefRepository
             private set
+        lateinit var searchService: SearchService
+            private set
         private lateinit var dataGenerator: DataGenerator
     }
 
@@ -37,6 +40,12 @@ class App : Application() {
         recipeTagRepository = RecipeTagCrossRefRepository.getInstance(database)
         recipeIngredientRepository = RecipeIngredientCrossRefRepository.getInstance(database)
         ingredientRepository = IngredientRepository.getInstance(database)
+
+        searchService = SearchService.getInstance(
+            recipeRepository,
+            ingredientRepository,
+            recipeIngredientRepository
+        )
 
         dataGenerator = DataGenerator(this)
 

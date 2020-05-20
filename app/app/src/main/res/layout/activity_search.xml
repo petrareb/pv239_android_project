@@ -16,5 +16,15 @@
             android:text="@string/search"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+        <TextView
+            android:id="@+id/no_results_found"
+            android:text="@string/search_description"
+            style="@style/search_info" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 </ScrollView>

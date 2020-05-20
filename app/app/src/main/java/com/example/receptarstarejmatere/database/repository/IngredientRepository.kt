@@ -23,6 +23,11 @@ class IngredientRepository(recipeDb: MyDb) {
         return ingredientDao.getByName(ingredName)
     }
 
+    suspend fun getIngredientIdsByNameSubstring(substring: String): List<Int> {
+        return ingredientDao.getIngredientIdsByNameSubstring(substring)
+    }
+
+
     fun getIngredientById(ingredientId : Int): LiveData<Ingredient> {
         return ingredientDao.getIngredientById(ingredientId)
     }

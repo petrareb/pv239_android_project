@@ -20,6 +20,9 @@ interface RecipeIngredientCrossRefDao {
     @Query("delete from recipes_ingredients where recipe_id = :recipeId")
     suspend fun deleteIngredientsByRecipeId(recipeId: Int)
 
+    @Query("select distinct recipe_id from recipes_ingredients where ingredient_id in (:ingredientIds)")
+    suspend fun getRecipesWithIngredientIds(ingredientIds: List<Int>) : List<Int>
+
 //    @Transaction
 //    @Query("select *, `rowid` from recipe")
 //    fun getRecipesWithIngredients() : LiveData<List<RecipeWithIngredients>>
