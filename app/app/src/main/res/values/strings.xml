@@ -72,9 +72,13 @@
     <string name="error_new_tag_name">Name of new tag must not be empty</string>
     <string name="success_new_tag">The new tag was added</string>
     <string name="success_new_recipe">The new recipe was added</string>
+    <string name="error_delete_tags">Please delete existing recipes in order to delete the tag </string>
+    <string name="success_delete_tags">The tag was deleted</string>
+
 
     <!--    button texts-->
 
     <string name="add_ingred_button_text">+</string>
+    <string name="delete_tag_button">Delete tag</string>
 
 </resources>

@@ -3,7 +3,9 @@ package com.example.receptarstarejmatere.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -45,6 +47,18 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
         else { //if (isFavorites == false) { // TODO nerozhodovat sa podla isFavorites
             header = intent?.getStringExtra(Constants.SELECTED_TAG_NAME)
             initRecipesRecyclerView()
+            val deleteTagButton = findViewById<Button>(R.id.delete_tag_button)
+            deleteTagButton.visibility = View.VISIBLE
+            deleteTagButton.setOnClickListener {
+                if (tryToDeleteTag()) {
+                    Toast.makeText(this, resources.getString(R.string.success_delete_tags), Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, TagsActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, resources.getString(R.string.error_delete_tags), Toast.LENGTH_SHORT).show()
+                }
+            }
+
         }
 
         findViewById<TextView>(R.id.recipes_header).text = header
@@ -56,6 +70,17 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
         intent.removeExtra(Constants.SEARCH_QUERY)
     }
 
+    private fun tryToDeleteTag(): Boolean {
+        if (mRecipes.isNotEmpty()) {
+            Toast.makeText(this, resources.getString(R.string.error_delete_tags), Toast.LENGTH_SHORT).show()
+            return false
+        }
+        GlobalScope.launch {
+            val tagId = intent.getIntExtra(Constants.SELECTED_TAG_ID, 100)
+            App.tagRepository.deleteTagById(tagId)
+        }
+        return true
+    }
 
     private fun doSearch(query: String) {
         if (query.isEmpty()) {

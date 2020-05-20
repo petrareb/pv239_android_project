@@ -76,5 +76,9 @@
 
     <!--    button texts-->
     <string name="add_ingred_button_text">+</string>
+    <string name="delete_tag_button">Zmazať kategóriu</string>
+    <string name="error_delete_tags">Aby bolo možn odstrániť kategóriu, nesmie obsahovať žiadne recepty</string>
+    <string name="success_delete_tags">Kategória bola zmazaná</string>
+
 
 </resources>

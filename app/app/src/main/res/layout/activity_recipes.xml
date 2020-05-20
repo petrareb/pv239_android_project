@@ -15,6 +15,13 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             style="@style/ActivityTitle"/>
 
+        <Button
+            android:id="@+id/delete_tag_button"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/delete_tag_button"
+            android:background="@color/colorButtons"/>
         <TextView
             android:id="@+id/no_recipes_found"
             android:text="@string/no_recipes_found"

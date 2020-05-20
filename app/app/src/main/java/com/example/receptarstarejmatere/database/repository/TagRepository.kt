@@ -22,8 +22,8 @@ class TagRepository(recipeDb: MyDb) {
         return tagDao.insertAll(tags)
     }
 
-    suspend fun deleteTag(tag: Tag) {
-        tagDao.delete(tag)
+    suspend fun deleteTagById(tagId: Int) {
+        tagDao.deleteById(tagId)
     }
 
     suspend fun getTagsCount(): Int {
