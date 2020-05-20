@@ -2,7 +2,6 @@ package com.example.receptarstarejmatere.utils
 
 import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.Ingredient
-import com.example.receptarstarejmatere.database.model.IngredientWithMeasure
 import com.example.receptarstarejmatere.database.model.RecipeIngredient
 import com.example.receptarstarejmatere.database.viewModel.IngredientViewModel
 import java.util.*
@@ -25,16 +24,6 @@ class SaveIngredientsUtils {
             }
         }
 
-//        suspend fun getOrCreateIngredientId(ingred: IngredientWithMeasure): Int {
-//            return getOrCreateIngredientId(
-//                IngredientViewModel(
-//                    name = ingred.name,
-//                    quantity = ingred.quantity.toString(),
-//                    measure = ingred.measure
-//                )
-//            )
-//        }
-
         suspend fun joinIngredientsToRecipe(
             recipeId: Int,
             ingredientId: Int,
@@ -49,7 +38,5 @@ class SaveIngredientsUtils {
 
             App.recipeIngredientRepository.insert(newRecipeWithIngredients)
         }
-
-
     }
 }
