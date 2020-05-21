@@ -12,7 +12,8 @@
         android:checkMark="@null"
         android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
         android:drawableRight="@null"
+        android:drawableTint="@color/colorButtons"
         android:gravity="center"
-        android:maxHeight="13pt"/>
+        android:maxHeight="13pt" />
 
 </LinearLayout>

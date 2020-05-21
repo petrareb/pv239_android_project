@@ -21,8 +21,10 @@
             android:name=".activity.NewRecipeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
         <activity android:name=".activity.RecipesActivity" />
-        <activity android:name=".activity.SearchActivity"
-            android:parentActivityName=".activity.MainActivity">
+        <activity
+            android:name=".activity.SearchActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -32,12 +34,15 @@
         </activity>
         <activity
             android:name=".activity.NewTagActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout" />
+            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activity.TagsActivity"
             android:parentActivityName=".activity.MainActivity" />
         <activity android:name=".activity.RecipeOverviewActivity" />
-        <activity android:name=".activity.EditRecipeActivity" />
+        <activity
+            android:name=".activity.EditRecipeActivity"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
