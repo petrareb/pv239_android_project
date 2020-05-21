@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -47,7 +48,7 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
         else { //if (isFavorites == false) { // TODO nerozhodovat sa podla isFavorites
             header = intent?.getStringExtra(Constants.SELECTED_TAG_NAME)
             initRecipesRecyclerView()
-            val deleteTagButton = findViewById<Button>(R.id.delete_tag_button)
+            val deleteTagButton = findViewById<ImageButton>(R.id.delete_tag_button)
             deleteTagButton.visibility = View.VISIBLE
             deleteTagButton.setOnClickListener {
                 if (tryToDeleteTag()) {

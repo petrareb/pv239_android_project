@@ -14,11 +14,9 @@
 
     <string name="new_tag_hint">Meno novej kategórie</string>
     <string name="new_save_button_text">Uložiť</string>
-    <string name="new_add_ingred_button_text">Uložiť</string>
     <string name="new_recipe_name_hint">Buchty</string>
     <string name="new_recipe_source_hint">Od susedky</string>
     <string name="new_recipe_instructions_hint">1. Šecko zmiešať a hodiť na pekáč</string>
-    <string name="new_tag_save_button_text">Uložiť</string>
 
     <string name="new_recipe_error_name">Vyplňte názov receptu</string>
     <string name="new_recipe_error_0_ing">Recept musí obsahovať aspoň 1 surovinu</string>
@@ -77,7 +75,7 @@
     <!--    button texts-->
     <string name="add_ingred_button_text">+</string>
     <string name="delete_tag_button">Zmazať kategóriu</string>
-    <string name="error_delete_tags">Aby bolo možn odstrániť kategóriu, nesmie obsahovať žiadne recepty</string>
+    <string name="error_delete_tags">Aby bolo možné odstrániť kategóriu, nesmie obsahovať žiadne recepty</string>
     <string name="success_delete_tags">Kategória bola zmazaná</string>
 
 

@@ -14,11 +14,9 @@
 
     <string name="new_tag_hint">New tag`s name</string>
     <string name="new_save_button_text">Save</string>
-    <string name="new_add_ingred_button_text">Save</string>
     <string name="new_recipe_name_hint">Pancakes</string>
     <string name="new_recipe_source_hint">From the nice neighbour</string>
     <string name="new_recipe_instructions_hint">1. Mix it all and let it bake</string>
-    <string name="new_tag_save_button_text">Save</string>
 
     <string name="new_recipe_error_name">Fill out name of the new recipe</string>
     <string name="new_recipe_error_0_ing">There must be at least 1 ingredient</string>

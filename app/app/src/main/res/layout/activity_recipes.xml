@@ -5,8 +5,9 @@
 
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
+
 
         <TextView
             android:id="@+id/recipes_header"
@@ -15,13 +16,17 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             style="@style/ActivityTitle"/>
 
-        <Button
+
+        <ImageButton
             android:id="@+id/delete_tag_button"
             android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/delete_tag_button"
-            android:background="@color/colorButtons"/>
+            android:layout_gravity="end"
+            android:layout_marginEnd="30dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_delete"/>
+
         <TextView
             android:id="@+id/no_recipes_found"
             android:text="@string/no_recipes_found"
@@ -32,5 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
     </LinearLayout>
 </ScrollView>
