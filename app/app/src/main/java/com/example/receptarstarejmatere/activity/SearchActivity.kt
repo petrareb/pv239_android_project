@@ -18,35 +18,21 @@ import com.example.receptarstarejmatere.adapter.RecipesAdapter
 import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.Recipe
 import com.example.receptarstarejmatere.utils.Constants
+import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class SearchActivity : AppCompatActivity() {
 
-    private lateinit var adapter: RecipesAdapter
-    private lateinit var searchDialog: androidx.appcompat.widget.SearchView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        // enable type-to-search
-        setDefaultKeyMode(Activity.DEFAULT_KEYS_SEARCH_LOCAL)
-
-        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        searchDialog = findViewById(R.id.search_dialog)
-        searchDialog.apply {
-            setSearchableInfo(searchManager.getSearchableInfo(componentName))
-            // Do not iconify the widget; expand it by default
-            setIconifiedByDefault(false)
-        }
-
-        if (Intent.ACTION_SEARCH == intent.action) {
-            intent.getStringExtra(SearchManager.QUERY)?.also { query ->
-                val intent = Intent(this, RecipesActivity::class.java)
-                intent.putExtra(Constants.SEARCH_QUERY, query)
-                startActivity(intent)
-            }
+        button_search.setOnClickListener{
+            val intent = Intent(this, RecipesActivity::class.java)
+            val text = search_text.text.toString()
+            intent.putExtra(Constants.SEARCH_QUERY, text)
+            startActivity(intent)
         }
     }
 }

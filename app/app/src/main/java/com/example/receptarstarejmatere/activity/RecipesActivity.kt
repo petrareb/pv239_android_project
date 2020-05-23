@@ -36,6 +36,7 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
         // TODO poriesit inak ako cez favorites
         isFavorites = intent?.getBooleanExtra(Constants.FAVORITE_RECIPES, false)
         isSearch = !intent?.getStringExtra(Constants.SEARCH_QUERY).isNullOrEmpty()
+        val test = intent.getStringExtra(Constants.SEARCH_QUERY)
         if (isFavorites == true) {
             header = getString(R.string.favorites)
             initFavoritesRecyclerView()

@@ -24,14 +24,7 @@
         <activity
             android:name=".activity.SearchActivity"
             android:parentActivityName=".activity.MainActivity"
-            android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-        </activity>
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".activity.NewTagActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"

@@ -21,10 +21,20 @@
             android:text="@string/search_description"
             style="@style/search_info" />
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_dialog"
+        <EditText
+            android:id="@+id/search_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:hint="@string/search_hint"
+            />
+
+        <ImageButton
+            android:id="@+id/button_search"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_search"/>
 
     </LinearLayout>
 </ScrollView>
