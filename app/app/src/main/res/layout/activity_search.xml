@@ -16,25 +16,32 @@
             android:text="@string/search"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-        <TextView
-            android:id="@+id/no_results_found"
-            android:text="@string/search_description"
-            style="@style/search_info" />
-
-        <EditText
-            android:id="@+id/search_text"
-            android:layout_width="match_parent"
+        <FrameLayout
+            android:orientation="horizontal"
             android:layout_height="match_parent"
-            android:inputType="text"
-            android:hint="@string/search_hint"
-            />
+            android:layout_width="match_parent">
 
-        <ImageButton
-            android:id="@+id/button_search"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
-            android:src="@drawable/ic_search"/>
+            <EditText
+                android:id="@+id/search_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/search_hint"
+                android:inputType="text"
+                android:autofillHints="no"
+                android:orientation="vertical"
+                android:layout_alignEnd="@id/button_search"/>
+
+            <ImageButton
+                android:id="@+id/button_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_search_bigger"
+                android:layout_gravity="end"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/search" />
+        </FrameLayout>
 
     </LinearLayout>
 </ScrollView>

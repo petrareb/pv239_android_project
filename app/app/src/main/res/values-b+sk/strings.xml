@@ -25,6 +25,7 @@
     <string name="new_recipe_error_ing_quantity">Vyplňte množstvo</string>
     <string name="new_recipe_error_ing_measure">Vyplňte jednotku</string>
     <string name="new_recipe_error_0_tags">Recept musí byť aspoň v 1 kategórii</string>
+    <string name="search_error_no_query">Vyplňte hľadaný výraz</string>
 
     <string name="instructions">Takto sa to robí:</string>
     <string name="recipe_name">Meno receptu:</string>

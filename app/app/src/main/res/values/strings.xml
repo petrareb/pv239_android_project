@@ -25,6 +25,7 @@
     <string name="new_recipe_error_ing_quantity">Fill out the ingredient quantity</string>
     <string name="new_recipe_error_ing_measure">Fill out the unit of quantity</string>
     <string name="new_recipe_error_0_tags">The recipe must be associated to at least 1 tag</string>
+    <string name="search_error_no_query">Fill out the searching query</string>
 
     <string name="instructions">How to do it:</string>
     <string name="recipe_name">Recipe`s name:</string>
