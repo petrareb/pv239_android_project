@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:maxHeight="?attr/listPreferredItemHeight">
+    android:maxHeight="?attr/listPreferredItemHeight"
+    android:orientation="vertical">
 
     <CheckedTextView
         android:id="@+id/new_recipe_tags_item"
+        style="@style/RecipeValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checkMark="@null"
@@ -14,7 +15,6 @@
         android:drawableRight="@null"
         android:drawableTint="@color/colorButtons"
         android:gravity="center"
-        android:maxHeight="13pt"
-        style="@style/RecipeValue"/>
+        android:maxHeight="13pt" />
 
 </LinearLayout>

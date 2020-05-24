@@ -1,48 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <EditText
             android:id="@+id/edit_ingred_quantity"
+            style="@style/RecipeValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:inputType="number"
             android:layout_marginTop="8dp"
-            style="@style/RecipeValue"
+            android:autofillHints="no"
             android:digits="0123456789."
             android:hint="@string/ingred_quantity_hint"
-            android:autofillHints="no" />
+            android:inputType="number"
+            android:orientation="vertical" />
+
         <EditText
             android:id="@+id/edit_ingred_measure"
+            style="@style/RecipeValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="8dp"
-            style="@style/RecipeValue"
-            android:inputType="text"
+            android:autofillHints="no"
             android:hint="@string/ingred_unit_hint"
-            android:autofillHints="no" />
+            android:inputType="text"
+            android:orientation="vertical" />
+
         <EditText
             android:id="@+id/edit_ingred_name"
+            style="@style/RecipeValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="8dp"
-            style="@style/RecipeValue"
-            android:inputType="text"
+            android:autofillHints="no"
             android:hint="@string/ingred_name_hint"
-            android:autofillHints="no" />
+            android:inputType="text"
+            android:orientation="vertical" />
+
         <ImageButton
             android:id="@+id/edit_save_ingredient_button"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:src="@drawable/ic_save_check"
-            android:background="?android:attr/selectableItemBackground" />
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_save_check" />
 
     </LinearLayout>
 </LinearLayout>

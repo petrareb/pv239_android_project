@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,10 +13,10 @@
 
         <TextView
             android:id="@+id/edit_recipe_header"
+            style="@style/ActivityTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            style="@style/ActivityTitle"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <CheckBox
             android:id="@+id/edit_recipe_star"
@@ -29,159 +29,160 @@
 
         <TextView
             android:id="@+id/edit_recipe_name_text"
+            style="@style/RecipeLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/RecipeLabel"
             android:layout_marginTop="0dp"
             android:text="@string/recipe_name" />
 
         <EditText
             android:id="@+id/edit_recipe_name"
+            style="@style/RecipeValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:importantForAutofill="no"
-            style="@style/RecipeValue"
             android:hint="@string/new_recipe_name_hint"
+            android:importantForAutofill="no"
             android:inputType="text" />
 
         <TextView
             android:id="@+id/edit_recipe_source_text"
+            style="@style/RecipeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/RecipeLabel"
             android:text="@string/recipe_source" />
 
         <EditText
             android:id="@+id/edit_recipe_source"
+            style="@style/RecipeValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/RecipeValue"
-            android:importantForAutofill="no"
             android:hint="@string/new_recipe_source_hint"
+            android:importantForAutofill="no"
             android:inputType="text" />
 
         <TextView
             android:id="@+id/edit_recipe_tags_text"
+            style="@style/TagsLabelAddNewRecipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/recipe_tags"
-            style="@style/TagsLabelAddNewRecipe"
-            />
+            android:text="@string/recipe_tags" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/edit_recipe_tags_list"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="4dp"
-            android:layout_marginLeft="20dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/edit_recipe_prep_time_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/RecipeLabel"
-            android:text="@string/recipe_prep_time" />
-
-        <EditText
-            android:id="@+id/edit_recipe_prep_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:inputType="number"
-            android:digits="0123456789."
-            style="@style/RecipeValue"
-            android:hint="@string/preparation_time_value"
-            android:autofillHints="no" />
-        <TextView
-            android:id="@+id/edit_recipe_prep_time_unit_text"
-            style="@style/RecipeLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/time_unit" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        <TextView
-            android:id="@+id/edit_recipe_cook_time_text"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/RecipeLabel"
-            android:text="@string/recipe_cooking_time" />
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/edit_recipe_cook_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:autofillHints="no"
-            android:inputType="number"
-            style="@style/RecipeValue"
-            android:digits="0123456789."
-            android:hint="@string/cooking_time_value"
-            />
+            <TextView
+                android:id="@+id/edit_recipe_prep_time_text"
+                style="@style/RecipeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recipe_prep_time" />
 
-        <TextView
-            android:id="@+id/edit_recipe_cook_time_unit_text"
-            style="@style/RecipeLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/time_unit" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/edit_recipe_cook_temp_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/RecipeLabel"
-            android:text="@string/recipe_cooking_temp" />
+            <EditText
+                android:id="@+id/edit_recipe_prep_time"
+                style="@style/RecipeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints="no"
+                android:digits="0123456789."
+                android:hint="@string/preparation_time_value"
+                android:inputType="number"
+                android:orientation="vertical" />
 
-        <EditText
-            android:id="@+id/edit_recipe_cook_temp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:inputType="number"
-            android:digits="0123456789."
-            style="@style/RecipeValue"
-            android:hint="@string/cooking_temperature_value"
-            android:autofillHints="no" />
+            <TextView
+                android:id="@+id/edit_recipe_prep_time_unit_text"
+                style="@style/RecipeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_unit" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/edit_recipe_cook_temp_unit_text"
-            style="@style/RecipeLabel"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/temp_unit" />
-    </LinearLayout>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/edit_recipe_cook_time_text"
+                style="@style/RecipeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recipe_cooking_time" />
+
+            <EditText
+                android:id="@+id/edit_recipe_cook_time"
+                style="@style/RecipeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints="no"
+                android:digits="0123456789."
+                android:hint="@string/cooking_time_value"
+                android:inputType="number"
+                android:orientation="vertical" />
+
+            <TextView
+                android:id="@+id/edit_recipe_cook_time_unit_text"
+                style="@style/RecipeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_unit" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/edit_recipe_cook_temp_text"
+                style="@style/RecipeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recipe_cooking_temp" />
+
+            <EditText
+                android:id="@+id/edit_recipe_cook_temp"
+                style="@style/RecipeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints="no"
+                android:digits="0123456789."
+                android:hint="@string/cooking_temperature_value"
+                android:inputType="number"
+                android:orientation="vertical" />
+
+            <TextView
+                android:id="@+id/edit_recipe_cook_temp_unit_text"
+                style="@style/RecipeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/temp_unit" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/edit_recipe_ingredients_text"
+            style="@style/RecipeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/RecipeLabel"
-            android:text="@string/ingredients"/>
+            android:text="@string/ingredients" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/edit_recipe_ingred_list"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
             style="@style/RecipeValue"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -192,37 +193,37 @@
 
             <EditText
                 android:id="@+id/edit_recipe_ingred_quantity"
+                style="@style/RecipeValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:inputType="number"
                 android:layout_marginTop="8dp"
-                style="@style/RecipeValue"
+                android:autofillHints="no"
                 android:digits="0123456789."
                 android:hint="@string/ingred_quantity_hint"
-                android:autofillHints="no" />
+                android:inputType="number"
+                android:orientation="vertical" />
 
             <EditText
                 android:id="@+id/edit_recipe_ingred_measure"
+                style="@style/RecipeValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="8dp"
-                style="@style/RecipeValue"
-                android:inputType="text"
+                android:autofillHints="no"
                 android:hint="@string/ingred_unit_hint"
-                android:autofillHints="no" />
+                android:inputType="text"
+                android:orientation="vertical" />
 
             <EditText
                 android:id="@+id/edit_recipe_ingred_name"
+                style="@style/RecipeValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="8dp"
-                style="@style/RecipeValue"
-                android:inputType="text"
+                android:autofillHints="no"
                 android:hint="@string/ingred_name_hint"
-                android:autofillHints="no" />
+                android:inputType="text"
+                android:orientation="vertical" />
         </LinearLayout>
 
         <Button
@@ -236,21 +237,21 @@
 
         <TextView
             android:id="@+id/edit_recipe_instructions_text"
+            style="@style/RecipeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/RecipeLabel"
             android:paddingTop="20dp"
             android:text="@string/instructions" />
 
         <EditText
             android:id="@+id/edit_recipe_instructions"
+            style="@style/RecipeValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/RecipeValue"
             android:hint="@string/new_recipe_instructions_hint"
             android:importantForAutofill="no"
-            android:text=""
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:text="" />
 
         <Button
             android:id="@+id/edit_recipe_save_button"

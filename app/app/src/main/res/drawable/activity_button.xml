@@ -4,5 +4,7 @@
     android:tintMode="@color/colorButtonBackground">
     <solid android:color="@color/colorButtonBackground" />
     <corners android:radius="3dp" />
-    <stroke android:width="5px" android:color="@color/colorButtons" />
+    <stroke
+        android:width="5px"
+        android:color="@color/colorButtons" />
 </shape>

@@ -11,11 +11,11 @@
 
         <TextView
             android:id="@+id/new_tag_header"
+            style="@style/ActivityTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_new_tag"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            style="@style/ActivityTitle"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <EditText
             android:id="@+id/new_tag_name"

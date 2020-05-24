@@ -11,11 +11,11 @@
 
         <TextView
             android:id="@+id/tags_header"
+            style="@style/ActivityTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tags"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            style="@style/ActivityTitle"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
             android:id="@+id/no_tags_found"
