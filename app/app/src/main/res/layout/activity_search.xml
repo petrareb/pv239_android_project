@@ -14,34 +14,39 @@
             android:layout_height="wrap_content"
             android:layout_margin="100dp"
             android:text="@string/search"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            style="@style/ActivityTitle"/>
 
-        <FrameLayout
-            android:orientation="horizontal"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp">
 
-            <EditText
-                android:id="@+id/search_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/search_hint"
-                android:inputType="text"
-                android:autofillHints="no"
-                android:orientation="vertical"
-                android:layout_alignEnd="@id/button_search"/>
+                    <EditText
+                        android:id="@+id/search_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/search_hint"
+                        android:inputType="text"
+                        android:autofillHints="no"
+                        android:orientation="vertical"
+                        android:layout_weight=".60"
+                        style="@style/TextAppearance.AppCompat.Large"
+                        />
 
-            <ImageButton
-                android:id="@+id/button_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/ic_search_bigger"
-                android:layout_gravity="end"
-                android:scaleType="fitCenter"
-                android:contentDescription="@string/search" />
-        </FrameLayout>
-
+                    <ImageButton
+                        android:id="@+id/button_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:src="@drawable/ic_search_bigger"
+                        android:layout_gravity="end"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="@string/search"
+                        android:paddingLeft="30dp"/>
+                </LinearLayout>
     </LinearLayout>
 </ScrollView>
