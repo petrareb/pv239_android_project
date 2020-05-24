@@ -3,20 +3,18 @@ package com.example.receptarstarejmatere.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.adapter.RecipesAdapter
 import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.Recipe
 import com.example.receptarstarejmatere.utils.Constants
+import com.example.receptarstarejmatere.utils.ListRecipesActivity
 import com.example.receptarstarejmatere.utils.SwipeRecipeCallback
+import kotlinx.android.synthetic.main.activity_recipes.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -24,46 +22,28 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
 
     private var mRecipes: ArrayList<Recipe> = ArrayList()
     private lateinit var adapter: RecipesAdapter
-    private var isFavorites : Boolean? = false
-    private var isSearch: Boolean = false
+    private lateinit var activityType: ListRecipesActivity
+    private var isSearchActivity: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipes)
 
-        adapter = RecipesAdapter(onRecipeListener = this)
-        var header : String? = ""
-        // TODO poriesit inak ako cez favorites
-        isFavorites = intent?.getBooleanExtra(Constants.FAVORITE_RECIPES, false)
-        isSearch = !intent?.getStringExtra(Constants.SEARCH_QUERY).isNullOrEmpty()
-        val test = intent.getStringExtra(Constants.SEARCH_QUERY)
-        if (isFavorites == true) {
-            header = getString(R.string.favorites)
-            initFavoritesRecyclerView()
-            findViewById<TextView>(R.id.no_recipes_found).text = getString(R.string.no_favorite_recipes_found)
-        }
-        else if (isSearch) {
-            header = getString(R.string.search_header) + " \"" + intent?.getStringExtra(Constants.SEARCH_QUERY) + "\""
-            doSearch(intent?.getStringExtra(Constants.SEARCH_QUERY).orEmpty())
-        }
-        else { //if (isFavorites == false) { // TODO nerozhodovat sa podla isFavorites
-            header = intent?.getStringExtra(Constants.SELECTED_TAG_NAME)
-            initRecipesRecyclerView()
-            val deleteTagButton = findViewById<ImageButton>(R.id.delete_tag_button)
-            deleteTagButton.visibility = View.VISIBLE
-            deleteTagButton.setOnClickListener {
-                if (tryToDeleteTag()) {
-                    Toast.makeText(this, resources.getString(R.string.success_delete_tags), Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, TagsActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this, resources.getString(R.string.error_delete_tags), Toast.LENGTH_SHORT).show()
-                }
+        setActivityType()
+
+        adapter = RecipesAdapter(onRecipeListener = this, context = this)
+
+        when (activityType) {
+            ListRecipesActivity.FAVORITES -> {
+                initFavoritesActivity()
             }
-
+            ListRecipesActivity.SEARCHES -> {
+                initSearchResultsActivity()
+            }
+            else -> {
+                initRecipesAccordingTagActivity()
+            }
         }
-
-        findViewById<TextView>(R.id.recipes_header).text = header
     }
 
     override fun onDestroy() {
@@ -73,13 +53,70 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
     }
 
     override fun onRecipeDelete() {
-        Toast.makeText(this, resources.getString(R.string.success_delete_recipe), Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            this,
+            resources.getString(R.string.success_delete_recipe),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
+    private fun setActivityType() {
+        if (intent?.getBooleanExtra(Constants.FAVORITE_RECIPES, false) == true) {
+            activityType = ListRecipesActivity.FAVORITES
+            return
+        }
+        if (!intent?.getStringExtra(Constants.SEARCH_QUERY).isNullOrEmpty()) {
+            activityType = ListRecipesActivity.SEARCHES
+            return
+        }
+        activityType = ListRecipesActivity.ACCORDING_TAG
+    }
 
-    private fun tryToDeleteTag(): Boolean {
+    private fun initFavoritesActivity() {
+        recipes_header.text = getString(R.string.favorites)
+        initFavoritesRecyclerView()
+        no_recipes_found.text = getString(R.string.no_favorite_recipes_found)
+    }
+
+    private fun initSearchResultsActivity() {
+        val header =
+            getString(R.string.search_header) + " \"" + intent?.getStringExtra(Constants.SEARCH_QUERY) + "\""
+        recipes_header.text = header
+        doSearch(intent?.getStringExtra(Constants.SEARCH_QUERY).orEmpty())
+    }
+
+    private fun initRecipesAccordingTagActivity() {
+        recipes_header.text = intent?.getStringExtra(Constants.SELECTED_TAG_NAME)
+        initRecipesRecyclerView()
+
+        val deleteTagButton = delete_tag_button
+        deleteTagButton.visibility = View.VISIBLE
+        deleteTagButton.setOnClickListener {
+            if (canDeleteTag()) {
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.success_delete_tags),
+                    Toast.LENGTH_SHORT
+                ).show()
+                val intent = Intent(this, TagsActivity::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.error_delete_tags),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun canDeleteTag(): Boolean {
         if (mRecipes.isNotEmpty()) {
-            Toast.makeText(this, resources.getString(R.string.error_delete_tags), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                resources.getString(R.string.error_delete_tags),
+                Toast.LENGTH_SHORT
+            ).show()
             return false
         }
         GlobalScope.launch {
@@ -101,10 +138,11 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
 
     private fun initRecipesRecyclerView() {
         val selectedTagId = intent.getIntExtra(Constants.SELECTED_TAG_ID, 100)
-        App.recipeTagRepository.getTagWithRecipes(selectedTagId).observe(this, Observer { tagsWithRecipes ->
-            val recipes = tagsWithRecipes[0].recipes
-            initRecipesRecyclerShared(recipes)
-        })
+        App.recipeTagRepository.getTagWithRecipes(selectedTagId)
+            .observe(this, Observer { tagsWithRecipes ->
+                val recipes = tagsWithRecipes[0].recipes
+                initRecipesRecyclerShared(recipes)
+            })
     }
 
     private fun initFavoritesRecyclerView() {
@@ -113,24 +151,24 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
         })
     }
 
-    private fun initRecipesRecyclerShared(recipes : List<Recipe>){
+    private fun initRecipesRecyclerShared(recipes: List<Recipe>) {
         mRecipes.clear()
         mRecipes.addAll(recipes)
 
         adapter.swapData(mRecipes)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recipes_list)
+        val recyclerView = recipes_list
         recyclerView.adapter = adapter
 
-        if (!isSearch){
+        if (!isSearchActivity) {
             val itemTouchHelper = ItemTouchHelper(SwipeRecipeCallback(adapter, this))
             itemTouchHelper.attachToRecyclerView(recyclerView)
         }
 
         if (mRecipes.isEmpty()) {
-            findViewById<TextView>(R.id.no_recipes_found).visibility = View.VISIBLE
+            no_recipes_found.visibility = View.VISIBLE
         } else {
-            findViewById<TextView>(R.id.no_recipes_found).visibility = View.GONE
+            no_recipes_found.visibility = View.GONE
         }
     }
 

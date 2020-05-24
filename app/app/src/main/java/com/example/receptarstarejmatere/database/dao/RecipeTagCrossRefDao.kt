@@ -2,7 +2,6 @@ package com.example.receptarstarejmatere.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.receptarstarejmatere.database.model.AllTagsWithRecipes
 import com.example.receptarstarejmatere.database.model.RecipeTagCrossRef
 import com.example.receptarstarejmatere.database.model.RecipeWithTags
 import com.example.receptarstarejmatere.database.model.TagWithRecipes
@@ -30,5 +29,5 @@ interface RecipeTagCrossRefDao {
 
     @Transaction
     @Query("select *, recipe_id from recipe where recipe_id = :givenRecipeId")
-    fun getTagsForRecipe(givenRecipeId: Int) : LiveData<RecipeWithTags> // TODO was <List>
+    fun getTagsForRecipe(givenRecipeId: Int) : LiveData<RecipeWithTags>
 }

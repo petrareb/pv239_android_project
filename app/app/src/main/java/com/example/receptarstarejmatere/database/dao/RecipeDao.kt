@@ -37,11 +37,8 @@ interface RecipeDao {
     suspend fun updateIsFavorite(id: Int, isFavorite: Boolean)
 
     @Query("select *, recipe_id from Recipe where name like '%' || :substring || '%'")
-    fun getRecipesWithNameSubstring(substring: String) : LiveData<List<Recipe>>
-
-    @Query("select *, recipe_id from Recipe where name like '%' || :substring || '%'")
-    suspend fun getRecipesWithNameSubstring2(substring: String) : List<Recipe>
+    suspend fun getRecipesWithNameSubstring(substring: String) : List<Recipe>
 
     @Query("select *, recipe_id from Recipe where instructions like '%' || :substring || '%'")
-    suspend fun getRecipesWithInstructionSubstring2(substring: String): List<Recipe>
+    suspend fun getRecipesWithInstructionSubstring(substring: String): List<Recipe>
 }

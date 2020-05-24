@@ -3,16 +3,15 @@ package com.example.receptarstarejmatere.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.adapter.TagsAdapter
 import com.example.receptarstarejmatere.application.App
 import com.example.receptarstarejmatere.database.model.Tag
 import com.example.receptarstarejmatere.database.repository.TagRepository
 import com.example.receptarstarejmatere.utils.Constants
+import kotlinx.android.synthetic.main.activity_tags.*
 
 class TagsActivity: AppCompatActivity(), TagsAdapter.OnTagListener {
 
@@ -34,13 +33,13 @@ class TagsActivity: AppCompatActivity(), TagsAdapter.OnTagListener {
 
             adapter.swapData(tags)
 
-            val recyclerView = findViewById<RecyclerView>(R.id.tags_list)
+            val recyclerView = tags_list
             recyclerView.adapter = adapter
 
             if (mTags.isEmpty()) {
-                findViewById<TextView>(R.id.no_tags_found).visibility = View.VISIBLE
+                no_tags_found.visibility = View.VISIBLE
             } else {
-                findViewById<TextView>(R.id.no_tags_found).visibility = View.GONE
+                no_tags_found.visibility = View.GONE
             }
         })
     }

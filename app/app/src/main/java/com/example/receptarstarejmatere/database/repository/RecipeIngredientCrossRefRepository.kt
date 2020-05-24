@@ -10,10 +10,6 @@ class RecipeIngredientCrossRefRepository(recipeDb: MyDb) {
 
     private val recipeIngredientDao: RecipeIngredientCrossRefDao = recipeDb.recipeIngredientDao()
 
-//    fun getIngredientsForRecipe(recipeId: Int): LiveData<RecipeWithIngredients> {
-//        return recipeIngredientDao.getIngredientsForRecipe(recipeId)
-//    }
-
     suspend fun insertAll(joins: List<RecipeIngredient>) : List<Long> {
         return recipeIngredientDao.insertAll(joins)
     }
@@ -21,10 +17,6 @@ class RecipeIngredientCrossRefRepository(recipeDb: MyDb) {
     suspend fun insert(recipeWithIngredients: RecipeIngredient) : Long {
         return recipeIngredientDao.insert(recipeWithIngredients)
     }
-
-//    fun getAll(): LiveData<List<RecipeWithIngredients>> {
-//        return recipeIngredientDao.getRecipesWithIngredients()
-//    }
 
     suspend fun deleteIngredientsByRecipeId(recipeId: Int) {
         recipeIngredientDao.deleteIngredientsByRecipeId(recipeId)

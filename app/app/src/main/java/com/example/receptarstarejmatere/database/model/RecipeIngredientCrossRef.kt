@@ -9,8 +9,18 @@ import androidx.room.*
         Index(value = ["id"])
     ],
     foreignKeys = [
-    ForeignKey(entity = Recipe::class, parentColumns = ["recipe_id"], childColumns = ["recipe_id"], onDelete = ForeignKey.CASCADE),
-    ForeignKey(entity = Ingredient::class, parentColumns = ["ingredient_id"], childColumns = ["ingredient_id"],  onDelete = ForeignKey.CASCADE)]
+        ForeignKey(
+            entity = Recipe::class,
+            parentColumns = ["recipe_id"],
+            childColumns = ["recipe_id"],
+            onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = Ingredient::class,
+            parentColumns = ["ingredient_id"],
+            childColumns = ["ingredient_id"],
+            onDelete = ForeignKey.CASCADE
+        )]
 )
 class RecipeIngredient {
     constructor(recipeId: Int, ingredientId: Int, quantity: Int, measure: String) {
@@ -19,13 +29,6 @@ class RecipeIngredient {
         this.quantity = quantity
         this.measure = measure
     }
-//    constructor(id : Int, ingredientId: Int, quantity: Int, measure: String, recipeId: Int) {
-//        this.id = id
-//        this.quantity = quantity
-//        this.ingredientId = ingredientId
-//        this.measure = measure
-//        this.recipeId = recipeId
-//    }
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")

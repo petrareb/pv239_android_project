@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.adapter.EditIngredientsAdapter
 import com.example.receptarstarejmatere.adapter.RecipeTagsAdapter
@@ -21,6 +20,7 @@ import com.example.receptarstarejmatere.database.viewModel.TagViewModel
 import com.example.receptarstarejmatere.utils.Constants
 import com.example.receptarstarejmatere.utils.EditTextUtils
 import com.example.receptarstarejmatere.utils.SaveIngredientsUtils
+import kotlinx.android.synthetic.main.activity_edit_recipe.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -54,37 +54,21 @@ class EditRecipeActivity : AppCompatActivity(),
         tagsAdapter = RecipeTagsAdapter(onTagListener = this)
 
         ingredientsAdapter = EditIngredientsAdapter()
-        val recyclerView = findViewById<RecyclerView>(R.id.edit_recipe_ingred_list)
+        val recyclerView = edit_recipe_ingred_list
         recyclerView.adapter = ingredientsAdapter
 
         initRecipe()
         initTagsRecyclerView()
         initIngredients()
 
-        tagsLabel = findViewById(R.id.edit_recipe_tags_text)
+        tagsLabel = edit_recipe_tags_text
 
         val headerText = intent?.getStringExtra(Constants.EDITED_RECIPE_NAME)
-        findViewById<TextView>(R.id.edit_recipe_header).text = headerText
+        edit_recipe_header.text = headerText
 
-        favoritesStar = findViewById(R.id.edit_recipe_star)
-        recipeName = findViewById(R.id.edit_recipe_name)
-        sourceEditText = findViewById(R.id.edit_recipe_source)
-        prepTimeEditText = findViewById(R.id.edit_recipe_prep_time)
-        cookTimeEditText = findViewById(R.id.edit_recipe_cook_time)
-        cookTempEditText = findViewById(R.id.edit_recipe_cook_temp)
-        val cookTempLabel = findViewById<TextView>(R.id.edit_recipe_cook_temp_text)
-        val cookTempUnits = findViewById<TextView>(R.id.edit_recipe_cook_temp_unit_text)
-        instructionsEditText = findViewById(R.id.edit_recipe_instructions)
+        initViewElements()
 
-        newIngredMeasureEditText = findViewById(R.id.edit_recipe_ingred_measure)
-        newIngredNameEditText = findViewById(R.id.edit_recipe_ingred_name)
-        newIngredQuantityEditText = findViewById(R.id.edit_recipe_ingred_quantity)
-
-        EditTextUtils.showAnotherEditTextIfNotEmpty(
-            cookTimeEditText, listOf(cookTempEditText, cookTempLabel, cookTempUnits)
-        )
-
-        val addIngredButton = findViewById<Button>(R.id.edit_recipe_add_ingred_button)
+        val addIngredButton = edit_recipe_add_ingred_button
         addIngredButton.setOnClickListener {
             if (checkNewIngredientValues()) {
                 val newIngredient = createNewIngredient()
@@ -97,7 +81,7 @@ class EditRecipeActivity : AppCompatActivity(),
             }
         }
 
-        val saveButton = findViewById<Button>(R.id.edit_recipe_save_button)
+        val saveButton = edit_recipe_save_button
         saveButton.setOnClickListener {
             val isValid = checkRequiredFields()
             if (isValid) {
@@ -106,6 +90,26 @@ class EditRecipeActivity : AppCompatActivity(),
                 startActivity(intent)
             }
         }
+    }
+
+    private fun initViewElements() {
+        favoritesStar = edit_recipe_star
+        recipeName = edit_recipe_name
+        sourceEditText = edit_recipe_source
+        prepTimeEditText = edit_recipe_prep_time
+        cookTimeEditText = edit_recipe_cook_time
+        cookTempEditText = edit_recipe_cook_temp
+        instructionsEditText = edit_recipe_instructions
+
+        newIngredMeasureEditText = edit_recipe_ingred_measure
+        newIngredNameEditText = edit_recipe_ingred_name
+        newIngredQuantityEditText = edit_recipe_ingred_quantity
+
+        val cookTempLabel = edit_recipe_cook_temp_text
+        val cookTempUnits = edit_recipe_cook_temp_unit_text
+        EditTextUtils.showAnotherEditTextIfNotEmpty(
+            cookTimeEditText, listOf(cookTempEditText, cookTempLabel, cookTempUnits)
+        )
     }
 
     private fun saveRecipe() {
@@ -139,7 +143,7 @@ class EditRecipeActivity : AppCompatActivity(),
     }
 
     private fun checkTags(): Boolean {
-        val tagsLabel = findViewById<TextView>(R.id.edit_recipe_tags_text)
+        val tagsLabel = edit_recipe_tags_text
         return if (!tags.any { tag -> tag.isSelected }) {
             tagsLabel.error = getString(R.string.new_recipe_error_0_tags)
             false
@@ -240,9 +244,8 @@ class EditRecipeActivity : AppCompatActivity(),
                 tags.add(tagModel)
             }
             tagsAdapter.swapData(tags)
-            val recyclerView = findViewById<RecyclerView>(R.id.edit_recipe_tags_list)
+            val recyclerView = edit_recipe_tags_list
             recyclerView.adapter = tagsAdapter
-
         })
     }
 

@@ -10,7 +10,7 @@ import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.database.viewModel.IngredientViewModel
 
 class EditIngredientsAdapter(
-    public var ingredients: MutableList<IngredientViewModel> = mutableListOf()
+    var ingredients: MutableList<IngredientViewModel> = mutableListOf()
 ) : RecyclerView.Adapter<EditIngredientsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

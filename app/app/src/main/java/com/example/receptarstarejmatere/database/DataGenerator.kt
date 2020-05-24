@@ -1,15 +1,9 @@
 package com.example.receptarstarejmatere.database
 
 import android.content.Context
-import android.content.res.Resources
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.application.App
-import com.example.receptarstarejmatere.database.model.*
-import com.example.receptarstarejmatere.database.repository.TagRepository
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.util.*
-import kotlin.random.Random
+import com.example.receptarstarejmatere.database.model.Tag
 
 class DataGenerator(private val context: Context) {
 
@@ -25,17 +19,6 @@ class DataGenerator(private val context: Context) {
             context.resources.getString(R.string.tag_salads),
             context.resources.getString(R.string.tag_dinner),
             context.resources.getString(R.string.tag_raw)
-
-//                "Sladké",
-//                "Slané",
-//                "Bez mäsa",
-//                "Raňajky",
-//                "Koláče",
-//                "Vegan",
-//                "Drinky",
-//                "Šaláty",
-//                "Večera",
-//                "Raw"
         )
         tagNames.forEach { tagName ->
             val tag = Tag(tagName)

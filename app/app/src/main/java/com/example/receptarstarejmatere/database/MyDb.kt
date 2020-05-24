@@ -8,18 +8,23 @@ import com.example.receptarstarejmatere.database.dao.*
 import com.example.receptarstarejmatere.database.model.*
 
 
-@Database(entities = [Recipe::class, Tag::class, RecipeTagCrossRef::class, Ingredient::class, RecipeIngredient::class], version = 15, exportSchema = false)
+@Database(
+    entities = [Recipe::class, Tag::class, RecipeTagCrossRef::class, Ingredient::class, RecipeIngredient::class],
+    version = 15,
+    exportSchema = false
+)
 abstract class MyDb : RoomDatabase() {
 
-    abstract fun recipeDao() : RecipeDao
-    abstract fun tagDao() : TagDao
-    abstract fun recipeTagDao() : RecipeTagCrossRefDao
-    abstract fun ingredientDao() : IngredientDao
-    abstract fun recipeIngredientDao() : RecipeIngredientCrossRefDao
+    abstract fun recipeDao(): RecipeDao
+    abstract fun tagDao(): TagDao
+    abstract fun recipeTagDao(): RecipeTagCrossRefDao
+    abstract fun ingredientDao(): IngredientDao
+    abstract fun recipeIngredientDao(): RecipeIngredientCrossRefDao
 
 
     companion object {
-        @Volatile private var instance : MyDb? = null
+        @Volatile
+        private var instance: MyDb? = null
         private val LOCK = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
@@ -27,7 +32,8 @@ abstract class MyDb : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context) = Room.databaseBuilder(
-            context, MyDb::class.java, "receptar.db")
+            context, MyDb::class.java, "receptar.db"
+        )
             .fallbackToDestructiveMigration()
             .build()
     }

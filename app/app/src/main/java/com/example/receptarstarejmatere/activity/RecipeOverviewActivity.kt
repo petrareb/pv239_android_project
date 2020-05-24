@@ -5,7 +5,6 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.adapter.IngredientsAdapter
 import com.example.receptarstarejmatere.application.App
@@ -16,10 +15,10 @@ import kotlinx.android.synthetic.main.activity_recipe_overview.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class RecipeOverviewActivity: AppCompatActivity() {
+class RecipeOverviewActivity : AppCompatActivity() {
 
-    private lateinit var recipeWithTags : RecipeWithTags
-    private var ingredientWithMeasure : ArrayList<IngredientWithMeasure> = ArrayList()
+    private lateinit var recipeWithTags: RecipeWithTags
+    private var ingredientWithMeasure: ArrayList<IngredientWithMeasure> = ArrayList()
     private lateinit var adapter: IngredientsAdapter
     private lateinit var favoritesStar: CheckBox
 
@@ -30,14 +29,13 @@ class RecipeOverviewActivity: AppCompatActivity() {
         adapter = IngredientsAdapter()
 
         val headerText = intent?.getStringExtra(Constants.SELECTED_RECIPE_NAME)
-        findViewById<TextView>(R.id.recipe_overview_header).text = headerText
-
-        favoritesStar = findViewById(R.id.recipe_overview_star)
+        recipe_overview_header.text = headerText
 
         initRecipe(selectedRecipeId)
         initIngredientsAdapter(selectedRecipeId)
 
-        favoritesStar.setOnClickListener{
+        favoritesStar = recipe_overview_star
+        favoritesStar.setOnClickListener {
             setFavoriteRecipe(favoritesStar.isChecked)
         }
     }
@@ -48,68 +46,90 @@ class RecipeOverviewActivity: AppCompatActivity() {
         }
     }
 
-    private fun initRecipe(selectedRecipeId : Int) {
-        App.recipeTagRepository.getTagsForRecipe(selectedRecipeId).observe(this, Observer { recipeAndTags ->
-            recipeWithTags = recipeAndTags
-            printRecipeBasic(recipeWithTags)
-            favoritesStar.isChecked = recipeWithTags.recipe.isFavorite
-        })
+    private fun initRecipe(selectedRecipeId: Int) {
+        App.recipeTagRepository.getTagsForRecipe(selectedRecipeId)
+            .observe(this, Observer { recipeAndTags ->
+                recipeWithTags = recipeAndTags
+                printRecipeBasic(recipeWithTags)
+                favoritesStar.isChecked = recipeWithTags.recipe.isFavorite
+            })
     }
 
     private fun initIngredientsAdapter(selectedRecipeId: Int) {
-        App.recipeIngredientRepository.getIngredientsForRecipe(selectedRecipeId).observe(this, Observer { recipeIngredients ->
-            ingredientWithMeasure.clear()
-            ingredientWithMeasure.addAll(recipeIngredients)
+        App.recipeIngredientRepository.getIngredientsForRecipe(selectedRecipeId)
+            .observe(this, Observer { recipeIngredients ->
+                ingredientWithMeasure.clear()
+                ingredientWithMeasure.addAll(recipeIngredients)
 
-            adapter.swapData(ingredientWithMeasure)
+                adapter.swapData(ingredientWithMeasure)
 
-            val recyclerView = findViewById<RecyclerView>(R.id.ingredients_list)
-            recyclerView.adapter = adapter
-        })
+                val recyclerView = ingredients_list
+                recyclerView.adapter = adapter
+            })
     }
 
-    private fun printRecipeBasic(recipeWithTags : RecipeWithTags?){
+    private fun printRecipeBasic(recipeWithTags: RecipeWithTags?) {
         if (recipeWithTags == null) {
             return
         }
 
         recipe_tags.text = recipeWithTags.tags.joinToString(separator = ", ") {
-            it.name }
+            it.name
+        }
 
-        if (recipeWithTags.recipe.source == ""){
+        printResource()
+        printCookingTime()
+        printCookingTemperature()
+        printPreparationTime()
+        printInstructions()
+    }
+
+    private fun printResource() {
+        if (recipeWithTags.recipe.source.isEmpty()) { // TODO ""
             recipe_source.visibility = TextView.GONE
             recipe_source_label.visibility = TextView.GONE
+            return
         }
-        else {
-            recipe_source.text = recipeWithTags.recipe.source
-        }
-        if (recipeWithTags.recipe.cookingTemperature.isEmpty()) {
-            recipe_cooking_temp.visibility = TextView.GONE
-            recipe_cooking_temp_label.visibility = TextView.GONE
-        }
-        else {
-            recipe_cooking_temp.text = recipeWithTags.recipe.cookingTemperature
-        }
+        recipe_source.text = recipeWithTags.recipe.source
+    }
+
+    private fun printCookingTime() {
         if (recipeWithTags.recipe.cookingTime.isEmpty()) {
             recipe_cooking_time.visibility = TextView.GONE
             recipe_cooking_time_label.visibility = TextView.GONE
+            recipe_cooking_time_unit_text.visibility = TextView.GONE
+            return
         }
-        else {
-            recipe_cooking_time.text = recipeWithTags.recipe.cookingTime
+        recipe_cooking_time.text = recipeWithTags.recipe.cookingTime
+    }
+
+    private fun printCookingTemperature() {
+        if (recipeWithTags.recipe.cookingTemperature.isEmpty()) {
+            recipe_cooking_temp.visibility = TextView.GONE
+            recipe_cooking_temp_label.visibility = TextView.GONE
+            recipe_cooking_temp_unit_text.visibility = TextView.GONE
+            return
         }
+        recipe_cooking_temp.text = recipeWithTags.recipe.cookingTemperature
+    }
+
+    private fun printPreparationTime() {
         if (recipeWithTags.recipe.preparationTime.isEmpty()) {
             recipe_prep_time.visibility = TextView.GONE
             recipe_prep_time_label.visibility = TextView.GONE
+            recipe_prep_time_unit_text.visibility = TextView.GONE
+            return
         }
-        else {
-            recipe_prep_time.text = recipeWithTags.recipe.preparationTime
-        }
-        if (recipeWithTags.recipe.instructions == "") {
+        recipe_prep_time.text = recipeWithTags.recipe.preparationTime
+    }
+
+    private fun printInstructions() {
+        if (recipeWithTags.recipe.instructions.isEmpty()) { // TODO ""
             recipe_instructions.visibility = TextView.GONE
             recipe_ingredients_label.visibility = TextView.GONE
+            return
         }
-        else {
-            recipe_instructions.text = recipeWithTags.recipe.instructions
-        }
+        recipe_instructions.text = recipeWithTags.recipe.instructions
     }
+
 }

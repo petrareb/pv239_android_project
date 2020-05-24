@@ -11,14 +11,16 @@ import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.adapter.NewRecipeIngredientsAdapter
 import com.example.receptarstarejmatere.adapter.RecipeTagsAdapter
 import com.example.receptarstarejmatere.application.App
-import com.example.receptarstarejmatere.database.model.*
+import com.example.receptarstarejmatere.database.model.Recipe
+import com.example.receptarstarejmatere.database.model.RecipeTagCrossRef
+import com.example.receptarstarejmatere.database.model.Tag
 import com.example.receptarstarejmatere.database.viewModel.IngredientViewModel
 import com.example.receptarstarejmatere.database.viewModel.TagViewModel
 import com.example.receptarstarejmatere.utils.EditTextUtils
 import com.example.receptarstarejmatere.utils.SaveIngredientsUtils
+import kotlinx.android.synthetic.main.activity_new_recipe.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.util.*
 
 class NewRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagListener {
 
@@ -54,43 +56,25 @@ class NewRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagList
         tagsAdapter = RecipeTagsAdapter(onTagListener = this)
         initTagsRecyclerView()
 
-        val saveButton = findViewById<Button>(R.id.new_recipe_save_button)
-        val addIngredButton = findViewById<Button>(R.id.new_recipe_add_ingred_button)
+        initViewComponents()
 
-        isFavoriteStar = findViewById(R.id.new_recipe_star)
-        nameEditText = findViewById(R.id.new_recipe_name)
-        sourceEditText = findViewById(R.id.new_recipe_source)
-        prepTimeEditText = findViewById(R.id.new_recipe_prep_time)
-        cookTimeEditText = findViewById(R.id.new_recipe_cook_time)
-        instructionsEditText = findViewById(R.id.new_recipe_instructions)
-
-        cookTempEditText = findViewById(R.id.new_recipe_cook_temp)
-        cookTempLabel = findViewById(R.id.new_recipe_cook_temp_text)
-        cookTempUnits = findViewById(R.id.new_recipe_cook_temp_unit_text)
-
-        ingredNameEditText = findViewById(R.id.new_recipe_ingred_name)
-        ingredMeasureEditText = findViewById(R.id.new_recipe_ingred_measure)
-        ingredQuantityEditText = findViewById(R.id.new_recipe_ingred_quantity)
-
-        tagsText = findViewById(R.id.new_recipe_tags_text)
-
-        cookTempEditText.visibility = View.GONE
-        cookTempLabel.visibility = View.GONE
-        cookTempUnits.visibility = View.GONE
-
-        EditTextUtils.showAnotherEditTextIfNotEmpty(cookTimeEditText, listOf(cookTempEditText, cookTempLabel, cookTempUnits))
-
+        val saveButton = new_recipe_save_button
         saveButton.setOnClickListener {
             val isValid = checkRequiredFields()
             if (isValid) {
                 saveNewRecipe()
-                Toast.makeText(this, resources.getString(R.string.success_new_recipe), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.success_new_recipe),
+                    Toast.LENGTH_SHORT
+                ).show()
 
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
         }
 
+        val addIngredButton = new_recipe_add_ingred_button
         addIngredButton.setOnClickListener {
             val isValid = checkNewIngredientValues()
             if (isValid) {
@@ -108,6 +92,34 @@ class NewRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagList
                 ingredNameEditText.text.clear()
             }
         }
+    }
+
+    private fun initViewComponents() {
+        isFavoriteStar = new_recipe_star
+        nameEditText = new_recipe_name
+        sourceEditText = new_recipe_source
+        prepTimeEditText = new_recipe_prep_time
+        cookTimeEditText = new_recipe_cook_time
+        instructionsEditText = new_recipe_instructions
+
+        cookTempEditText = new_recipe_cook_temp
+        cookTempLabel = new_recipe_cook_temp_text
+        cookTempUnits = new_recipe_cook_temp_unit_text
+
+        ingredNameEditText = new_recipe_ingred_name
+        ingredMeasureEditText = new_recipe_ingred_measure
+        ingredQuantityEditText = new_recipe_ingred_quantity
+
+        tagsText = new_recipe_tags_text
+
+        cookTempEditText.visibility = View.GONE
+        cookTempLabel.visibility = View.GONE
+        cookTempUnits.visibility = View.GONE
+
+        EditTextUtils.showAnotherEditTextIfNotEmpty(
+            cookTimeEditText,
+            listOf(cookTempEditText, cookTempLabel, cookTempUnits)
+        )
     }
 
     private fun saveNewRecipe() {
@@ -128,7 +140,6 @@ class NewRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagList
             isFavorite = isFavorite,
             preparationTime = prepTime,
             source = source
-            //pathToImage = "", TODO TBA
         )
 
         GlobalScope.launch {

@@ -14,9 +14,4 @@ class Tag
     constructor(name : String) {
         this.name = name
     }
-
-//    constructor(name : String, id : Int) {
-//        this.tagId = id
-//        this.name = name
-//    }
 }

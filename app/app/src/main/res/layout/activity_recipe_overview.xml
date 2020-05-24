@@ -90,7 +90,14 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 style="@style/recipeOverViewValue"
-                android:text=""/>
+                android:text="" />
+
+            <TextView
+                android:id="@+id/recipe_prep_time_unit_text"
+                style="@style/recipeOverViewValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_unit" />
         </LinearLayout>
 
         <LinearLayout
@@ -114,6 +121,13 @@
                 android:layout_height="wrap_content"
                 style="@style/recipeOverViewValue"
                 android:text=""/>
+
+            <TextView
+                android:id="@+id/recipe_cooking_time_unit_text"
+                style="@style/recipeOverViewValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_unit" />
         </LinearLayout>
 
         <LinearLayout
@@ -137,6 +151,13 @@
                 android:padding="5dp"
                 style="@style/recipeOverViewValue"
                 android:text=""/>
+
+            <TextView
+                android:id="@+id/recipe_cooking_temp_unit_text"
+                style="@style/recipeOverViewValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/temp_unit" />
         </LinearLayout>
 
         <LinearLayout

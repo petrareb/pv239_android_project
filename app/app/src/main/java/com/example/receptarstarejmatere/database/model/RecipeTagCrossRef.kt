@@ -9,9 +9,6 @@ data class RecipeTagCrossRef (
     @ColumnInfo(name = "tag_id", index = true) val tagId : Int
 )
 
-// https://medium.com/androiddevelopers/database-relations-with-room-544ab95e4542
-// https://developer.android.com/reference/android/arch/persistence/room/Relation
-
 data class RecipeWithTags (
     @Embedded val recipe: Recipe,
     @Relation(

@@ -1,10 +1,12 @@
 package com.example.receptarstarejmatere.adapter
 
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.receptarstarejmatere.R
 import com.example.receptarstarejmatere.application.App
@@ -15,7 +17,8 @@ import kotlinx.coroutines.launch
 
 class RecipesAdapter(
     private var recipes: List<Recipe> = listOf(),
-    private var onRecipeListener: OnRecipeListener
+    private var onRecipeListener: OnRecipeListener,
+    private var context: Context
 ) : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,7 +28,8 @@ class RecipesAdapter(
                 parent,
                 false
             ),
-            onRecipeListener
+            onRecipeListener,
+            context
         )
     }
 
@@ -59,19 +63,20 @@ class RecipesAdapter(
 
     class ViewHolder(
         private var recipesView: View,
-        private var onRecipeListener: OnRecipeListener
+        private var onRecipeListener: OnRecipeListener,
+        private var context: Context
     ) : RecyclerView.ViewHolder(recipesView), View.OnClickListener {
 
         var recipeName: TextView = recipesView.findViewById(R.id.recipe_name)
 
         fun bind(recipe: Recipe) {
             recipeName.text = recipe.name
-            val img: Drawable = if (recipe.isFavorite) {
-                recipesView.resources.getDrawable(R.drawable.ic_heart_checked)
+            val img: Drawable? = if (recipe.isFavorite) {
+                ContextCompat.getDrawable(context, R.drawable.ic_heart_checked)
             } else {
-                recipesView.resources.getDrawable(R.drawable.ic_text_blue)
+                ContextCompat.getDrawable(context, R.drawable.ic_text_blue)
             }
-            img.setBounds(0, 0, 60, 60)
+            img?.setBounds(0, 0, 60, 60)
             recipeName.setCompoundDrawables(img, null, null, null)
             recipeName.compoundDrawablePadding = 18
             recipesView.setOnClickListener(this)

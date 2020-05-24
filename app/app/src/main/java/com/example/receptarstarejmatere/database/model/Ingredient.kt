@@ -12,10 +12,4 @@ class Ingredient
     constructor(name : String){
         this.name  = name
     }
-
-//    constructor(name: String, id : Int) {
-//        this.id = id
-//        this.name = name
-//    }
-
 }

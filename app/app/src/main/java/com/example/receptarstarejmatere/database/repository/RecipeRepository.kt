@@ -21,16 +21,12 @@ class RecipeRepository(recipeDb: MyDb) {
         return recipeDao.getRecipeById(id)
     }
 
-    fun getRecipesWithNameSubstring(substring: String): LiveData<List<Recipe>> {
+    suspend fun getRecipesWithNameSubstring2(substring: String): List<Recipe> {
         return recipeDao.getRecipesWithNameSubstring(substring)
     }
 
-    suspend fun getRecipesWithNameSubstring2(substring: String): List<Recipe> {
-        return recipeDao.getRecipesWithNameSubstring2(substring)
-    }
-
     suspend fun getRecipesWithInstructionSubstring2(substring: String): List<Recipe> {
-        return recipeDao.getRecipesWithInstructionSubstring2(substring)
+        return recipeDao.getRecipesWithInstructionSubstring(substring)
     }
 
     suspend fun insertAll(recipes: List<Recipe>) : List<Long> {
@@ -47,10 +43,6 @@ class RecipeRepository(recipeDb: MyDb) {
 
     suspend fun deleteRecipe(recipe: Recipe) {
         recipeDao.delete(recipe)
-    }
-
-    suspend fun deleteRecipeById(id: Int) {
-        recipeDao.deleteById(id)
     }
 
     suspend fun updateRecipe(recipe: Recipe) {
