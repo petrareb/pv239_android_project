@@ -72,6 +72,11 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
         intent.removeExtra(Constants.SEARCH_QUERY)
     }
 
+    override fun onRecipeDelete() {
+        Toast.makeText(this, resources.getString(R.string.success_delete_recipe), Toast.LENGTH_SHORT).show()
+    }
+
+
     private fun tryToDeleteTag(): Boolean {
         if (mRecipes.isNotEmpty()) {
             Toast.makeText(this, resources.getString(R.string.error_delete_tags), Toast.LENGTH_SHORT).show()

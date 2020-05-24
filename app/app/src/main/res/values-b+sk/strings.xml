@@ -60,7 +60,7 @@
     <!--    hint values-->
 
     <string name="preparation_time_value">60</string>
-    <string name="cooking_time_value">30</string>
+    <string name="cooking_time_value">0</string>
     <string name="cooking_temperature_value">180</string>
     <string name="ingred_quantity_hint">42</string>
     <string name="ingred_unit_hint">g</string>
@@ -73,6 +73,7 @@
     <string name="error_new_tag_name">Meno kategórie nesmie byť prázdne</string>
     <string name="success_new_tag">Nový tag bol pridaný</string>
     <string name="success_new_recipe">Nový recept bol pridaný</string>
+    <string name="success_delete_recipe">Recept bol zmazaný</string>
 
     <!--    button texts-->
     <string name="add_ingred_button_text">+</string>

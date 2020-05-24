@@ -59,7 +59,7 @@
 
     <!--    hint values-->
     <string name="preparation_time_value">60</string>
-    <string name="cooking_time_value">30</string>
+    <string name="cooking_time_value">0</string>
     <string name="cooking_temperature_value">180</string>
     <string name="ingred_quantity_hint">42</string>
     <string name="ingred_unit_hint">g</string>
@@ -74,6 +74,7 @@
     <string name="success_new_recipe">The new recipe was added</string>
     <string name="error_delete_tags">Please delete existing recipes in order to delete the tag </string>
     <string name="success_delete_tags">The tag was deleted</string>
+    <string name="success_delete_recipe">The recipe was deleted</string>
 
 
     <!--    button texts-->

@@ -49,6 +49,7 @@ class RecipesAdapter(
         }
 
         notifyItemRemoved(position)
+        onRecipeListener.onRecipeDelete()
     }
 
     fun editItem(position: Int) {
@@ -84,5 +85,6 @@ class RecipesAdapter(
     interface OnRecipeListener {
         fun onSelectedRecipeClick(position: Int)
         fun onSelectedRecipeEditSwipe(position: Int)
+        fun onRecipeDelete()
     }
 }

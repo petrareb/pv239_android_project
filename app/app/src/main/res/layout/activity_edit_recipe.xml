@@ -8,7 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="30dp">
 
         <TextView
             android:id="@+id/edit_recipe_header"
@@ -185,7 +186,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp">
 
             <EditText
                 android:id="@+id/edit_recipe_ingred_quantity"
@@ -227,6 +230,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:background="@drawable/activity_button"
+            android:foreground="?attr/selectableItemBackground"
             android:text="@string/add_ingred_button_text" />
 
         <TextView
@@ -234,6 +239,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/RecipeLabel"
+            android:paddingTop="20dp"
             android:text="@string/instructions" />
 
         <EditText
@@ -245,11 +251,14 @@
             android:importantForAutofill="no"
             android:text=""
             android:inputType="textMultiLine" />
+
         <Button
             android:id="@+id/edit_recipe_save_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:background="@drawable/activity_button"
+            android:foreground="?attr/selectableItemBackground"
             android:text="@string/new_save_button_text" />
     </LinearLayout>
 </ScrollView>

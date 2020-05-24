@@ -11,7 +11,6 @@
     </style>
 
     <style name="ButtonActivityMain" parent="@style/Widget.AppCompat.Button.Borderless.Colored">
-
         <item name="android:layout_margin">20dp</item>
         <item name="android:textSize">18dp</item>
         <item name="android:background">#FFFFFF</item>
@@ -55,6 +54,7 @@
         <item name="android:textSize">19sp</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:textColor">@color/colorLabels</item>
     </style>
     <style name="RecipeValue">
         <item name="android:layout_marginLeft">20dp</item>
@@ -88,4 +88,5 @@
     <style name="recipeOverViewValue">
         <item name="android:textSize">17sp</item>
     </style>
+
 </resources>
