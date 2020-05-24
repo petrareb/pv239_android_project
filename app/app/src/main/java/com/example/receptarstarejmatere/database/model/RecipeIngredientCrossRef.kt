@@ -22,48 +22,19 @@ import androidx.room.*
             onDelete = ForeignKey.CASCADE
         )]
 )
-class RecipeIngredient {
-    constructor(recipeId: Int, ingredientId: Int, quantity: Int, measure: String) {
-        this.recipeId = recipeId
-        this.ingredientId = ingredientId
-        this.quantity = quantity
-        this.measure = measure
-    }
-
+class RecipeIngredient(
+    @ColumnInfo(name = "recipe_id") var recipeId: Int, @ColumnInfo(name = "ingredient_id") var ingredientId: Int,// mnozstvo, napr. 5
+    @ColumnInfo(name = "quantity") var quantity: Int,// jednotka mnozstva, PL
+    @ColumnInfo(name = "measure") var measure: String
+) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id: Int = 0
-
-    @ColumnInfo(name = "recipe_id")
-    var recipeId: Int = 0
-
-    @ColumnInfo(name = "ingredient_id")
-    var ingredientId: Int = 0
-
-    @ColumnInfo(name = "quantity")
-    var quantity: Int = 0 // mnozstvo, napr. 5
-
-    @ColumnInfo(name = "measure")
-    var measure: String = "" // jednotka mnozstva, PL
 }
 
-class IngredientWithMeasure {
-    constructor(name: String, ingredientId: Int, quantity: Int, measure: String) {
-        this.name = name
-        this.ingredientId = ingredientId
-        this.quantity = quantity
-        this.measure = measure
-    }
-
-    @ColumnInfo(name = "quantity")
-    var quantity: Int = 0
-
-    @ColumnInfo(name = "ingredient_id")
-    var ingredientId: Int = 0
-
-    @ColumnInfo(name = "name")
-    var name: String = "" // mnozstvo, napr. 5
-
-    @ColumnInfo(name = "measure")
-    var measure: String = "" // jednotka mnozstva, PL
-}
+class IngredientWithMeasure(// mnozstvo, napr. 5
+    @ColumnInfo(name = "name") var name: String, @ColumnInfo(name = "ingredient_id") var ingredientId: Int, @ColumnInfo(
+        name = "quantity"
+    ) var quantity: Int,// jednotka mnozstva, PL
+    @ColumnInfo(name = "measure") var measure: String
+)

@@ -5,13 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class Tag
-{
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "rowid")
-    var tagId : Int = 0
-    var name : String = ""
-
-    constructor(name : String) {
-        this.name = name
-    }
+class Tag(var name: String) {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "rowid")
+    var tagId: Int = 0
 }

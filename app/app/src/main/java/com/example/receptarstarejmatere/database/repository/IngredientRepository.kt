@@ -1,6 +1,5 @@
 package com.example.receptarstarejmatere.database.repository
 
-import androidx.lifecycle.LiveData
 import com.example.receptarstarejmatere.database.MyDb
 import com.example.receptarstarejmatere.database.dao.IngredientDao
 import com.example.receptarstarejmatere.database.model.Ingredient
