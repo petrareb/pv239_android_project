@@ -91,7 +91,7 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
         val deleteTagButton = delete_tag_button
         deleteTagButton.visibility = View.VISIBLE
         deleteTagButton.setOnClickListener {
-            if (canDeleteTag()) {
+            if (tryDeleteTag()) {
                 Toast.makeText(
                     this,
                     resources.getString(R.string.success_delete_tags),
@@ -109,13 +109,8 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
         }
     }
 
-    private fun canDeleteTag(): Boolean {
+    private fun tryDeleteTag(): Boolean {
         if (mRecipes.isNotEmpty()) {
-            Toast.makeText(
-                this,
-                resources.getString(R.string.error_delete_tags),
-                Toast.LENGTH_SHORT
-            ).show()
             return false
         }
         GlobalScope.launch {
@@ -138,8 +133,8 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
     private fun initRecipesRecyclerView() {
         val selectedTagId = intent.getIntExtra(Constants.SELECTED_TAG_ID, 100)
         App.recipeTagRepository.getTagWithRecipes(selectedTagId)
-            .observe(this, Observer { tagsWithRecipes ->
-                val recipes = tagsWithRecipes[0].recipes
+            .observe(this, Observer { tagWithRecipes ->
+                val recipes: List<Recipe> = tagWithRecipes?.recipes ?: listOf()
                 initRecipesRecyclerShared(recipes)
             })
     }
@@ -150,7 +145,7 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
         })
     }
 
-    private fun initRecipesRecyclerShared(recipes: List<Recipe>) {
+    private fun initRecipesRecyclerShared(recipes: List<Recipe> = listOf()) {
         mRecipes.clear()
         mRecipes.addAll(recipes)
 

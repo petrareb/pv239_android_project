@@ -25,7 +25,7 @@ interface RecipeTagCrossRefDao {
 
     @Transaction
     @Query("select *, `rowid` from tag where rowid = :givenTagId")
-    fun getTagByIdWithRecipes(givenTagId: Int) : LiveData<List<TagWithRecipes>>
+    fun getTagByIdWithRecipes(givenTagId: Int) : LiveData<TagWithRecipes>
 
     @Transaction
     @Query("select *, recipe_id from recipe where recipe_id = :givenRecipeId")

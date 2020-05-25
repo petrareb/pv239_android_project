@@ -11,7 +11,7 @@ class RecipeTagCrossRefRepository(recipeDb: MyDb) {
 
     private val recipeTagDao: RecipeTagCrossRefDao = recipeDb.recipeTagDao()
 
-    fun getTagWithRecipes(tagId: Int): LiveData<List<TagWithRecipes>> {
+    fun getTagWithRecipes(tagId: Int): LiveData<TagWithRecipes> {
         return recipeTagDao.getTagByIdWithRecipes(tagId)
     }
 
