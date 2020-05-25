@@ -23,7 +23,6 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
     private var mRecipes: ArrayList<Recipe> = ArrayList()
     private lateinit var adapter: RecipesAdapter
     private lateinit var activityType: ListRecipesActivity
-    private var isSearchActivity: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -160,7 +159,7 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
         val recyclerView = recipes_list
         recyclerView.adapter = adapter
 
-        if (!isSearchActivity) {
+        if (activityType != ListRecipesActivity.SEARCHES) {
             val itemTouchHelper = ItemTouchHelper(SwipeRecipeCallback(adapter, this))
             itemTouchHelper.attachToRecyclerView(recyclerView)
         }
