@@ -17,6 +17,7 @@ import com.example.receptarstarejmatere.utils.SwipeRecipeCallback
 import kotlinx.android.synthetic.main.activity_recipes.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlin.math.log
 
 class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
 
@@ -97,6 +98,7 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
                     resources.getString(R.string.success_delete_tags),
                     Toast.LENGTH_SHORT
                 ).show()
+                this.finish()
                 val intent = Intent(this, TagsActivity::class.java)
                 startActivity(intent)
             } else {
@@ -125,9 +127,13 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
             return
         }
         GlobalScope.launch {
-            val foundRecipes = App.searchService.getRecipesContainingString(query)
+            var foundRecipes = App.searchService.getRecipesContainingString(query)
+            if (foundRecipes.isNullOrEmpty()) {
+                foundRecipes = listOf()
+            }
             initRecipesRecyclerShared(foundRecipes)
         }
+
     }
 
     private fun initRecipesRecyclerView() {
@@ -146,23 +152,28 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
     }
 
     private fun initRecipesRecyclerShared(recipes: List<Recipe> = listOf()) {
-        mRecipes.clear()
-        mRecipes.addAll(recipes)
+        try {
+            mRecipes.clear()
 
-        adapter.swapData(mRecipes)
+            mRecipes.addAll(recipes)
 
-        val recyclerView = recipes_list
-        recyclerView.adapter = adapter
+            adapter.swapData(mRecipes)
 
-        if (activityType != ListRecipesActivity.SEARCHES) {
-            val itemTouchHelper = ItemTouchHelper(SwipeRecipeCallback(adapter, this))
-            itemTouchHelper.attachToRecyclerView(recyclerView)
-        }
+            val recyclerView = recipes_list
+            recyclerView.adapter = adapter
 
-        if (mRecipes.isEmpty()) {
-            no_recipes_found.visibility = View.VISIBLE
-        } else {
-            no_recipes_found.visibility = View.GONE
+            if (activityType != ListRecipesActivity.SEARCHES) {
+                val itemTouchHelper = ItemTouchHelper(SwipeRecipeCallback(adapter, this))
+                itemTouchHelper.attachToRecyclerView(recyclerView)
+            }
+
+            if (mRecipes.isEmpty()) {
+                no_recipes_found.visibility = View.VISIBLE
+            } else {
+                no_recipes_found.visibility = View.GONE
+            }
+        } catch (e: Exception) { // android.view.ViewRootImpl$CalledFromWrongThreadException
+            println(e.stackTrace)
         }
     }
 

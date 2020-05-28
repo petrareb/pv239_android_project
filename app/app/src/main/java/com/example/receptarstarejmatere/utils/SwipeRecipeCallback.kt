@@ -60,8 +60,6 @@ class SwipeRecipeCallback(
 
         when {
             dX > 0 -> {
-//                val iconLeft = itemView.left + iconMargin
-//                val iconRight: Int = itemView.left + iconMargin + (iconEdit?.intrinsicWidth ?: 0)
                 var iconLeft = 0
                 var iconRight = 0
                 if (dX > iconMargin) {
