@@ -45,8 +45,8 @@ class RecipesActivity : AppCompatActivity(), RecipesAdapter.OnRecipeListener {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun finish() {
+        super.finish()
         intent.removeExtra(Constants.FAVORITE_RECIPES)
         intent.removeExtra(Constants.SEARCH_QUERY)
     }

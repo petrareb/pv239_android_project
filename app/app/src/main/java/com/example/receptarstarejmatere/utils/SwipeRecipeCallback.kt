@@ -18,7 +18,7 @@ class SwipeRecipeCallback(
 ) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
 
     private val backgroundDelete: ColorDrawable = ColorDrawable(Color.RED)
-    private val iconDelete: Drawable? = getDrawable(context, R.drawable.ic_delete)
+    private val iconDelete: Drawable? = getDrawable(context, R.drawable.ic_delete_black)
 
     private val backgroundEdit: ColorDrawable = ColorDrawable(Color.YELLOW)
     private val iconEdit: Drawable? = getDrawable(context, R.drawable.ic_edit)
@@ -60,8 +60,14 @@ class SwipeRecipeCallback(
 
         when {
             dX > 0 -> {
-                val iconLeft = itemView.left + iconMargin
-                val iconRight: Int = itemView.left + iconMargin + (iconEdit?.intrinsicWidth ?: 0)
+//                val iconLeft = itemView.left + iconMargin
+//                val iconRight: Int = itemView.left + iconMargin + (iconEdit?.intrinsicWidth ?: 0)
+                var iconLeft = 0
+                var iconRight = 0
+                if (dX > iconMargin) {
+                    iconLeft = itemView.left + iconMargin
+                    iconRight = itemView.left + iconMargin + (iconEdit?.intrinsicWidth ?: 0)
+                }
 
                 iconEdit?.setBounds(iconLeft, iconTop, iconRight, iconBottom)
                 backgroundEdit.setBounds(
@@ -72,8 +78,12 @@ class SwipeRecipeCallback(
                 )
             }
             dX < 0 -> {
-                val iconLeft: Int = itemView.right - iconMargin - (iconDelete?.intrinsicWidth ?: 0)
-                val iconRight: Int = itemView.right - iconMargin
+                var iconLeft: Int = itemView.right - iconMargin - (iconDelete?.intrinsicWidth ?: 0)
+                var iconRight: Int = itemView.right - iconMargin
+                if (dY > itemView.right - iconMargin - (iconDelete?.intrinsicWidth ?: 0)) {
+                    iconLeft = 0
+                    iconRight = 0
+                }
 
                 iconDelete?.setBounds(iconLeft, iconTop, iconRight, iconBottom)
                 backgroundDelete.setBounds(
@@ -84,6 +94,8 @@ class SwipeRecipeCallback(
                 )
             }
             else -> { // unSwiped
+                iconDelete?.setBounds(0, 0, 0, 0)
+                iconEdit?.setBounds(0, 0, 0, 0)
                 backgroundDelete.setBounds(0, 0, 0, 0)
             }
         }
