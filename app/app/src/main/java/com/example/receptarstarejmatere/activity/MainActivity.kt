@@ -53,6 +53,10 @@ class MainActivity : AppCompatActivity() {
         hideButtons()
     }
 
+    override fun onBackPressed() {
+        finish()
+    }
+
     private fun toggleImageViewVisibility() {
         if (!showedAddButtons) {
             showButtons()

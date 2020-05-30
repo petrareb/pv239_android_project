@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
+        <activity
+            android:name=".activity.MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,21 +27,22 @@
         <activity
             android:name=".activity.SearchActivity"
             android:parentActivityName=".activity.MainActivity"
-            android:windowSoftInputMode="adjustResize"
-            />
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activity.NewTagActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"
-            android:windowSoftInputMode="adjustResize"
-            android:noHistory="true" />
+            android:noHistory="true"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activity.TagsActivity"
-            android:parentActivityName=".activity.MainActivity" />
+            android:parentActivityName=".activity.MainActivity"
+            android:launchMode="singleTop"/>
         <activity android:name=".activity.RecipeOverviewActivity" />
         <activity
             android:name=".activity.EditRecipeActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:noHistory="true" />
+            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"
+            android:noHistory="true"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
