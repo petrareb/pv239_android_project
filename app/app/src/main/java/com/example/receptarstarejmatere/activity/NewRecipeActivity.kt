@@ -95,6 +95,7 @@ class NewRecipeActivity : AppCompatActivity(), RecipeTagsAdapter.OnSelectTagList
     }
 
     private fun initViewComponents() {
+        // Kdyz pouzivate synthetic binding misto findviewbyid, nemusite si je takto ukladat, jenom vam to zabira misto ve tride a mate hafo properties
         isFavoriteStar = new_recipe_star
         nameEditText = new_recipe_name
         sourceEditText = new_recipe_source
